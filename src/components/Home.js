@@ -26,7 +26,7 @@ export const Home = () => {
     fetchMovies
   ] = useHomeFetch(searchTerm)
 
-  const searchMovies = (search) => {
+  const searchMovies = search => {
     const endpoint = search ? `${SEARCH_BASE_URL}${search}` : POPULAR_BASE_URL
 
     setSearchTerm(search)
@@ -34,9 +34,8 @@ export const Home = () => {
   }
 
   const loadMoreMovies = () => {
-    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${
-      currentPage + 1
-    }`
+    const searchEndpoint = `${SEARCH_BASE_URL}${searchTerm}&page=${currentPage + 1
+      }`
     const popularEndpoint = `${POPULAR_BASE_URL}&page=${currentPage + 1}`
 
     const endpoint = searchTerm ? searchEndpoint : popularEndpoint
@@ -56,7 +55,9 @@ export const Home = () => {
           text={heroImage.overview}
         />
       )}
+
       <SearchBar callback={searchMovies} />
+
       <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'}>
         {movies.map((movie) => (
           <MovieThumb
@@ -72,6 +73,7 @@ export const Home = () => {
           />
         ))}
       </Grid>
+
       {loading && <Spinner />}
       {currentPage < totalPages && !loading && (
         <LoadMoreBtn text='Load More' callback={loadMoreMovies} />

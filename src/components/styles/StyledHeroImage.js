@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const StyledHeroImage = styled.div`
   position: relative;
@@ -32,31 +32,31 @@ export const StyledHeroImage = styled.div`
     color: #fff;
     background: rgba(0, 0, 0, 0);
 
-    h1 {
+    .movie-title {
       font-family: 'Abel', sans-serif;
       font-size: 48px;
       color: #fff;
 
-      @media screen and (max-width: 720px) {
+      @media(max-width: 720px) {
         font-size: 38px;
         color: #fff;
       }
     }
 
-    p {
+    .movie-descr {
       font-family: 'Abel', sans-serif;
       font-size: 22px;
       line-height: 26px;
       color: #fff;
 
-      @media screen and (max-width: 720px) {
+      @media(max-width: 720px) {
         font-size: 16px;
         line-height: 20px;
         color: #fff;
       }
     }
 
-    @media screen and (max-width: 720px) {
+    @media(max-width: 720px) {
       max-width: 100%;
     }
   }
@@ -69,4 +69,4 @@ export const StyledHeroImage = styled.div`
       opacity: 1;
     }
   }
-`;
+`

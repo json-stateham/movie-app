@@ -1,13 +1,12 @@
 import React from 'react'
 import { Router } from '@reach/router'
-
 import { Header } from './elements/Header'
 import { Home } from './Home'
 import { Movie } from './Movie'
 import { NotFound } from './NotFound'
 import { GlobalStyle } from './styles/GlobalStyle'
 
-const App = () => (
+export const App = () => (
   <>
     <Header />
     <Router>
@@ -18,5 +17,3 @@ const App = () => (
     <GlobalStyle />
   </>
 )
-
-export default App
