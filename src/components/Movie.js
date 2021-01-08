@@ -1,35 +1,72 @@
 import React from 'react'
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router-dom'
+import API from '../API'
+// Config
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../config'
+// Components
+import BreadCrumb from './BreadCrumb'
+import Grid from './Grid'
+import Spinner from './Spinner'
+import MovieInfo from './MovieInfo'
+import MovieInfoBar from './MovieInfoBar'
+import Actor from './Actor'
+import NoImage from '../images/no_image.jpg'
 
-import { Actor } from './elements/Actor'
-import { MovieInfo } from './elements/MovieInfo'
-import { MovieInfoBar } from './elements/MovieInfoBar'
-import { Navigation } from './elements/Navigation'
-import { Grid } from './elements/Grid'
-import { Spinner } from './elements/Spinner'
+const getMovie = async movieId => {
+  const movie = await API.fetchMovie(movieId)
+  const credits = await API.fetchCredits(movieId)
+  const directors = credits.crew.filter(
+    member => member.job === 'Director'
+  )
 
-import { useMovieFetch } from './hooks/useMovieFetch'
+  return {
+    ...movie,
+    actors: credits.cast,
+    directors
+  }
+}
 
-export const Movie = ({ movieId }) => {
-  const [movie, loading, error] = useMovieFetch(movieId)
+const Movie = () => {
+  const { movieId } = useParams()
 
-  if(error) return <div>Something went wrong</div>
-  if (loading) return <Spinner />
+  const {
+    data: movie,
+    isLoading, 
+    isError
+  } = useQuery(
+    movieId,
+    () => getMovie(movieId)
+  )
+
+  if (isLoading) return <Spinner />
+  if (isError) return <div>Something went wrong...</div>
+
   return (
     <>
-      <Navigation movie={movie.original_title} />
+      <BreadCrumb movieTitle={movie.original_title} />
       <MovieInfo movie={movie} />
       <MovieInfoBar
         time={movie.runtime}
         budget={movie.budget}
         revenue={movie.revenue}
       />
-      
-        <Grid header='Actors'>
-          {movie.actors.map((actor) => (
-            <Actor key={actor.credit_id} actor={actor} />
-          ))}
-        </Grid>
-      
+      <Grid header='Actors'>
+        {movie.actors.map(actor => (
+          <Actor
+            key={actor.credit_id}
+            name={actor.name}
+            character={actor.character}
+            imageUrl={
+              actor.profile_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
+                : NoImage
+            }
+          />
+        ))}
+      </Grid>
     </>
   )
 }
+
+export default Movie
