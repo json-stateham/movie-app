@@ -1,5 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './components/App'
+import { render } from 'react-dom'
+import { App } from './components/App'
+import './Global.scss'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+render(
+  <App />,
+  document.querySelector('#root')
+)
