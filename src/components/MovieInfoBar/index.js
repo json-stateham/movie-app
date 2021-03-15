@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Helpers
-import { calcTime, convertMoney } from '../../helpers';
+import { calcTime, convertMoney } from '../../lib/helpers';
 // Styles
 import { Wrapper, Content } from './MovieInfoBar.styles';
 

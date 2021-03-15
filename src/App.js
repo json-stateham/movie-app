@@ -1,30 +1,17 @@
-import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query'
-// Routing
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// Components
-import Header from './components/Header';
-import Home from './components/Home';
-import Movie from './components/Movie';
-import NotFound from './components/NotFound';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+// import Header from './components/Header'
+import { Main, Movie, NotFound } from './pages'
+import './scss/styles.scss'
 
-// Styles
-import { GlobalStyle } from './GlobalStyle';
-
-const queryClient = new QueryClient()
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
+export const App = () => (
+  <>
+    {/* <Header /> */}
     <Router>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/:movieId' element={<Movie />} />
-        <Route path='/*' element={<NotFound />} />
-      </Routes>
-      <GlobalStyle />
+      <Switch>
+        <Route exact path='/' component={Main} />
+        <Route path='/:movieId' component={Movie} />
+        <Route component={NotFound} />
+      </Switch>
     </Router>
-  </QueryClientProvider>
-);
-
-export default App;
+  </>
+)

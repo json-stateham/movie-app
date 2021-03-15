@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // Styles
-import { Wrapper, Content } from './Grid.styles';
+import './grid.scss'
 
 const Grid = ({ header, children }) => (
-  <Wrapper>
+  <div className="wrapper">
     <h1>{header}</h1>
-    <Content>{children}</Content>
-  </Wrapper>
+    <div className="content">{children}</div>
+  </div>
 );
 
 Grid.propTypes = {

@@ -1,0 +1,15 @@
+// css-tricks.com/snippets/css/fluid-typography/
+@mixin fluid($property, $min, $max) {
+  #{$property}: calc(
+    #{$min}px + (#{$max} - #{$min}) * ((100vw - 320px) / (1200 - 320))
+  );
+  @media (min-width: 1200px) {
+    #{$property}: #{$max}px;
+  }
+}
+
+@mixin media($viewport) {
+  @media (min-width: #{$viewport}px) {
+    @content;
+  }
+}
