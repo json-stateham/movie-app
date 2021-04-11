@@ -15,4 +15,10 @@ body {
   font-family: 'Abel', sans-serif;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  background: linear-gradient(to right, #e7eaf8, #ecf2f3);
+}
+
+.load-more-trigger {
+  padding: 20px;
+  background: transparent;
 }

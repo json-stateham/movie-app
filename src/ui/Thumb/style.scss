@@ -1,20 +1,52 @@
+.thumb-img-wrapper {
+  position: relative;
+}
+
 .thumb-img {
+  margin-bottom: 20px;
   width: 100%;
   max-width: 720px;
-  transition: all 0.3s;
+  transition: filter 1s;
   object-fit: cover;
-  animation: animateThumb 0.5s;
+  animation: animateThumb 2.8s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 25px -5px, rgba(0, 0, 0, 0.08) 0px 10px 10px -5px;
 
-  :hover {
-    opacity: 0.8;
+
+
+  &:hover {
+    // opacity: 0.8;
   }
 
   @keyframes animateThumb {
-    from {
+    0% {
       opacity: 0;
+      filter: hue-rotate(60deg);
     }
-    to {
+    70% {
       opacity: 1;
     }
+    100% {
+      filter: hue-rotate(0deg);
+    }
   }
+}
+
+
+.rating {
+  position: absolute;
+  bottom: -15px;
+  right: -9px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  min-height: 50px;
+  min-width: 50px;
+  font-weight: bold;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 2px;
+  background-color: rgba(22, 79, 255, 0.45);
+  text-shadow: 2px 2px #03000066;
+  box-shadow: 0px 9px 9px -5px #0000001a;
 }

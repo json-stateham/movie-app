@@ -9,10 +9,12 @@
     "effector": "^21.8.5",
     "effector-react": "^21.2.1",
     "history": "^5.0.0",
+    "i18next": "^19.9.2",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
+    "react-i18next": "^11.8.10",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0"
   },
@@ -20,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ignore-path .gitignore ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0"
   }
 }
