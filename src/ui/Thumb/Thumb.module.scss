@@ -1,36 +1,29 @@
-.thumb-img-wrapper {
+.thumbImgWrapper {
   position: relative;
+  margin-bottom: 20px;
+  transition: box-shadow 3s;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 25px -5px, rgba(0, 0, 0, 0.08) 0px 10px 10px -5px;
+  
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  }
 }
 
-.thumb-img {
-  margin-bottom: 20px;
+.thumbImg {
   width: 100%;
   max-width: 720px;
-  transition: filter 1s;
+  transition: transform 3s;
   object-fit: cover;
-  animation: animateThumb 2.8s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 25px -5px, rgba(0, 0, 0, 0.08) 0px 10px 10px -5px;
-
-
+  border-radius: 16px 16px 0 0;
 
   &:hover {
-    // opacity: 0.8;
-  }
-
-  @keyframes animateThumb {
-    0% {
-      opacity: 0;
-      filter: hue-rotate(60deg);
-    }
-    70% {
-      opacity: 1;
-    }
-    100% {
-      filter: hue-rotate(0deg);
-    }
+    transform: scale(1.1);
   }
 }
 
+.imgOverflowHidden {
+  overflow: hidden;
+}
 
 .rating {
   position: absolute;

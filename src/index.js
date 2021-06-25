@@ -1,6 +1,6 @@
 import { render } from 'react-dom'
-import './i18n'
 import { App } from './App'
+import './i18n'
 
 render(
   <App />,

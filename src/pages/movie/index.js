@@ -2,13 +2,10 @@ import { useParams } from 'react-router-dom'
 // import API from '../API'
 // Config
 // import { IMAGE_BASE_URL, POSTER_SIZE } from '../config'
-// Components
-// import BreadCrumb from '../components/BreadCrumb'
 // import Grid from '../components/Grid'
 // import Spinner from '../components/Spinner'
 // import MovieInfo from '../components/MovieInfo'
 // import MovieInfoBar from '../components/MovieInfoBar'
-// import Actor from '../components/Actor'
 // import NoImage from '../images/no_image.jpg'
 
 // const getMovie = async movieId => {

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-// import { Tabs } from './ui'
-import { Main, Movie, NotFound } from './pages'
-import './scss/styles.scss'
+import { Main, Movie, NotFound } from 'pages'
+import 'scss/index.scss'
 
 export const App = () => (
   <>

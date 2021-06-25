@@ -4,4 +4,4 @@ export const convertDateFormat = x => {
   return new Intl.DateTimeFormat('en-EN', options).format(date)
 }
 
-//convertDateFormat('2021-03-03') ===> April 3, 2021
+// convertDateFormat('2021-03-03') ===> April 3, 2021
