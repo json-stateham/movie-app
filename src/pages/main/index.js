@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { SwitchTransition, CSSTransition } from 'react-transition-group'
 import {
   $movies,
   $genres,
@@ -20,16 +21,11 @@ import {
   API_URL,
   API_KEY,
   POPULAR_BASE_URL,
-  POSTER_SIZE,
+  MOVIE_THUMB_SIZE,
   BACKDROP_SIZE,
   IMAGE_BASE_URL
 } from 'config'
-// import HeroImage from '../components/HeroImage'
-import { Grid } from 'ui'
-import { Thumb } from 'ui'
-import { Tabs } from 'ui'
-// import SearchBar from '../components/SearchBar'
-// import Button from '../components/Button'
+import { Grid, HeroPicture, Thumb, Tabs } from 'ui'
 import NoImage from 'images/no_image.jpg'
 
 export const Main = () => {
@@ -54,6 +50,8 @@ export const Main = () => {
     resetPage()
   }
 
+  console.log(isFetching)
+
   useEffect(() => {
     if (page !== prevPage) {
       fetchMoviesFx(url)
@@ -68,29 +66,32 @@ export const Main = () => {
     enabled: hasNextPage,
   })
 
+  const MAX_GENRE_COUNT = 3
+
+  const genreIdsToGenreNames = (genresList, genreIds) =>
+    genresList?.reduce((acc, { id, name }) => {
+      genreIds?.includes(id) && acc.push(name)
+      return acc
+    }, [])
+      .slice(0, MAX_GENRE_COUNT)
+      .map((genre, idx, { length }) =>
+        idx !== length - 1 ? `${genre}, ` : genre
+      )
+
   const renderMoviesThumbs = results?.map(
     ({
       genre_ids,
-      id, title,
+      id,
+      title,
       poster_path,
       release_date,
       vote_average
     }) => {
-      const MAX_GENRE_COUNT = 3
+      const genresCommaSeparated = genreIdsToGenreNames(genres, genre_ids)
 
-      const genreIdsToGenreNamesWithCommas =
-        genres?.reduce((acc, { id, name }) => {
-            genre_ids.includes(id) && acc.push(name)
-            return acc
-          }, [])
-          .slice(0, MAX_GENRE_COUNT)
-          .map((genre, idx, { length }) => 
-            idx !== length - 1 ? `${genre}, ` : genre
-          )
-
-      const moviePoster = 
-        poster_path 
-          ? `${IMAGE_BASE_URL}${POSTER_SIZE}${poster_path}`
+      const moviePoster =
+        poster_path
+          ? `${IMAGE_BASE_URL}${MOVIE_THUMB_SIZE}${poster_path}`
           : NoImage
 
       return (
@@ -101,24 +102,50 @@ export const Main = () => {
           movieId={id}
           title={title}
           release={release_date}
-          genres={genreIdsToGenreNamesWithCommas}
+          genres={genresCommaSeparated}
           rating={vote_average > 0 ? vote_average : 'N/A'}
           image={moviePoster}
         />
       )
     })
 
+  const HeroImage = `${IMAGE_BASE_URL}${BACKDROP_SIZE}${results?.[0].backdrop_path}`
+  const poster = `${IMAGE_BASE_URL}${MOVIE_THUMB_SIZE}${results?.[0].poster_path}`
+  const releaseYear = results?.[0]?.release_date.split('-')[0]
 
   return (
     <>
+      {isFetching ?
+        <p>Loading</p> :
+        <HeroPicture
+          backdrop={{
+            backgroundImage: `url(${HeroImage})`
+          }}
+          poster={poster}
+          title={results?.[0].title}
+          releaseYear={releaseYear}
+          genres={genreIdsToGenreNames(genres, results?.[0].genre_ids)}
+          overview={results?.[0].overview}
+        />}
       <Tabs
         tabNames={URL_PARAMS}
         activeTab={urlParam}
         callback={fetchWithParam}
       />
-      <Grid header={`${t(`${urlParam}`)} ${t('movies')}`}>
-        {renderMoviesThumbs}
-      </Grid>
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={urlParam}
+          timeout={500}
+          addEndListener={(node, done) => {
+            node.addEventListener("transitionend", done, false)
+          }}
+          classNames="fade"
+        >
+          <Grid header={`${t(`${urlParam}`)}`}>
+            {renderMoviesThumbs}
+          </Grid>
+        </CSSTransition>
+      </SwitchTransition>
       <div ref={loadMoreRef} className="load-more-trigger"></div>
     </>
   )

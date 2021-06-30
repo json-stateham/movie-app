@@ -2,10 +2,18 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
+  will-change: transform;
 }
 
 .content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 2rem;
+}
+
+.heading {
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 700;
+  word-break: break-all;
 }

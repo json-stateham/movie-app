@@ -16,6 +16,7 @@ body {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   background: linear-gradient(to right, #e7eaf8, #ecf2f3);
+  overflow-x: hidden;
 }
 
 .load-more-trigger {

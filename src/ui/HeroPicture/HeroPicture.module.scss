@@ -1,0 +1,109 @@
+@import '../../scss/mixins';
+@import '../../scss/vars';
+
+.wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: none;
+
+  @include media(767) {
+    display: flex;
+  }
+}
+
+.hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100vh;
+  align-items: flex-end;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 5px 20px -10px #000;
+  animation: backdrop 0.5s;
+  overflow: hidden;
+
+  @include fluid(padding-left, 20, 60);
+  @include fluid(padding-right, 20, 60);
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #00000085;
+    box-shadow: inset 345px 0px 100px -5px #0000004d;
+  }
+}
+
+.poster {
+  position: relative;
+  z-index: 3;
+  margin-left: 60px;
+  align-self: flex-end;
+  transform: rotate(355deg) translateY(-20px);
+  box-shadow: -5px -5px 25px 0px rgba(0, 0, 0, 0.3);
+  will-change: transform;
+
+  img {
+    max-width: 100%;
+    max-height: 75vh;
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+.movieInfoWrapper {
+  z-index: 3;
+  align-self: center;
+  @include fluid(margin-left, 20, 40);
+  max-width: 40%;
+  color: $clr-white;
+  will-change: transform;
+}
+
+.title {
+  font-size: 62px;
+  font-weight: 700;
+}
+
+.genres {
+  position: absolute;
+  margin-left: 30px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 12px;
+    left: -18px;
+    border-radius: 100px;
+    background: $clr-white;
+  }
+}
+
+.genres,
+.year {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.overview {
+  margin-top: 24px;
+  font-size: 20px;
+}
+
+@keyframes backdrop {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

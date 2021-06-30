@@ -15,10 +15,10 @@ export const Thumb = ({
   const renderPoster = clickable
     ? (
       <Link to={`/${movieId}`}>
-        <img src={image} alt={alt} className={styles.thumbImg} />
+        <img src={image} alt={alt} className={styles.thumbImg} width="216px" height="326px" loading='lazy' />
       </Link>
     ) : (
-      <img src={image} alt={alt} className={styles.thumbImg} />
+      <img src={image} alt={alt} className={styles.thumbImg} width="216px" height="326px" loading='lazy' />
     )
 
   const renderReleaseDate = release ? convertDateFormat(release) : ''

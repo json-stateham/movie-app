@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Main, Movie, NotFound } from 'pages'
 import 'scss/index.scss'
 
-export const App = () => (
+const App = () => (
   <>
     <Router>
       <Switch>
@@ -13,3 +13,5 @@ export const App = () => (
     </Router>
   </>
 )
+
+export { App }

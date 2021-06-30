@@ -1,3 +1,4 @@
 export { Grid } from './Grid'
-export { Thumb } from './Thumb/Thumb'
+export { HeroPicture } from './HeroPicture'
 export { Tabs } from './Tabs'
+export { Thumb } from './Thumb/Thumb'

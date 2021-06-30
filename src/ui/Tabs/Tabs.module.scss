@@ -52,6 +52,7 @@
   @include fluid(padding-top, 16, 24);
   @include fluid(font-size, 12, 20);
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .tabTitle::after {

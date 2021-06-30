@@ -1,0 +1,31 @@
+.fade-enter {
+  opacity: 0;
+  transform: translateX(100%) skewX(-35deg);
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: translateX(0%) skewX(0deg);
+}
+.fade-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.fade-exit-active {
+  opacity: 0;
+  transform: translateX(-100%) skewY(45deg);
+  transform-origin: left;
+}
+.fade-enter-active,
+.fade-exit-active {
+  transition: opacity 500ms, transform 500ms;
+}
+
+// poster
+.poster-enter {
+  transform: rotate(0deg) translate(100%, -20px) scale(0);
+}
+.poster-enter-active {
+  transform: rotate(355deg) translate(0, -20px) scale(1);
+  transition: transform 1000ms;
+  transition-delay: 0.5s;
+}
