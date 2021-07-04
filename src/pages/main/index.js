@@ -25,7 +25,7 @@ import {
   BACKDROP_SIZE,
   IMAGE_BASE_URL
 } from 'config'
-import { Grid, HeroPicture, Thumb, Tabs } from 'ui'
+import { Grid, HeroPicture, LoadingTape, Thumb, Tabs } from 'ui'
 import NoImage from 'images/no_image.jpg'
 
 export const Main = () => {
@@ -116,7 +116,7 @@ export const Main = () => {
   return (
     <>
       {isFetching ?
-        <p>Loading</p> :
+       <LoadingTape /> :
         <HeroPicture
           backdrop={{
             backgroundImage: `url(${HeroImage})`

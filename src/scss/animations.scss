@@ -26,6 +26,6 @@
 }
 .poster-enter-active {
   transform: rotate(355deg) translate(0, -20px) scale(1);
-  transition: transform 1000ms;
+  transition: transform 1000ms cubic-bezier(.5,1.26,.64,1);
   transition-delay: 0.5s;
 }

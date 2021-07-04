@@ -1,5 +1,5 @@
-@import '../../scss/mixins';
-@import '../../scss/vars';
+@import 'scss/mixins';
+@import 'scss/vars';
 
 .wrapper {
   position: relative;
@@ -8,6 +8,7 @@
 
   @include media(767) {
     display: flex;
+    margin-top: -$header-height;
   }
 }
 

@@ -1,0 +1,19 @@
+@import 'scss/vars.scss';
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  padding: 10px 40px;
+  height: $header-height;
+  background: #00000050;
+  box-shadow: 0 5px 20px -10px #000;
+}
+
+.logoImg {
+  max-width: 100%;
+  width: 160px;
+  height: 40px;
+  user-select: none;
+  pointer-events: none;
+}

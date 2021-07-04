@@ -1,4 +1,6 @@
 export { Grid } from './Grid'
+export { Header } from './Header'
 export { HeroPicture } from './HeroPicture'
+export { LoadingTape } from './LoadingTape'
 export { Tabs } from './Tabs'
-export { Thumb } from './Thumb/Thumb'
+export { Thumb } from './Thumb'
