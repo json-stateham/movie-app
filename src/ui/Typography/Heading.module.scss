@@ -1,0 +1,27 @@
+// https://www.bbc.co.uk/gel/guidelines/typography
+
+@import 'scss/vars';
+@import 'scss/mixins';
+
+.h1 {
+  @include fluid(font-size, 32, 56);
+  @include fluid(line-height, 36, 60);
+  font-weight: 700;
+  margin: var(--margin-bottom);
+}
+
+.h2 {
+  @include fluid(font-size, 20, 32);
+  @include fluid(line-height, 24, 36);
+  font-weight: 700;
+}
+
+.h3 {
+  @include fluid(font-size, 20, 28);
+  @include fluid(line-height, 24, 32);
+  font-weight: 700;
+}
+
+.upper {
+  text-transform: uppercase;
+}

@@ -1,21 +1,27 @@
-const API_URL = 'https://api.themoviedb.org/3/'
-const API_KEY = process.env.REACT_APP_API_KEY
-
-const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=`
-const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US`
-
-const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/'
-// Sizes: w300, w780, w1280, original
-const BACKDROP_SIZE = 'w1280'
-// w92, w154, w185, w342, w500, w780, original
-const MOVIE_THUMB_SIZE = 'w342'
-
-export {
-  SEARCH_BASE_URL,
-  POPULAR_BASE_URL,
-  API_URL,
-  API_KEY,
-  IMAGE_BASE_URL,
-  BACKDROP_SIZE,
-  MOVIE_THUMB_SIZE,
+const config = {
+  API_URL: 'https://api.themoviedb.org/3/',
+  IMAGES_URL: 'http://image.tmdb.org/t/p/',
+  API_KEY: process.env.REACT_APP_API_KEY,
+  SEARCH_URL: () => `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=`,
+  POPULAR_BASE_URL: () => `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US`
 }
+
+const imagesSize = {
+  BACKDROP: {
+    w300: 'w300',
+    w700: 'w700',
+    w1280: 'w1280',
+    original: 'original',
+  },
+  THUMB: {
+    w92: 'w92',
+    w154: 'w154',
+    w185: 'w185',
+    w342: 'w342',
+    w500: 'w500',
+    w700: 'w700',
+    original: 'original'
+  },
+}
+
+export { config, imagesSize }

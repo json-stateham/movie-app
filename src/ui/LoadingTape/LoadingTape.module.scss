@@ -5,30 +5,7 @@
   height: 100vh;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    display: block;
-    width: 8%;
-    height: 100%;
-    background: linear-gradient(to right, #fff, transparent);
-  }
-
-  &::after {
-    display: block;
-    position: absolute;
-    z-index: 2;
-    content: '';
-    top: 0;
-    right: 0;
-    width: 8%;
-    height: 100%;
-    background: linear-gradient(to left, #fff, transparent);
-  }
+  background: rgb(199, 199, 199);
 }
 
 .loadingTapeMover {

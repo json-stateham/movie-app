@@ -8,6 +8,7 @@
   }
 }
 
+// mobile-first media-query mixin
 @mixin media($viewport) {
   @media (min-width: #{$viewport}px) {
     @content;

@@ -14,14 +14,14 @@ export const useIntersectionObserver = ({
     }
 
     const observer = new IntersectionObserver(entries =>
-        entries.forEach(entry => entry.isIntersecting && onIntersect()),
+      entries.forEach(entry =>
+        entry.isIntersecting && onIntersect()),
       {
         root: root?.current,
         rootMargin,
         threshold,
       }
     )
-
     const el = target?.current
 
     if (!el) {
