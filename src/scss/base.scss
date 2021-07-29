@@ -1,0 +1,25 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: inherit;
+  font-family: 'Abel', sans-serif;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background: linear-gradient(to right, #e7eaf8, #ecf2f3);
+  overflow-x: hidden;
+}
+
+.load-more-trigger {
+  padding: 20px;
+  background: transparent;
+}

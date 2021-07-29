@@ -1,0 +1,34 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react-hooks"
+  ],
+  "extends": [
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    "strict": [
+      "error",
+      "never"
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off"
+  },
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  }
+}
