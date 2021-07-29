@@ -1,10 +1,8 @@
 .fade-enter {
   opacity: 0;
-  transform: translateX(100%) skewX(-35deg);
 }
 .fade-enter-active {
   opacity: 1;
-  transform: translateX(0%) skewX(0deg);
 }
 .fade-exit {
   opacity: 1;
@@ -12,12 +10,12 @@
 }
 .fade-exit-active {
   opacity: 0;
-  transform: translateX(-100%) skewY(45deg);
+  transform: translateX(-100%) skewX(-5deg);
   transform-origin: left;
 }
 .fade-enter-active,
 .fade-exit-active {
-  transition: opacity 500ms, transform 500ms;
+  transition: opacity 500ms ease-out, transform 500ms ease-out;
 }
 
 // poster

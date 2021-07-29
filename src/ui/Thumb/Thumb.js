@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { convertDateFormat } from '../../lib/convertDateFormat'
+import { LazyImage } from 'entities/LazyImage/LazyImage'
+import { convertDateFormat } from 'lib/convertDateFormat'
 import styles from './Thumb.module.scss'
 
 const Thumb = ({
@@ -10,15 +11,20 @@ const Thumb = ({
   alt,
   clickable,
   genres,
-  rating
+  rating,
+  isLazy,
 }) => {
   const renderPoster = clickable
     ? (
       <Link to={`/${movieId}`}>
-        <img src={image} alt={alt} className={styles.thumbImg} width="216px" height="326px" loading='lazy' />
+        <div className={styles.thumbImg}>
+            <img src={image} alt={alt} width={250} height={326} loading={isLazy ? 'lazy' : 'eager'} />
+        </div>
       </Link>
     ) : (
-      <img src={image} alt={alt} className={styles.thumbImg} width="216px" height="326px" loading='lazy' />
+      <div className={styles.thumbImg}>
+          <img src={image} alt={alt} width={250} height={326} loading={isLazy ? 'lazy' : 'eager'} />
+      </div>
     )
 
   const renderReleaseDate = release ? convertDateFormat(release) : ''
@@ -32,10 +38,8 @@ const Thumb = ({
         <div className={styles.rating}>{rating}</div>
       </div>
       <h3>{title}</h3>
-      <div>Genres: {genres}</div>
-      <time dateTime={release}>
-        Release: {renderReleaseDate || 'N/A'}
-      </time>
+      <div>{genres}</div>
+      <time dateTime={release}>{renderReleaseDate || 'N/A'}</time>
     </div>
   )
 }

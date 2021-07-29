@@ -1,5 +1,5 @@
 import { render } from 'react-dom'
-import { App } from './App'
+import { App } from 'app/App'
 import './i18n'
 
 render(

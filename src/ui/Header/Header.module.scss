@@ -1,18 +1,26 @@
 @import 'scss/vars.scss';
+@import 'scss/mixins.scss';
 
 .header {
   position: sticky;
   top: 0;
   z-index: 5;
-  padding: 10px 40px;
+  padding: 10px 0;
+  @include fluid(padding-left, 20, 40);
+  @include fluid(padding-right, 20, 40);
   height: $header-height;
-  background: #00000050;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
   box-shadow: 0 5px 20px -10px #000;
+  transition: 0.3s;
+}
+
+.headerHidden {
+  transform: translateY(-$header-height);
 }
 
 .logoImg {
   max-width: 100%;
-  width: 160px;
   height: 40px;
   user-select: none;
   pointer-events: none;

@@ -1,0 +1,11 @@
+@import 'scss/mixins';
+@import 'scss/vars';
+
+.movieInfoWrapper {
+  z-index: 3;
+  align-self: center;
+  @include fluid(margin-left, 20, 40);
+  max-width: 60%;
+  color: $clr-white;
+  will-change: transform;
+}

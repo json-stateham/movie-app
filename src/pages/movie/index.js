@@ -1,57 +1,50 @@
 import { useParams } from 'react-router-dom'
-// import API from '../API'
-// Config
-// import { IMAGE_BASE_URL, POSTER_SIZE } from '../config'
-// import Grid from '../components/Grid'
-// import Spinner from '../components/Spinner'
-// import MovieInfo from '../components/MovieInfo'
-// import MovieInfoBar from '../components/MovieInfoBar'
-// import NoImage from '../images/no_image.jpg'
-
-// const getMovie = async movieId => {
-//   const movie = await API.fetchMovie(movieId)
-//   const credits = await API.fetchCredits(movieId)
-//   const directors = credits.crew.filter(
-//     member => member.job === 'Director'
-//   )
-
-//   return {
-//     ...movie,
-//     actors: credits.cast,
-//     directors
-//   }
-// }
+import { useStore, useGate } from 'effector-react'
+import { moviesGate, $data, $isFetching } from './model'
+import {
+  API_URL,
+  API_KEY,
+  POPULAR_BASE_URL,
+  MOVIE_THUMB_SIZE,
+  MOVIE_HERO_THUMB_SIZE,
+  BACKDROP_SIZE,
+  IMAGE_BASE_URL
+} from 'config'
+import { Grid, HeroBlock } from 'ui'
+import { config, imagesSize } from 'config'
+import NoImage from 'images/no_image.jpg'
 
 export const Movie = () => {
   const { movieId } = useParams()
+  useGate(moviesGate, movieId)
+  const data = useStore($data)
+  const isFetching = useStore($isFetching)
 
-  // if (isLoading) return <Spinner />
-  // if (isError) return <div>Something went wrong...</div>
+  console.log('data', data)
+  console.log('isFetching', isFetching)
+
+  const HeroImage = `${config.IMAGES_URL}${imagesSize.BACKDROP.w1280}${data.movie.backdrop_path}`
 
   return (
     <>
-      <h1>{movieId}</h1>
-      {/* <BreadCrumb movieTitle={movie.original_title} />
-      <MovieInfo movie={movie} />
-      <MovieInfoBar
-        time={movie.runtime}
-        budget={movie.budget}
-        revenue={movie.revenue}
-      />
-      <Grid header='Actors'>
-        {movie.actors.map(actor => (
-          <Actor
-            key={actor.credit_id}
-            name={actor.name}
-            character={actor.character}
-            imageUrl={
-              actor.profile_path
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
-                : NoImage
-            }
-          />
-        ))}
-      </Grid> */}
+      <HeroBlock
+        backdrop={{ backgroundImage: `url(${HeroImage})` }}
+      >
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+        <p>sdfsdfs</p>
+      </HeroBlock>
+     
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 import {
   $movies,
@@ -15,20 +15,22 @@ import {
 } from './model'
 import { useStore } from 'effector-react'
 import { useTranslation } from 'react-i18next'
-import { useIntersectionObserver } from 'hooks/useIntersectionObserver'
 // import API from '../API'
-import {
-  API_URL,
-  API_KEY,
-  POPULAR_BASE_URL,
-  MOVIE_THUMB_SIZE,
-  BACKDROP_SIZE,
-  IMAGE_BASE_URL
-} from 'config'
-import { Grid, HeroPicture, LoadingTape, Thumb, Tabs } from 'ui'
+import { config, imagesSize } from 'config'
+import { 
+  Grid, 
+  HeroBlock, 
+  LoadingTape, 
+  Thumb, 
+  Tabs, 
+  HeroPoster,
+  HeroInfo 
+} from 'ui'
+import { InfiniteScrollTrigger } from 'entities/InfiniteScrollTrigger'
 import NoImage from 'images/no_image.jpg'
 
-export const Main = () => {
+const Main = () => {
+  const [mounted, setMounted] = useState(false)
   const { t } = useTranslation()
   const { results, total_pages } = useStore($movies)
   const { genres } = useStore($genres)
@@ -38,10 +40,9 @@ export const Main = () => {
   const prevPage = useStore($prevPage)
   const page = useStore($page)
   const urlParam = useStore($urlParam)
-  const url = `${API_URL}movie/${urlParam}?api_key=${API_KEY}&language=en-US&page=${page}`
-  const genres_url = `${API_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`
+  const url = `${config.API_URL}movie/${urlParam}?api_key=${config.API_KEY}&language=en-US&page=${page}`
+  const genres_url = `${config.API_URL}genre/movie/list?api_key=${config.API_KEY}&language=en-US`
   const URL_PARAMS = ['popular', 'top_rated', 'upcoming']
-  const loadMoreRef = useRef()
   const hasNextPage = prevPage > 1 || page < total_pages
 
   const fetchNextPage = () => setNextPage()
@@ -50,7 +51,9 @@ export const Main = () => {
     resetPage()
   }
 
-  console.log(isFetching)
+  useEffect(() => {
+    setMounted(!mounted)
+  }, [])
 
   useEffect(() => {
     if (page !== prevPage) {
@@ -59,12 +62,6 @@ export const Main = () => {
       setPrevPage(page)
     }
   }, [page, urlParam])
-
-  useIntersectionObserver({
-    target: loadMoreRef,
-    onIntersect: fetchNextPage,
-    enabled: hasNextPage,
-  })
 
   const MAX_GENRE_COUNT = 3
 
@@ -86,12 +83,13 @@ export const Main = () => {
       poster_path,
       release_date,
       vote_average
-    }) => {
+    }, idx) => {
       const genresCommaSeparated = genreIdsToGenreNames(genres, genre_ids)
+      console.log(results);
 
       const moviePoster =
         poster_path
-          ? `${IMAGE_BASE_URL}${MOVIE_THUMB_SIZE}${poster_path}`
+          ? `${config.IMAGES_URL}${imagesSize.THUMB.w342}${poster_path}`
           : NoImage
 
       return (
@@ -105,28 +103,30 @@ export const Main = () => {
           genres={genresCommaSeparated}
           rating={vote_average > 0 ? vote_average : 'N/A'}
           image={moviePoster}
+          isLazy
         />
       )
     })
 
-  const HeroImage = `${IMAGE_BASE_URL}${BACKDROP_SIZE}${results?.[0].backdrop_path}`
-  const poster = `${IMAGE_BASE_URL}${MOVIE_THUMB_SIZE}${results?.[0].poster_path}`
+  const HeroImage = `${config.IMAGES_URL}${imagesSize.BACKDROP.w1280}${results?.[0]?.backdrop_path}`
+  const heroPoster = `${config.IMAGES_URL}${imagesSize.THUMB.w500}${results?.[0]?.poster_path}`
   const releaseYear = results?.[0]?.release_date.split('-')[0]
 
   return (
     <>
       {isFetching ?
-       <LoadingTape /> :
-        <HeroPicture
-          backdrop={{
-            backgroundImage: `url(${HeroImage})`
-          }}
-          poster={poster}
-          title={results?.[0].title}
-          releaseYear={releaseYear}
-          genres={genreIdsToGenreNames(genres, results?.[0].genre_ids)}
-          overview={results?.[0].overview}
-        />}
+        <LoadingTape /> :
+        <HeroBlock
+          backdrop={{ backgroundImage: `url(${HeroImage})` }}    
+        >
+          <HeroPoster imageSrc={heroPoster} />
+          <HeroInfo
+            title={results?.[0].title}
+            release={releaseYear}
+            genres={genreIdsToGenreNames(genres, results?.[0].genre_ids)}
+            overview={results?.[0].overview}
+          />
+        </HeroBlock>}
       <Tabs
         tabNames={URL_PARAMS}
         activeTab={urlParam}
@@ -136,17 +136,16 @@ export const Main = () => {
         <CSSTransition
           key={urlParam}
           timeout={500}
-          addEndListener={(node, done) => {
-            node.addEventListener("transitionend", done, false)
-          }}
           classNames="fade"
         >
-          <Grid header={`${t(`${urlParam}`)}`}>
+          <Grid>
             {renderMoviesThumbs}
           </Grid>
         </CSSTransition>
       </SwitchTransition>
-      <div ref={loadMoreRef} className="load-more-trigger"></div>
+      <InfiniteScrollTrigger onIntersect={fetchNextPage} enabled={hasNextPage} />
     </>
   )
 }
+
+export { Main }
