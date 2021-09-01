@@ -1,13 +1,17 @@
 .wrapper {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
   will-change: transform;
 }
 
 .content {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  justify-items: center;
-  grid-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  & > * {
+    flex-basis: 270px;
+    margin: 20px;
+  }
 }

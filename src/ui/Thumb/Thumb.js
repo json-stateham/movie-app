@@ -18,12 +18,12 @@ const Thumb = ({
     ? (
       <Link to={`/${movieId}`}>
         <div className={styles.thumbImg}>
-            <img src={image} alt={alt} width={250} height={326} loading={isLazy ? 'lazy' : 'eager'} />
+            <img src={image} alt={alt} width={280} height={326} loading={isLazy ? 'lazy' : 'eager'} />
         </div>
       </Link>
     ) : (
       <div className={styles.thumbImg}>
-          <img src={image} alt={alt} width={250} height={326} loading={isLazy ? 'lazy' : 'eager'} />
+          <img src={image} alt={alt} width={280} height={326} loading={isLazy ? 'lazy' : 'eager'} />
       </div>
     )
 

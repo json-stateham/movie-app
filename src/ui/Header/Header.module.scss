@@ -9,8 +9,8 @@
   @include fluid(padding-left, 20, 40);
   @include fluid(padding-right, 20, 40);
   height: $header-height;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.082);
+  backdrop-filter: blur(5px) saturate(150%) hue-rotate(10deg);
   box-shadow: 0 5px 20px -10px #000;
   transition: 0.3s;
 }
