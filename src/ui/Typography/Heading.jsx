@@ -1,35 +1,23 @@
+import { createElement } from 'react'
 import clsx from 'clsx'
 import styles from './Heading.module.scss'
 
-const Heading = ({ children, variant = 'h3', spacing = {}, upperCase }) => {
-  const variantsHash = {
-    h1: (
-      <h1
-        style={spacing}
-        className={clsx(styles[variant], upperCase && styles.upper)}
-      >
-        {children}
-      </h1>
-    ),
-    h2: (
-      <h2
-        style={spacing}
-        className={clsx(styles[variant], upperCase && styles.upper)}
-      >
-        {children}
-      </h2>
-    ),
-    h3: (
-      <h3
-        style={spacing}
-        className={clsx(styles[variant], upperCase && styles.upper)}
-      >
-        {children}
-      </h3>
-    ),
-  }
-
-  return variantsHash[variant]
-}
+const Heading = ({ children, size = 'h3', space = {}, upperCase }) =>
+  ['h1', 'h2', 'h3', 'h4', 'h5'].map((heading) => {
+    return (
+      heading === size &&
+      createElement(
+        heading,
+        {
+          className: `${clsx({
+            [styles[size]]: size,
+            [styles.upper]: upperCase,
+          })}`,
+          style: { ...space },
+        },
+        [children]
+      )
+    )
+  })
 
 export { Heading }

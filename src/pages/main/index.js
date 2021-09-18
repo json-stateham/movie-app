@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
 import {
   $movies,
@@ -30,7 +30,7 @@ import { InfiniteScrollTrigger } from 'entities/InfiniteScrollTrigger'
 import NoImage from 'images/no_image.jpg'
 
 const Main = () => {
-  const [mounted, setMounted] = useState(false)
+  const mounted = useRef(false)
   const { t } = useTranslation()
   const { results, total_pages } = useStore($movies)
   const { genres } = useStore($genres)
@@ -42,7 +42,7 @@ const Main = () => {
   const urlParam = useStore($urlParam)
   const url = `${config.API_URL}movie/${urlParam}?api_key=${config.API_KEY}&language=en-US&page=${page}`
   const genres_url = `${config.API_URL}genre/movie/list?api_key=${config.API_KEY}&language=en-US`
-  const URL_PARAMS = ['popular', 'top_rated', 'upcoming']
+  const URL_PARAMS = ['popular', 'top_rated']
   const hasNextPage = prevPage > 1 || page < total_pages
 
   const fetchNextPage = () => setNextPage()
@@ -52,7 +52,7 @@ const Main = () => {
   }
 
   useEffect(() => {
-    setMounted(!mounted)
+    mounted.current = true
   }, [])
 
   useEffect(() => {

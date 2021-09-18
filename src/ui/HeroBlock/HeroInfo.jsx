@@ -9,10 +9,10 @@ const HeroInfo = ({ title, release, genres, overview}) => {
   return (
     <CSSTransition in={mounted} timeout={1500} classNames="fade">
       <div className={styles.movieInfoWrapper}>
-        <Heading variant={'h1'} upperCase>
+        <Heading size='h1' upperCase>
           {title}
         </Heading>
-        <Heading variant={'h3'} spacing={{ marginTop: 8 }}>
+        <Heading size='h3' space={{ marginTop: 8 }}>
           {release}
           <Separator>&#9898;</Separator>
           {genres}
