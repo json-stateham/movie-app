@@ -1,9 +1,23 @@
-import { createElement } from 'react'
+import { createElement, FC, ReactElement, ReactNode } from 'react'
 import clsx from 'clsx'
 import styles from './Heading.module.scss'
 
-const Heading = ({ children, size = 'h3', space = {}, upperCase }) =>
-  ['h1', 'h2', 'h3', 'h4', 'h5'].map((heading) => {
+type TSize = 'h1' | 'h2' | 'h3' | 'h4' | 'h5'
+
+interface IProps {
+  children: ReactNode
+  size: TSize
+  space?: Record<string, string>
+  upperCase?: boolean
+}
+
+const Heading: FC<IProps> = ({
+  children,
+  size = 'h3',
+  space = {},
+  upperCase,
+}): any =>
+  ['h1', 'h2', 'h3', 'h4', 'h5'].map(heading => {
     return (
       heading === size &&
       createElement(

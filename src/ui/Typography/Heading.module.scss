@@ -1,7 +1,7 @@
 // https://www.bbc.co.uk/gel/guidelines/typography
 
-@import 'scss/vars';
-@import 'scss/mixins';
+@import '../../scss/vars.scss';
+@import '../../scss/mixins.scss';
 
 .h1 {
   @include fluid(font-size, 32, 56);

@@ -1,7 +1,7 @@
-const config = {
+const API_CONFIG = {
   API_URL: 'https://api.themoviedb.org/3/',
   IMAGES_URL: 'http://image.tmdb.org/t/p/',
-  API_KEY: process.env.REACT_APP_API_KEY,
+  API_KEY: '844dba0bfd8f3a4f3799f6130ef9e335',
   SEARCH_URL: () => `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=`,
   POPULAR_BASE_URL: () => `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US`
 }
@@ -24,4 +24,4 @@ const imagesSize = {
   },
 }
 
-export { config, imagesSize }
+export { API_CONFIG, imagesSize }

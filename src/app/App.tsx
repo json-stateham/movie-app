@@ -1,4 +1,5 @@
 import { Routes } from './Routes'
+
 import 'scss/index.scss'
 
 const App = () => (
