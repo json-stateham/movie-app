@@ -5,6 +5,7 @@ import styles from './Header.module.scss'
 
 const Header = () => {
   const visible = useToggleHeaderOnScroll()
+  const isVisible = 'ddd'
 
   return (
     <header className={clsx(styles.header, !visible && styles.headerHidden)}>

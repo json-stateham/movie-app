@@ -17,7 +17,7 @@ const Heading: FC<IProps> = ({
   space = {},
   upperCase,
 }): any =>
-  ['h1', 'h2', 'h3', 'h4', 'h5'].map(heading => {
+  ['h1', 'h2', 'h3', 'h4', 'h5'].map((heading, i) => {
     return (
       heading === size &&
       createElement(
@@ -28,6 +28,7 @@ const Heading: FC<IProps> = ({
             [styles.upper]: upperCase,
           })}`,
           style: { ...space },
+          key: i,
         },
         [children]
       )

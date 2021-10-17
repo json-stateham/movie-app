@@ -1,13 +1,21 @@
 import { useRef, useState } from 'react'
 import { useIntersectionObserver } from 'hooks/useIntersectionObserver'
 
-export const LazyImage = ({ imageUrl, alt, width, height }) => {
-  const imgRef = useRef()
-  const [isLoaded, setLoaded] = useState(false)
+interface IProps {
+  imageUrl: string
+  alt: string
+  width: string
+  height: string
+}
+
+export const LazyImage = ({ imageUrl, alt, width, height }: IProps) => {
+  const imgRef = useRef<HTMLImageElement | null>(null)
+  const [isLoaded, setLoaded] = useState<boolean>(false)
 
   const setSrc = () => {
-    imgRef.current.src = imgRef.current.dataset.src
-    imgRef.current.removeAttribute('data-src')
+    let srcRef = imgRef?.current?.src
+    srcRef = imgRef?.current?.dataset?.src
+    imgRef?.current?.removeAttribute('data-src')
     setLoaded(true)
   }
 
@@ -25,7 +33,7 @@ export const LazyImage = ({ imageUrl, alt, width, height }) => {
       alt={alt}
       width={width}
       height={height}
-      loading="lazy"
+      loading='lazy'
     />
   )
 }
