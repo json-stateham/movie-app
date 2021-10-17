@@ -11,23 +11,25 @@ import {
   fetchMoviesFx,
   fetchGenresFx,
   setUrlParam,
-  resetPage
+  resetPage,
 } from './model'
 import { useStore } from 'effector-react'
 import { useTranslation } from 'react-i18next'
 // import API from '../API'
-import { config, imagesSize } from 'config'
-import { 
-  Grid, 
-  HeroBlock, 
-  LoadingTape, 
-  Thumb, 
-  Tabs, 
+import { API_CONFIG, imagesSize } from 'config'
+import {
+  Grid,
+  HeroBlock,
+  LoadingTape,
+  Thumb,
+  Tabs,
   HeroPoster,
-  HeroInfo 
+  HeroInfo,
 } from 'ui'
 import { InfiniteScrollTrigger } from 'entities/InfiniteScrollTrigger'
 import NoImage from 'images/no_image.jpg'
+
+import { IGenres, IMoviesList } from 'types/common'
 
 const Main = () => {
   const mounted = useRef(false)
@@ -40,13 +42,13 @@ const Main = () => {
   const prevPage = useStore($prevPage)
   const page = useStore($page)
   const urlParam = useStore($urlParam)
-  const url = `${config.API_URL}movie/${urlParam}?api_key=${config.API_KEY}&language=en-US&page=${page}`
-  const genres_url = `${config.API_URL}genre/movie/list?api_key=${config.API_KEY}&language=en-US`
+  const url = `${API_CONFIG.API_URL}movie/${urlParam}?api_key=${API_CONFIG.API_KEY}&language=en-US&page=${page}`
+  const genres_url = `${API_CONFIG.API_URL}genre/movie/list?api_key=${API_CONFIG.API_KEY}&language=en-US`
   const URL_PARAMS = ['popular', 'top_rated']
   const hasNextPage = prevPage > 1 || page < total_pages
 
   const fetchNextPage = () => setNextPage()
-  const fetchWithParam = (param) => {
+  const fetchWithParam = (param: string) => {
     setUrlParam(param)
     resetPage()
   }
@@ -65,11 +67,12 @@ const Main = () => {
 
   const MAX_GENRE_COUNT = 3
 
-  const genreIdsToGenreNames = (genresList, genreIds) =>
-    genresList?.reduce((acc, { id, name }) => {
-      genreIds?.includes(id) && acc.push(name)
-      return acc
-    }, [])
+  const genreIdsToGenreNames = (genresList: IGenres[], genreIds: number[]) =>
+    genresList
+      ?.reduce((acc: string[], { id, name }) => {
+        genreIds?.includes(id) && acc.push(name)
+        return acc
+      }, [])
       .slice(0, MAX_GENRE_COUNT)
       .map((genre, idx, { length }) =>
         idx !== length - 1 ? `${genre}, ` : genre
@@ -82,15 +85,13 @@ const Main = () => {
       title,
       poster_path,
       release_date,
-      vote_average
-    }, idx) => {
+      vote_average,
+    }: IMoviesList) => {
       const genresCommaSeparated = genreIdsToGenreNames(genres, genre_ids)
-      console.log(results);
 
-      const moviePoster =
-        poster_path
-          ? `${config.IMAGES_URL}${imagesSize.THUMB.w342}${poster_path}`
-          : NoImage
+      const moviePoster = poster_path
+        ? `${API_CONFIG.IMAGES_URL}${imagesSize.THUMB.w342}${poster_path}`
+        : NoImage
 
       return (
         <Thumb
@@ -101,24 +102,24 @@ const Main = () => {
           title={title}
           release={release_date}
           genres={genresCommaSeparated}
-          rating={vote_average > 0 ? vote_average : 'N/A'}
+          rating={vote_average}
           image={moviePoster}
           isLazy
         />
       )
-    })
+    }
+  )
 
-  const HeroImage = `${config.IMAGES_URL}${imagesSize.BACKDROP.w1280}${results?.[0]?.backdrop_path}`
-  const heroPoster = `${config.IMAGES_URL}${imagesSize.THUMB.w500}${results?.[0]?.poster_path}`
+  const HeroImage = `${API_CONFIG.IMAGES_URL}${imagesSize.BACKDROP.w1280}${results?.[0]?.backdrop_path}`
+  const heroPoster = `${API_CONFIG.IMAGES_URL}${imagesSize.THUMB.w500}${results?.[0]?.poster_path}`
   const releaseYear = results?.[0]?.release_date.split('-')[0]
 
   return (
     <>
-      {isFetching ?
-        <LoadingTape /> :
-        <HeroBlock
-          backdrop={{ backgroundImage: `url(${HeroImage})` }}    
-        >
+      {isFetching ? (
+        <LoadingTape />
+      ) : (
+        <HeroBlock backdrop={{ backgroundImage: `url(${HeroImage})` }}>
           <HeroPoster imageSrc={heroPoster} />
           <HeroInfo
             title={results?.[0].title}
@@ -126,24 +127,22 @@ const Main = () => {
             genres={genreIdsToGenreNames(genres, results?.[0].genre_ids)}
             overview={results?.[0].overview}
           />
-        </HeroBlock>}
+        </HeroBlock>
+      )}
       <Tabs
         tabNames={URL_PARAMS}
         activeTab={urlParam}
         callback={fetchWithParam}
       />
-      <SwitchTransition mode="out-in">
-        <CSSTransition
-          key={urlParam}
-          timeout={500}
-          classNames="fade"
-        >
-          <Grid>
-            {renderMoviesThumbs}
-          </Grid>
+      <SwitchTransition mode='out-in'>
+        <CSSTransition key={urlParam} timeout={500} classNames='fade'>
+          <Grid>{renderMoviesThumbs}</Grid>
         </CSSTransition>
       </SwitchTransition>
-      <InfiniteScrollTrigger onIntersect={fetchNextPage} enabled={hasNextPage} />
+      <InfiniteScrollTrigger
+        onIntersect={fetchNextPage}
+        enabled={hasNextPage}
+      />
     </>
   )
 }
