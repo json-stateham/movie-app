@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2019,
     "sourceType": "module",
@@ -8,29 +8,50 @@
       "jsx": true
     }
   },
-  "plugins": [
-    "react-hooks"
-  ],
+  "plugins": ["react-hooks", "@typescript-eslint", "prettier"],
   "extends": [
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:react/all",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-perf/all",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "strict": [
-      "error",
-      "never"
-    ],
+    "strict": ["error", "never"],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "off",
+    "react-hooks/exhaustive-deps": "warning",
+    "jsx-a11y/lang": "error",
+    "react/jsx-no-literals": "off",
+    "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/jsx-max-depth": ["error", { "max": 10 }],
+    "react/no-string-refs": ["error", { "noTemplateLiterals": true }],
+    "react/no-unsafe": ["error", { "checkAliases": true }],
+    "react/boolean-prop-naming": [
+      "error",
+      {
+        "rule": "^(is|has|are|can|should|did|will)[A-Z]([A-Za-z0-9])+",
+        "validateNested": true
+      }
+    ],
+    "react/require-default-props": [
+      "error",
+      { "forbidDefaultForRequired": true }
+    ],
+     "react/jsx-no-target-blank": ["error", { "forms": true }],
+    "react/jsx-key": [
+      "error",
+      { "checkFragmentShorthand": true, "checkKeyMustBeforeSpread": true }
+    ]
   },
   "env": {
     "browser": true
   },
   "settings": {
     "react": {
-      "pragma": "React",
       "version": "detect"
     }
-  } 
+  }
 }

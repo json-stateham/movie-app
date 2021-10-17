@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useStore, useGate } from 'effector-react'
 import { moviesGate, $data, $isFetching } from './model'
@@ -18,11 +17,6 @@ export const Movie = () => {
   const data = useStore($data)
   const { movie, images, videos } = useStore($data)
   const isFetching = useStore($isFetching)
-  const ref = useRef()
-
-  console.log('data', data)
-  console.log('movie', movie)
-  console.log(ref.current)
 
   const HeroImage = `${API_CONFIG.IMAGES_URL}${imagesSize.BACKDROP.w1280}${movie.backdrop_path}`
   const trailer = videos?.filter(
@@ -55,11 +49,7 @@ export const Movie = () => {
         >
           <div className={styles.rowHalf}>
             {trailer && (
-              <YoutubeVideo
-                refObj={ref}
-                embedId={trailer?.key}
-                title={trailer?.name}
-              />
+              <YoutubeVideo embedId={trailer?.key} title={trailer?.name} />
             )}
             <div className={styles.content}>
               <Heading size='h1'>{movie.title}</Heading>

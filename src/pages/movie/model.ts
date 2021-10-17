@@ -2,9 +2,10 @@ import { createEffect, restore, forward, combine, attach } from 'effector'
 import { createGate } from 'effector-react'
 import { API } from 'API'
 
-const requestFx = createEffect(({ name, id }) =>
+const requestFx = createEffect(({ name, id }: { name: string; id: number }) =>
+  // @ts-ignore
   API[name](id)
-    .then(res => res.json())
+    .then((res: Record<string, any>) => res.json())
     .catch(console.error)
 )
 
@@ -22,23 +23,27 @@ const [
   'fetchReviews',
   'fetchVideos',
   'fetchSimilar',
-].map(name => attach({
-  effect: requestFx,
-  mapParams: id => ({ name, id })
-}))
-
-const promiseAllFx = createEffect((p) =>
-  Promise.all([
-    fetchMovie,
-    fetchCredits,
-    fetchImages,
-    fetchReviews,
-    fetchVideos,
-    fetchSimilar,
-  ].map(effect => effect(p)))
+].map(name =>
+  attach({
+    effect: requestFx,
+    mapParams: id => ({ name, id }),
+  })
 )
 
-promiseAllFx.fail.watch((error) => {
+const promiseAllFx = createEffect((p: any) =>
+  Promise.all(
+    [
+      fetchMovie,
+      fetchCredits,
+      fetchImages,
+      fetchReviews,
+      fetchVideos,
+      fetchSimilar,
+    ].map(effect => effect(p))
+  )
+)
+
+promiseAllFx.fail.watch(error => {
   console.error(error)
 })
 
@@ -46,7 +51,7 @@ const moviesGate = createGate()
 
 forward({
   from: moviesGate.open,
-  to: promiseAllFx
+  to: promiseAllFx,
 })
 
 const $movie = restore(fetchMovie, {})
@@ -65,13 +70,14 @@ const $data = combine({
   similar: $similar.map(x => x.results),
 })
 
-const $isFetching = combine([
-  fetchCredits.pending,
-  fetchMovie.pending,
-  fetchImages.pending,
-  fetchReviews.pending,
-  fetchVideos.pending,
-],
+const $isFetching = combine(
+  [
+    fetchCredits.pending,
+    fetchMovie.pending,
+    fetchImages.pending,
+    fetchReviews.pending,
+    fetchVideos.pending,
+  ],
   pendings => pendings.some(Boolean)
 )
 

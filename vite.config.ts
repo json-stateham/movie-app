@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import path from 'path'
 
 /*
  *  https://vitejs.dev/config/
@@ -18,14 +17,13 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
-  // resolve: {
-  //   alias: {
-  //     '': path.resolve(__dirname, 'src/'),
-  //   },
-  // },
+  envPrefix: 'APP',
   server: {
     fs: {
       strict: false,
     },
+  },
+  build: {
+    target: 'esnext',
   },
 })
