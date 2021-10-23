@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react'
-import { throttle } from 'lib/throttle'
+import { throttle } from 'shared/lib/throttle'
 
 const useToggleHeaderOnScroll = () => {
   const [visible, setVisible] = useState(1)

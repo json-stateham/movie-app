@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { LazyImage } from 'entities/LazyImage/LazyImage'
-import { convertDateFormat } from 'lib/convertDateFormat'
+import { convertDateFormat } from 'shared/lib/convertDateFormat'
 import styles from './Thumb.module.scss'
 
 interface IProps {
