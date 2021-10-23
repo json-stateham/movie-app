@@ -27,12 +27,12 @@ import {
   HeroInfo,
 } from 'ui'
 import { InfiniteScrollTrigger } from 'entities/InfiniteScrollTrigger'
-import NoImage from 'images/no_image.jpg'
+import NoImage from 'shared/assets/images/no_image.jpg'
 
 import { IGenres, IMoviesList } from 'types/common'
 
 const Main = () => {
-  const mounted = useRef(false)
+  const mounted = useRef<boolean>(false)
   const { t } = useTranslation()
   const { results, total_pages } = useStore($movies)
   const { genres } = useStore($genres)

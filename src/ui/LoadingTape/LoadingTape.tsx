@@ -1,4 +1,4 @@
-import Tape from 'images/tape.svg'
+import Tape from 'shared/assets/images/tape.svg'
 import styles from './LoadingTape.module.scss'
 
 const LoadingTape = () => {

@@ -4,7 +4,7 @@ import { moviesGate, $data, $isFetching } from './model'
 import { YoutubeVideo } from 'entities/YoutubeVideo'
 import { Heading, Paragraph, LoadingTape, Separator } from 'ui'
 import { API_CONFIG, imagesSize } from 'config'
-import { convertMoney } from 'lib/helpers'
+import { convertMoney } from 'shared/lib/helpers'
 import NoImage from 'images/no_image.jpg'
 
 import { IGenres } from 'types/common'
