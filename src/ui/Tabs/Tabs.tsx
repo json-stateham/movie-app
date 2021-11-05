@@ -23,7 +23,7 @@ const Tabs = ({ tabNames, activeTab, callback }: IProps) => {
           <div
             className={clsx(
               styles.tabTitle,
-              tab === activeTab && styles.tabActive
+              tab === activeTab && styles.tabActive,
             )}
             data-text={t(tab)}
           >

@@ -30,7 +30,7 @@ const Heading: FC<IProps> = ({
           style: { ...space },
           key: i,
         },
-        [children]
+        [children],
       )
     )
   })

@@ -17,15 +17,15 @@ export const $page = createStore(1)
 
 export const $urlParam = createStore('popular').on(
   setUrlParam,
-  (_, param) => param
+  (_, param) => param,
 )
 
 export const fetchMoviesFx = createEffect(
-  async url => await (await fetch(url)).json()
+  async url => await (await fetch(url)).json(),
 )
 
 export const fetchGenresFx = createEffect(
-  async url => await (await fetch(url)).json()
+  async url => await (await fetch(url)).json(),
 )
 
 export const $movies = createStore([]).on(
@@ -37,10 +37,10 @@ export const $movies = createStore([]).on(
       $page.getState() > 1
         ? [...state.results, ...data.results]
         : [...data.results],
-  })
+  }),
 ) as Store<never[]>
 
 export const $genres = createStore([]).on(
   fetchGenresFx.doneData,
-  (_, data) => data
+  (_, data) => data,
 ) as Store<never[]>

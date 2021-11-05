@@ -1,22 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { SwitchTransition, CSSTransition } from 'react-transition-group'
-import {
-  $movies,
-  $genres,
-  $page,
-  $prevPage,
-  $urlParam,
-  setNextPage,
-  setPrevPage,
-  fetchMoviesFx,
-  fetchGenresFx,
-  setUrlParam,
-  resetPage,
-} from './model'
-import { useStore } from 'effector-react'
+import { useGetMoviesQuery } from 'services/moviesApi'
 import { useTranslation } from 'react-i18next'
-// import API from '../API'
-import { API_CONFIG, imagesSize } from 'config'
+import { API_CONFIG, IMAGE_BACKDROP, IMAGE_THUMB } from 'config'
+// const { THUMB } = IMAGE_SIZE
 import {
   Grid,
   HeroBlock,
@@ -26,44 +13,23 @@ import {
   HeroPoster,
   HeroInfo,
 } from 'ui'
-import { InfiniteScrollTrigger } from 'entities/InfiniteScrollTrigger'
+// import { InfiniteScrollTrigger } from 'entities/InfiniteScrollTrigger'
 import NoImage from 'shared/assets/images/no_image.jpg'
 
 import { IGenres, IMoviesList } from 'types/common'
 
 const Main = () => {
+  const [page, setPage] = useState<number>(1)
+  // const { data, error, isLoading } = useGetMoviesQuery({ listType: 'top_rated', page })
+  const { data, error, isLoading } = useGetMoviesQuery({
+    listType: 'top_rated',
+    page,
+  })
+
+  // const { data } = useGetGenresQuery(null)
+  console.log(data)
   const mounted = useRef<boolean>(false)
   const { t } = useTranslation()
-  const { results, total_pages } = useStore($movies)
-  const { genres } = useStore($genres)
-  const isFetching = useStore(fetchMoviesFx.pending)
-  // const isFetchingError = useStore(fetchMoviesFx.fail)
-  // const fetchMovie = useEvent(fetchMovieFx)
-  const prevPage = useStore($prevPage)
-  const page = useStore($page)
-  const urlParam = useStore($urlParam)
-  const url = `${API_CONFIG.API_URL}movie/${urlParam}?api_key=${API_CONFIG.API_KEY}&language=en-US&page=${page}`
-  const genres_url = `${API_CONFIG.API_URL}genre/movie/list?api_key=${API_CONFIG.API_KEY}&language=en-US`
-  const URL_PARAMS = ['popular', 'top_rated']
-  const hasNextPage = prevPage > 1 || page < total_pages
-
-  const fetchNextPage = () => setNextPage()
-  const fetchWithParam = (param: string) => {
-    setUrlParam(param)
-    resetPage()
-  }
-
-  useEffect(() => {
-    mounted.current = true
-  }, [])
-
-  useEffect(() => {
-    if (page !== prevPage) {
-      fetchMoviesFx(url)
-      fetchGenresFx(genres_url)
-      setPrevPage(page)
-    }
-  }, [page, urlParam])
 
   const MAX_GENRE_COUNT = 3
 
@@ -75,10 +41,10 @@ const Main = () => {
       }, [])
       .slice(0, MAX_GENRE_COUNT)
       .map((genre, idx, { length }) =>
-        idx !== length - 1 ? `${genre}, ` : genre
+        idx !== length - 1 ? `${genre}, ` : genre,
       )
 
-  const renderMoviesThumbs = results?.map(
+  const renderMoviesThumbs = data?.map(
     ({
       genre_ids,
       id,
@@ -87,10 +53,10 @@ const Main = () => {
       release_date,
       vote_average,
     }: IMoviesList) => {
-      const genresCommaSeparated = genreIdsToGenreNames(genres, genre_ids)
+      // const genresCommaSeparated = genreIdsToGenreNames(genres, genre_ids)
 
       const moviePoster = poster_path
-        ? `${API_CONFIG.IMAGES_URL}${imagesSize.THUMB.w342}${poster_path}`
+        ? `${import.meta.env.APP_IMAGE_URL}${IMAGE_THUMB.L}${poster_path}`
         : NoImage
 
       return (
@@ -101,22 +67,23 @@ const Main = () => {
           movieId={id}
           title={title}
           release={release_date}
-          genres={genresCommaSeparated}
+          genres={genre_ids.join(', ')}
           rating={vote_average}
           image={moviePoster}
           isLazy
         />
       )
-    }
+    },
   )
 
-  const HeroImage = `${API_CONFIG.IMAGES_URL}${imagesSize.BACKDROP.w1280}${results?.[0]?.backdrop_path}`
-  const heroPoster = `${API_CONFIG.IMAGES_URL}${imagesSize.THUMB.w500}${results?.[0]?.poster_path}`
-  const releaseYear = results?.[0]?.release_date.split('-')[0]
+  // const HeroImage = `${API_CONFIG.IMAGES_URL}${imagesSize.BACKDROP.w1280}${results?.[0]?.backdrop_path}`
+  // const heroPoster = `${API_CONFIG.IMAGES_URL}${imagesSize.THUMB.w500}${results?.[0]?.poster_path}`
+  // const releaseYear = results?.[0]?.release_date.split('-')[0]
 
   return (
     <>
-      {isFetching ? (
+      <Grid>{renderMoviesThumbs}</Grid>
+      {/* {isFetching ? (
         <LoadingTape />
       ) : (
         <HeroBlock backdrop={{ backgroundImage: `url(${HeroImage})` }}>
@@ -142,7 +109,7 @@ const Main = () => {
       <InfiniteScrollTrigger
         onIntersect={fetchNextPage}
         enabled={hasNextPage}
-      />
+      /> */}
     </>
   )
 }

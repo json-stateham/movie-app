@@ -7,8 +7,8 @@ const Routes = () => (
     <Router>
       <Header />
       <Switch>
-        <Route exact path='/' component={Main} />
-        <Route path='/:movieId' component={Movie} />
+        <Route exact path="/" component={Main} />
+        <Route path="/:movieId" component={Movie} />
         <Route component={NotFound} />
       </Switch>
     </Router>

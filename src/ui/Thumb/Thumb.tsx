@@ -10,7 +10,7 @@ interface IProps {
   release: string
   alt: string
   clickable: boolean
-  genres: string[]
+  genres?: string
   rating: number
   isLazy: boolean
 }
@@ -58,9 +58,11 @@ const Thumb = ({
         <div className={styles.imgOverflowHidden}>{renderPoster}</div>
         <div className={styles.rating}>{rating > 0 ? rating : 'N/A'}</div>
       </div>
-      <h3>{title}</h3>
+      <h2 className={styles.movieTitle}>{title}</h2>
       <div>{genres}</div>
-      <time dateTime={release}>{renderReleaseDate || 'N/A'}</time>
+      <time className={styles.releaseDate} dateTime={release}>
+        {renderReleaseDate || 'N/A'}
+      </time>
     </div>
   )
 }

@@ -6,7 +6,7 @@ const requestFx = createEffect(({ name, id }: { name: string; id: number }) =>
   // @ts-ignore
   API[name](id)
     .then((res: Record<string, any>) => res.json())
-    .catch(console.error)
+    .catch(console.error),
 )
 
 const [
@@ -27,7 +27,7 @@ const [
   attach({
     effect: requestFx,
     mapParams: id => ({ name, id }),
-  })
+  }),
 )
 
 const promiseAllFx = createEffect((p: any) =>
@@ -39,8 +39,8 @@ const promiseAllFx = createEffect((p: any) =>
       fetchReviews,
       fetchVideos,
       fetchSimilar,
-    ].map(effect => effect(p))
-  )
+    ].map(effect => effect(p)),
+  ),
 )
 
 promiseAllFx.fail.watch(error => {
@@ -78,7 +78,7 @@ const $isFetching = combine(
     fetchReviews.pending,
     fetchVideos.pending,
   ],
-  pendings => pendings.some(Boolean)
+  pendings => pendings.some(Boolean),
 )
 
 export { moviesGate, $data, $isFetching }

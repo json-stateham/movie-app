@@ -1,29 +1,27 @@
 const API_CONFIG = {
   API_URL: 'https://api.themoviedb.org/3/',
   IMAGES_URL: 'http://image.tmdb.org/t/p/',
-  API_KEY: '844dba0bfd8f3a4f3799f6130ef9e335',
-  SEARCH_URL: () =>
-    `${API_CONFIG.API_URL}search/movie?api_key=${API_CONFIG.API_KEY}&language=en-US&query=`,
-  POPULAR_BASE_URL: () =>
-    `${API_CONFIG.API_URL}movie/popular?api_key=${API_CONFIG.API_KEY}&language=en-US`,
+  // SEARCH_URL: () =>
+  //   `${API_CONFIG.API_URL}search/movie?api_key=${API_CONFIG.API_KEY}&language=en-US&query=`,
+  // POPULAR_BASE_URL: () =>
+  //   `${API_CONFIG.API_URL}movie/popular?api_key=${API_CONFIG.API_KEY}&language=en-US`,
 }
 
-const imagesSize = {
-  BACKDROP: {
-    w300: 'w300',
-    w700: 'w700',
-    w1280: 'w1280',
-    original: 'original',
-  },
-  THUMB: {
-    w92: 'w92',
-    w154: 'w154',
-    w185: 'w185',
-    w342: 'w342',
-    w500: 'w500',
-    w700: 'w700',
-    original: 'original',
-  },
+enum IMAGE_BACKDROP {
+  S = 'w300',
+  M = 'w700',
+  L = 'w1280',
+  ORIGINAL = 'original',
 }
 
-export { API_CONFIG, imagesSize }
+enum IMAGE_THUMB {
+  XS = 'w92',
+  S = 'w154',
+  M = 'w185',
+  L = 'w342',
+  XL = 'w500',
+  XXL = 'w700',
+  ORIGINAL = 'original',
+}
+
+export { API_CONFIG, IMAGE_BACKDROP, IMAGE_THUMB }
