@@ -1,10 +1,23 @@
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import { Routes } from './Routes'
 
-import 'scss/index.scss'
+import 'styles/index.scss'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 const App = () => (
   <>
-    <Routes />
+    <QueryClientProvider client={queryClient}>
+      <Routes />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </>
 )
 

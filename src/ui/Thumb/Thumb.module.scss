@@ -1,8 +1,16 @@
+@import '../../styles/vars.scss';
+
 .thumbImgWrapper {
   position: relative;
   margin-bottom: 20px;
   width: 250px;
-  box-shadow: rgb(3, 12, 51) 0px 20px 25px -5px, rgb(255, 18, 18) 0px 10px 10px -5px;
+  box-shadow: $mystic-shadow;
+  will-change: box-shadow;
+  transition: box-shadow 0.3s ease-out;
+
+  &:hover {
+    box-shadow: $mystic-shadow-hover;
+  }
 }
 
 .thumbImg {
@@ -14,13 +22,13 @@
 
   &:hover {
     transform: scale(1.1);
-    transition: transform 1s ease-out;
+    transition: transform 3s ease-out;
   }
 }
 
 .imgOverflowHidden {
   overflow: hidden;
-  border-radius: 16px 16px 0 0;
+  border-radius: 8px 8px 0 8px;
 }
 
 .rating {
