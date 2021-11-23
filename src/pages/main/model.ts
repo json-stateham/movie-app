@@ -1,46 +1,31 @@
-// @ts-nocheck
+import { GENRES_URL, getMoviesURL } from 'config/api'
+import { IMoviesItem, IMoviesResponse, IGenres } from 'types/common'
 
-import { createEffect, createStore, createEvent } from 'effector'
+const fetchData = (url: string, extractDataKey: string) =>
+  fetch(url)
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('fff')
+      }
+      return res.json()
+    })
+    .then(data => data[extractDataKey])
+// .catch(error => {
+//   // https://react-query.tanstack.com/guides/query-functions#usage-with-fetch-and-other-clients-that-do-not-throw-by-default
+//   throw new Error(error)
+// })
 
-export const setPrevPage = createEvent() as Event<void>
-export const setNextPage = createEvent() as Event<void>
-export const setUrlParam = createEvent() as Event<void>
-export const resetPage = createEvent() as Event<void>
+const mapGenresIdsToNames = (movies: IMoviesItem[], genres: IGenres[]) =>
+  movies?.map((movie: IMoviesItem) => ({
+    ...movie,
+    genre_ids: movie.genre_ids.map(
+      (id: number | string) =>
+        genres.find((genre: IGenres) => genre.id === id)?.name,
+    ),
+  }))
 
-export const $prevPage = createStore(0)
-  .on(setPrevPage, n => n + 1)
-  .reset([resetPage])
-
-export const $page = createStore(1)
-  .on(setNextPage, n => n + 1)
-  .reset([resetPage])
-
-export const $urlParam = createStore('popular').on(
-  setUrlParam,
-  (_, param) => param
-)
-
-export const fetchMoviesFx = createEffect(
-  async url => await (await fetch(url)).json()
-)
-
-export const fetchGenresFx = createEffect(
-  async url => await (await fetch(url)).json()
-)
-
-export const $movies = createStore([]).on(
-  fetchMoviesFx.doneData,
-  (state, data) => ({
-    ...state,
-    total_pages: data.total_pages,
-    results:
-      $page.getState() > 1
-        ? [...state.results, ...data.results]
-        : [...data.results],
-  })
-) as Store<never[]>
-
-export const $genres = createStore([]).on(
-  fetchGenresFx.doneData,
-  (_, data) => data
-) as Store<never[]>
+export const fetchMoviesList = () =>
+  Promise.all([
+    fetchData(GENRES_URL, 'genres'),
+    fetchData(getMoviesURL('top_rated', 1), 'results'),
+  ]).then(([genres, movies]) => mapGenresIdsToNames(movies, genres))

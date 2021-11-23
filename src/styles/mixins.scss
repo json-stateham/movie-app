@@ -3,6 +3,7 @@
   #{$property}: calc(
     #{$min}px + (#{$max} - #{$min}) * ((100vw - 320px) / (1200 - 320))
   );
+  
   @media (min-width: 1200px) {
     #{$property}: #{$max}px;
   }

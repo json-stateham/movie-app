@@ -33,7 +33,7 @@ export const LazyImage = ({ imageUrl, alt, width, height }: IProps) => {
       alt={alt}
       width={width}
       height={height}
-      loading='lazy'
+      loading="lazy"
     />
   )
 }
