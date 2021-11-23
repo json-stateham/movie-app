@@ -8,8 +8,9 @@
       "jsx": true
     }
   },
-  "plugins": ["react-hooks", "@typescript-eslint", "prettier"],
+  "plugins": ["effector", "react-hooks", "@typescript-eslint", "prettier"],
   "extends": [
+    "plugin:effector/recommended",
     "plugin:react/recommended",
     "plugin:react/all",
     "plugin:react-hooks/recommended",

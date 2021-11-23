@@ -1,0 +1,29 @@
+// https://www.bbc.co.uk/gel/guidelines/typography
+
+@import '../../styles/mixins';
+
+.h1 {
+  @include fluid(font-size, 28, 44);
+  @include fluid(line-height, 32, 48);
+}
+
+.h2 {
+  @include fluid(font-size, 20, 32);
+  @include fluid(line-height, 24, 36);
+}
+
+.h3 {
+  @include fluid(font-size, 20, 28);
+  @include fluid(line-height, 24, 32);
+}
+
+.h4 {
+  @include fluid(font-size, 18, 20);
+  @include fluid(line-height, 22, 24);
+}
+
+.p,
+.span {
+  @include fluid(font-size, 16, 18);
+  @include fluid(line-height, 20, 22);
+}

@@ -6,6 +6,5 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "useTabs": false,
-  "plugins": ["./node_modules/prettier-plugin-import-sort"],
   "endOfLine": "auto"
 }

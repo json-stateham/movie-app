@@ -9,7 +9,13 @@ const Header = () => {
   return (
     <header className={clsx(styles.header, !visible && styles.headerHidden)}>
       <a href="/">
-        <img src={Logo} alt="" className={styles.logoImg} />
+        <img
+          src={Logo}
+          alt=""
+          className={styles.logoImg}
+          width={101}
+          height={40}
+        />
       </a>
     </header>
   )

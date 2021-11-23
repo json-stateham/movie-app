@@ -29,7 +29,7 @@ export const useIntersectionObserver = ({
         root,
         rootMargin,
         threshold,
-      }
+      },
     )
     const el = target?.current
 
