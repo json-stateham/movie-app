@@ -10,7 +10,7 @@
 }
 .fade-exit-active {
   opacity: 0;
-  transform: translateX(-100%) skewX(-5deg);
+  transform: translateX(-100%);
   transform-origin: left;
 }
 .fade-enter-active,

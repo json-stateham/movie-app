@@ -1,10 +1,10 @@
 @import '../../styles/vars.scss';
 
-.thumbImgWrapper {
+.imageWrapper {
   position: relative;
   margin-bottom: 20px;
-  width: 250px;
-  box-shadow: $mystic-shadow;
+  overflow: hidden;
+  box-shadow: $mystic-shadow;  
   will-change: box-shadow;
   transition: box-shadow 0.3s ease-out;
 
@@ -13,22 +13,15 @@
   }
 }
 
-.thumbImg {
-  width: 100%;
-  max-width: 720px;  
-  transition: transform 0.5s ease-out;
-  object-fit: cover;
+.image {
+  transition: transform 1s ease-out;
+  object-fit: cover;  
   will-change: transform;
 
   &:hover {
     transform: scale(1.1);
     transition: transform 3s ease-out;
   }
-}
-
-.imgOverflowHidden {
-  overflow: hidden;
-  border-radius: 8px 8px 0 8px;
 }
 
 .rating {
@@ -51,11 +44,11 @@
   user-select: none;
 }
 
-.releaseDate {
-  color: #909090;
+.movieInfo {
+  max-width: 280px;
 }
 
-.movieTitle {
-  line-height: 1.1;
-  margin-bottom: 4px;
+.releaseDate,
+.genres {
+  color: #909090;
 }

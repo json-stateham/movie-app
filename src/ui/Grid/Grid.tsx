@@ -3,8 +3,8 @@ import styles from './Grid.module.scss'
 
 const Grid = ({ children }: { children: ReactNode }) => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.content}>{children}</div>
+    <div className={styles.grid}>
+      <div className={styles.gridContent}>{children}</div>
     </div>
   )
 }
