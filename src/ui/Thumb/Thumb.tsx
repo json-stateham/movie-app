@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { LazyImage } from 'entities/LazyImage/LazyImage'
+import { Text } from 'ui'
 import { convertDateFormat } from 'shared/lib/convertDateFormat'
+
 import styles from './Thumb.module.scss'
 
 interface IProps {
@@ -28,41 +30,33 @@ const Thumb = ({
 }: IProps) => {
   const renderPoster = clickable ? (
     <Link to={`/${movieId}`}>
-      <div className={styles.thumbImg}>
-        <img
-          src={image}
-          alt={alt}
-          width={280}
-          height={326}
-          loading={isLazy ? 'lazy' : 'eager'}
-        />
-      </div>
+      <img src={image} alt={alt} width={342} height={512} />
     </Link>
   ) : (
-    <div className={styles.thumbImg}>
-      <img
-        src={image}
-        alt={alt}
-        width={280}
-        height={326}
-        loading={isLazy ? 'lazy' : 'eager'}
-      />
-    </div>
+    <img src={image} alt={alt} width={342} height={512} />
   )
 
   const renderReleaseDate = release ? convertDateFormat(release) : ''
 
   return (
     <div className={styles.thumb}>
-      <div className={styles.thumbImgWrapper}>
-        <div className={styles.imgOverflowHidden}>{renderPoster}</div>
-        <div className={styles.rating}>{rating > 0 ? rating : 'N/A'}</div>
+      <div className={styles.imageWrapper}>
+        <div className={styles.image}>{renderPoster}</div>
+        <div className={styles.rating}>{rating > 0 ? rating : '-'}</div>
       </div>
-      <h2 className={styles.movieTitle}>{title}</h2>
-      <div>{genres}</div>
-      <time className={styles.releaseDate} dateTime={release}>
-        {renderReleaseDate || 'N/A'}
-      </time>
+      <div className={styles.movieInfo}>
+        <Text className={styles.movieTitle} tag="h3">
+          <Link to={`/${movieId}`}>{title}</Link>
+        </Text>
+        <Text className={styles.genres} tag="p">
+          {genres}
+        </Text>
+        <time dateTime={release}>
+          <Text className={styles.releaseDate} tag="p">
+            {renderReleaseDate}
+          </Text>
+        </time>
+      </div>
     </div>
   )
 }

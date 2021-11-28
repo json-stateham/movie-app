@@ -12,7 +12,7 @@ const BASE_QUERY_PARAMS = generateSearchParams({
 const GENRES_URL = `${BASE_URL}/genre/movie/list?${BASE_QUERY_PARAMS}`
 
 const getMoviesURL = (listType: TListType, page: number | string) => {
-  const moviesSearchParams = `${BASE_QUERY_PARAMS}${generateSearchParams({
+  const moviesSearchParams = `${BASE_QUERY_PARAMS}&${generateSearchParams({
     page: `${page}`,
   })}`
 
