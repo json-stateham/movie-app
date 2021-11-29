@@ -2,10 +2,11 @@
   position: relative;
   margin: 0 auto;
   max-width: 100%;
-  min-height: 100vh;
+  min-height: 99vh;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  background: rgb(199, 199, 199);
+  background: rgba(199, 199, 199, 0);
+  filter: invert(70%);
 }
 
 .loadingTapeMover {
@@ -13,8 +14,8 @@
   top: 0;
   left: 0;
   z-index: 0;
-  width: 2526px;
-  min-height: 100vh;
+  width: 5526px;
+  min-height: 99vh;
   background-size: contain;
   transform: translate3d(0, 0, 0);
   animation: moveSlideshow 2s linear infinite;
@@ -22,6 +23,6 @@
 
 @keyframes moveSlideshow {
   100% {
-    transform: translateX(-66%);
+    transform: translateX(-70%);
   }
 }
