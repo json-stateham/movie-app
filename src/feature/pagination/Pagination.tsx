@@ -1,19 +1,17 @@
 import { FC, useLayoutEffect, useEffect, useRef } from 'react'
 import { useStore } from 'effector-react'
 import clsx from 'clsx'
-import { prevPage, nextPage, setPage, $isAscending } from './model'
+import { prevPage, nextPage, setPage, $page, $isAscending } from './model'
 import { usePagination, DOTS } from './usePagination'
 
 import { IPagination } from './types'
 
 import styles from './Pagination.module.scss'
 
-const Pagination: FC<IPagination> = ({
-  currentPage,
-  totalPages,
-  siblingCount = 1,
-}) => {
+const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
   const isAscending = useStore($isAscending)
+  const currentPage = useStore($page)
+  const totalPages = Number(window.localStorage.getItem('totalPages')) || 1
 
   useLayoutEffect(() => {
     setTimeout(
@@ -26,13 +24,11 @@ const Pagination: FC<IPagination> = ({
     )
   }, [currentPage])
 
-  const paginationRange: any = usePagination({
+  const paginationRange = usePagination({
     currentPage,
     totalPages,
     siblingCount,
-  })
-
-  console.log(isAscending)
+  }) as number[]
 
   if (currentPage === 0 || paginationRange?.length < 2) {
     return null
