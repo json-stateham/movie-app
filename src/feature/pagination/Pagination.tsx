@@ -1,8 +1,9 @@
-import { FC, useLayoutEffect, useEffect, useRef } from 'react'
+import { FC, useLayoutEffect, useState, useEffect } from 'react'
 import { useStore } from 'effector-react'
 import clsx from 'clsx'
 import { prevPage, nextPage, setPage, $page, $isAscending } from './model'
 import { usePagination, DOTS } from './usePagination'
+import { useCustomEventDetail } from 'shared/hooks/useCustomEventDetail'
 
 import { IPagination } from './types'
 
@@ -11,7 +12,8 @@ import styles from './Pagination.module.scss'
 const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
   const isAscending = useStore($isAscending)
   const currentPage = useStore($page)
-  const totalPages = Number(window.localStorage.getItem('totalPages')) || 1
+
+  const totalPages = useCustomEventDetail('gotTotalPages')
 
   useLayoutEffect(() => {
     setTimeout(

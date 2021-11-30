@@ -18,7 +18,11 @@ export const fetchMoviesList = (page = 1) =>
   ]).then(([{ genres }, { results: movies, total_pages }]) => {
     const preparedData = mapGenresIdsToNames(movies, genres)
 
-    window.localStorage.setItem('totalPages', total_pages)
+    const totalPagesEvent = new CustomEvent('gotTotalPages', {
+      detail: total_pages,
+    })
+
+    window.dispatchEvent(totalPagesEvent)
 
     return {
       movies: preparedData,
