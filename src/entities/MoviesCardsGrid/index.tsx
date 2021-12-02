@@ -1,9 +1,6 @@
 import { FC, useEffect } from 'react'
-import { useQuery, useQueryClient } from 'react-query'
-import { useStore } from 'effector-react'
-import { $isAscending } from 'feature/pagination/model'
+import { useQuery } from 'react-query'
 import { fetchMoviesList } from './model'
-import { useCustomEventDetail } from 'shared/hooks/useCustomEventDetail'
 import { Grid, LoadingTape, Thumb } from 'ui'
 import { IMAGE_THUMB } from 'config/images'
 
@@ -14,26 +11,13 @@ interface IProps {
 }
 
 const MoviesCardsGrid: FC<IProps> = ({ currentPage }) => {
-  const isAscendingPage = useStore($isAscending)
-  const totalPages = useCustomEventDetail('gotTotalPages')
-  const prefetchCondition = isAscendingPage ? currentPage + 1 : currentPage - 1
-
-  const queryClient = useQueryClient()
-
-  const { isLoading, data } = useQuery(
+  const { isLoading, error, data } = useQuery(
     ['moviesList', currentPage],
     () => fetchMoviesList(currentPage),
-    { keepPreviousData: true },
+    {
+      keepPreviousData: true,
+    },
   )
-
-  useEffect(() => {
-    const prefetchSiblingPage = async () => {
-      await queryClient.prefetchQuery(['moviesList', prefetchCondition], () =>
-        fetchMoviesList(prefetchCondition),
-      )
-    }
-    if (currentPage < totalPages && currentPage > 1) prefetchSiblingPage()
-  }, [currentPage, totalPages])
 
   const renderedMoviesCards = data?.movies?.map(
     ({ genre_ids, id, title, poster_path, release_date, vote_average }) => {
