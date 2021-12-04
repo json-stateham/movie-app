@@ -1,6 +1,7 @@
 import { useStore } from 'effector-react'
-import { MoviesCardsGrid, Animation } from 'entities'
-import { Pagination } from 'feature'
+import { Animation } from 'entities/Animation'
+import { MoviesCardsGrid } from 'entities/MoviesCardsGrid'
+import { Pagination } from 'feature/pagination'
 import { $page } from 'feature/pagination/model'
 
 const Main = () => {

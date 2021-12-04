@@ -56,8 +56,9 @@ const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
           className={clsx(styles.paginationItem, {
             [styles['disabled']]: currentPage === 1,
           })}
-          onClick={() => prevPage()}          
+          onClick={() => prevPage()}
           onMouseEnter={() => prefetchPage(currentPage - 1)}
+          onMouseDownCapture={() => prefetchPage(currentPage - 1)}
         >
           <span className={styles.arrow}>&#10094;</span>
         </li>
@@ -96,6 +97,7 @@ const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
           })}
           onClick={() => nextPage()}
           onMouseEnter={() => prefetchPage(currentPage + 1)}
+          onMouseDownCapture={() => prefetchPage(currentPage + 1)}
         >
           <span className={styles.arrow}>&#10095;</span>
         </li>

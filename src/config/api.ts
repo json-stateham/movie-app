@@ -11,7 +11,10 @@ const BASE_QUERY_PARAMS = generateSearchParams({
 
 const GENRES_URL = `${BASE_URL}/genre/movie/list?${BASE_QUERY_PARAMS}`
 
-const getMoviesURL = (listType: TListType, page: number | string) => {
+const MOVIE_DETAILS_URL = (movieId: number) =>
+  `${BASE_URL}/movie/${movieId}?${BASE_QUERY_PARAMS}&append_to_response=videos,images,credits,similar,reviews`
+
+const makeMoviesListURL = (listType: TListType, page: number | string) => {
   const moviesSearchParams = `${BASE_QUERY_PARAMS}&${generateSearchParams({
     page: `${page}`,
   })}`
@@ -19,4 +22,4 @@ const getMoviesURL = (listType: TListType, page: number | string) => {
   return `${BASE_URL}/movie/${listType}?${moviesSearchParams}`
 }
 
-export { BASE_URL, GENRES_URL, getMoviesURL }
+export { BASE_URL, GENRES_URL, MOVIE_DETAILS_URL, makeMoviesListURL }
