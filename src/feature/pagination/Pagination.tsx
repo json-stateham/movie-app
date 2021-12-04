@@ -1,4 +1,4 @@
-import { FC, useLayoutEffect } from 'react'
+import { FC } from 'react'
 import { useStore } from 'effector-react'
 import { useQueryClient } from 'react-query'
 import { prevPage, nextPage, setPage, $page, $isAscending } from './model'
@@ -25,17 +25,6 @@ const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
     )
   }
 
-  useLayoutEffect(() => {
-    setTimeout(
-      () =>
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        }),
-      420,
-    )
-  }, [currentPage])
-
   const paginationRange = usePagination({
     currentPage,
     totalPages,
@@ -45,9 +34,6 @@ const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
   if (currentPage === 0 || paginationRange?.length < 2) {
     return null
   }
-
-  // @ts-ignore Property 'randomUUID' does not exist on type 'Crypto'.ts(2339)
-  const makeId = () => window.crypto.randomUUID()
 
   return (
     <div className={styles.paginationWrapper}>
@@ -62,11 +48,11 @@ const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
         >
           <span className={styles.arrow}>&#10094;</span>
         </li>
-        {paginationRange?.map((pageNumber: number) => {
+        {paginationRange?.map((pageNumber: number, idx) => {
           if (pageNumber === DOTS) {
             return (
               <li
-                key={makeId()}
+                key={`pagination-${idx}`}
                 className={clsx(styles.paginationItem, styles.dots)}
               >
                 ...
@@ -76,7 +62,7 @@ const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
 
           return (
             <li
-              key={makeId()}
+              key={`pagination-${idx}`}
               className={clsx(styles.paginationItem, {
                 [styles['paginationForward']]:
                   pageNumber > 1 && pageNumber < totalPages && isAscending,
