@@ -1,9 +1,8 @@
 import { useMatch } from 'react-location'
+import { Helmet } from 'react-helmet'
 import { YoutubeVideo } from 'entities/YoutubeVideo'
 import { Text, LoadingTape, Separator } from 'ui'
-import { IMAGE_BACKDROP, IMAGE_THUMB } from 'config/images'
-import { convertMoney } from 'shared/lib/helpers'
-import NoImage from 'images/no_image.jpg'
+import { IMAGE_BACKDROP } from 'config/images'
 
 import { IMovieDetailsVideos, IGenres } from 'types/common'
 import type { LocationGenerics } from 'app/Routes'
@@ -37,8 +36,23 @@ const Movie = () => {
     },
   )
 
+  const SEO = () => (
+    <Helmet
+      defaultTitle="Moviez Rules"
+      titleTemplate="Moviez Rules - %s"
+      title={movie?.title}
+      meta={[{ name: 'description', content: `${movie?.overview}` }]}
+      link={[
+        { rel: 'preconnect', href: 'https://i.ytimg.com' },
+        { rel: 'preconnect', href: 'https://www.youtube.com' },
+        { rel: 'preload', as: 'image', href: `${HeroImage}` },
+      ]}
+    />
+  )
+
   return (
     <>
+      {SEO()}
       {isLoading ? (
         <LoadingTape />
       ) : (
