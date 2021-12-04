@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { LazyImage } from 'entities/LazyImage/LazyImage'
+import { Link } from 'react-location'
 import { Text } from 'ui'
 import { convertDateFormat } from 'shared/lib/convertDateFormat'
 
@@ -29,7 +28,7 @@ const Thumb = ({
   isLazy,
 }: IProps) => {
   const renderPoster = clickable ? (
-    <Link to={`/${movieId}`}>
+    <Link to={`movie/${movieId}`}>
       <img src={image} alt={alt} width={342} height={512} />
     </Link>
   ) : (
@@ -46,7 +45,7 @@ const Thumb = ({
       </div>
       <div className={styles.movieInfo}>
         <Text className={styles.movieTitle} tag="h3">
-          <Link to={`/${movieId}`}>{title}</Link>
+          <Link to={`movie/${movieId}`}>{title}</Link>
         </Text>
         <Text className={styles.genres} tag="p">
           {genres}

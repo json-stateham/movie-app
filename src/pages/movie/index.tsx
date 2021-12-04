@@ -1,48 +1,45 @@
-import { useParams } from 'react-router-dom'
-// import { moviesGate, $data, $isFetching } from './model'
+import { useMatch } from 'react-location'
 import { YoutubeVideo } from 'entities/YoutubeVideo'
 import { Text, LoadingTape, Separator } from 'ui'
-// import { API_CONFIG, IMAGE_BACKDROP, IMAGE_THUMB } from 'config'
+import { IMAGE_BACKDROP, IMAGE_THUMB } from 'config/images'
 import { convertMoney } from 'shared/lib/helpers'
 import NoImage from 'images/no_image.jpg'
 
-import { IGenres } from 'types/common'
+import { IMovieDetailsVideos, IGenres } from 'types/common'
+import type { LocationGenerics } from 'app/Routes'
 
 import styles from './movie.module.scss'
 
-export const Movie = () => {
-//   const { movieId } = useParams<{ movieId: string }>()
-//   useGate(moviesGate, movieId)
-//   const data = useStore($data)
-//   const { movie, images, videos } = useStore($data)
-//   const isFetching = useStore($isFetching)
+const Movie = () => {
+  const {
+    data: { movie },
+    isLoading,
+  } = useMatch<LocationGenerics>()
 
-//   const HeroImage = `${import.meta.env.APP_IMAGES_URL}${IMAGE_BACKDROP.L}${
-//     movie.backdrop_path
-//   }`
-//   const trailer = videos?.filter(
-//     ({ type }: { type: string }) => type === 'Trailer',
-//   )[0]
+  const { results } = movie?.videos as IMovieDetailsVideos
 
-//   // const HeroImage = `${config.IMAGES_URL}${imagesSize.BACKDROP.w1280}${images.posters[6].file_path}`
+  const HeroImage = `${import.meta.env.APP_IMAGE_URL}/${IMAGE_BACKDROP.L}${
+    movie?.backdrop_path
+  }`
 
-//   const renderedGenres = movie?.genres.map(
-//     ({ id, name }: IGenres, idx: number, self: IGenres[]) => {
-//       return (
-//         <span key={id}>
-//           <Heading size="h3">{name}</Heading>
-//           {idx !== self.length - 1 && <Separator>&#9898;</Separator>}
-//         </span>
-//       )
-//     },
-//   )
+  const trailer = results?.filter(
+    ({ type }: { type: string }) => type === 'Trailer',
+  )[0]
 
-//   if (isFetching) <LoadingTape />
+  const renderedGenres = movie?.genres.map(
+    ({ id, name }: IGenres, idx: number, self: IGenres[]) => {
+      return (
+        <span className={styles.genreItem} key={id}>
+          <Text tag="h3">{name}</Text>
+          {idx !== self.length - 1 && <Separator>&#9898;</Separator>}
+        </span>
+      )
+    },
+  )
 
   return (
     <>
-    <div>123</div>
-      {/* {isFetching ? (
+      {isLoading ? (
         <LoadingTape />
       ) : (
         <div
@@ -54,13 +51,15 @@ export const Movie = () => {
               <YoutubeVideo embedId={trailer?.key} title={trailer?.name} />
             )}
             <div className={styles.content}>
-              <Heading size="h1">{movie.title}</Heading>
+              <Text tag="h1">{movie?.title}</Text>
               <div className={styles.genres}>{renderedGenres}</div>
-              <Paragraph>{movie.overview}</Paragraph>
+              <Text>{movie?.overview}</Text>
             </div>
           </div>
         </div>
-      )} */}
+      )}
     </>
   )
 }
+
+export default Movie

@@ -1,4 +1,4 @@
-import { GENRES_URL, getMoviesURL } from 'config/api'
+import { GENRES_URL, makeMoviesListURL } from 'config/api'
 import { fetchData } from 'shared/api'
 import { IMoviesItem, IGenres } from 'types/common'
 
@@ -14,7 +14,7 @@ const mapGenresIdsToNames = (movies: IMoviesItem[], genres: IGenres[]) =>
 export const fetchMoviesList = (page = 1) =>
   Promise.all([
     fetchData(GENRES_URL),
-    fetchData(getMoviesURL('top_rated', page)),
+    fetchData(makeMoviesListURL('top_rated', page)),
   ]).then(([{ genres }, { results: movies, total_pages }]) => {
     const preparedData = mapGenresIdsToNames(movies, genres)
 

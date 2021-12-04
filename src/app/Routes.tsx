@@ -1,18 +1,43 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Main, Movie, NotFound } from 'pages'
+import { Outlet, MakeGenerics, ReactLocation, Router } from 'react-location'
+import { Main } from 'pages'
 import { Header } from 'ui'
-import { ErrorBoundary } from 'entities'
+import { ErrorBoundary } from 'entities/ErrorBoundary'
+
+import { fetchMovieDetails } from 'pages/movie/model'
+
+import { IMovieDetails } from 'types/common'
+
+export type LocationGenerics = MakeGenerics<{
+  LoaderData: { movie: IMovieDetails }
+}>
+
+const location = new ReactLocation<LocationGenerics>()
 
 const Routes = () => (
   <>
-    <Router>
+    <Router
+      location={location}
+      routes={[
+        { path: '/', element: <Main /> },
+        {
+          path: 'movie',
+          children: [
+            {
+              path: ':movieId',
+              element: () => import('pages/movie').then(mod => <mod.default />),
+              loader: async ({ params: { movieId } }) => {
+                return {
+                  movie: await fetchMovieDetails(Number(movieId)),
+                }
+              },
+            },
+          ],
+        },
+      ]}
+    >
       <Header />
       <ErrorBoundary>
-        <Switch>
-          <Route exact path="/" component={Main} />
-          <Route path="/:movieId" component={Movie} />
-          <Route component={NotFound} />
-        </Switch>
+        <Outlet />
       </ErrorBoundary>
     </Router>
   </>
