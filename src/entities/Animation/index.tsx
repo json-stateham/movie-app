@@ -17,7 +17,21 @@ const Animation: FC<IProps> = ({
   timeout,
 }) => (
   <SwitchTransition mode={mode}>
-    <CSSTransition key={keyProp} timeout={timeout} classNames={classNames}>
+    <CSSTransition
+      key={keyProp}
+      onExited={() =>
+        setTimeout(
+          () =>
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            }),
+          420,
+        )
+      }
+      timeout={timeout}
+      classNames={classNames}
+    >
       {children}
     </CSSTransition>
   </SwitchTransition>

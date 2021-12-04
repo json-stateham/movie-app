@@ -17,7 +17,7 @@ interface IProps {
 }
 
 const Thumb = ({
-  image,
+  image: imgSrc,
   movieId,
   title,
   release,
@@ -29,10 +29,10 @@ const Thumb = ({
 }: IProps) => {
   const renderPoster = clickable ? (
     <Link to={`movie/${movieId}`}>
-      <img src={image} alt={alt} width={342} height={512} />
+      <img src={imgSrc} alt={alt} width={342} height={512} />
     </Link>
   ) : (
-    <img src={image} alt={alt} width={342} height={512} />
+    <img src={imgSrc} alt={alt} width={342} height={512} />
   )
 
   const renderReleaseDate = release ? convertDateFormat(release) : ''
