@@ -1,6 +1,6 @@
 // https://www.bbc.co.uk/gel/guidelines/typography
 
-@import '../../styles/mixins';
+@import '@/styles/mixins';
 
 .h1 {
   @include fluid(font-size, 28, 44);

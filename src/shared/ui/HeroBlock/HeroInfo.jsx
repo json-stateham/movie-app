@@ -1,4 +1,4 @@
-import { Text, Separator } from 'ui'
+import { Text, Separator } from 'shared/ui'
 import { useIsMounted } from './useIsMounted'
 import { CSSTransition } from 'react-transition-group'
 import styles from './HeroInfo.module.scss'

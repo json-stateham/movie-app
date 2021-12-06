@@ -1,10 +1,10 @@
 import { useMatch } from 'react-location'
 import { Helmet } from 'react-helmet'
 import { YoutubeVideo } from 'entities/YoutubeVideo'
-import { Text, LoadingTape, Separator } from 'ui'
-import { IMAGE_BACKDROP } from 'config/images'
+import { Text, LoadingTape, Separator } from 'shared/ui'
+import { IMAGE_BACKDROP } from 'shared/config/images'
 
-import { IMovieDetailsVideos, IGenres } from 'types/common'
+import { IMovieDetailsVideos, IGenres, IMovieCast } from 'types/common'
 import type { LocationGenerics } from 'app/Routes'
 
 import styles from './movie.module.scss'
@@ -21,6 +21,7 @@ const Movie = () => {
     movie?.backdrop_path
   }`
 
+  console.log(movie)
   const trailer = results?.filter(
     ({ type }: { type: string }) => type === 'Trailer',
   )[0]
@@ -35,6 +36,8 @@ const Movie = () => {
       )
     },
   )
+
+  const renderedCast = movie?.credits?.cast.map((item: IMovieCast) => {})
 
   const SEO = () => (
     <Helmet

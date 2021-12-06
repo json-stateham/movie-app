@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react'
-import { Button, Text } from 'ui'
+import { Button, Text } from 'shared/ui'
 
 interface IState {
   error: null | Error

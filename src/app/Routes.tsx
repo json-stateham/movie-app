@@ -1,6 +1,6 @@
 import { Outlet, MakeGenerics, ReactLocation, Router } from 'react-location'
 import { Main } from 'pages'
-import { Header } from 'ui'
+import { Header } from 'shared/ui'
 import { ErrorBoundary } from 'entities/ErrorBoundary'
 
 import { fetchMovieDetails } from 'pages/movie/model'
