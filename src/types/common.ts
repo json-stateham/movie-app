@@ -28,6 +28,7 @@ export interface IMovieDetails {
   backdrop_path: string | null
   belongs_to_collection: Record<string, any> | null
   budget: number
+  credits?: IMovieCredits
   genres: IGenres[]
   homepage: string
   id: number
@@ -83,4 +84,38 @@ interface IMovieDetailsVideosResults {
 export interface IGenres {
   id: number
   name: string
+}
+
+export interface IMovieCast {
+  adult: boolean
+  gender: number | null
+  id: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string | null
+  cast_id: number
+  character: string
+  credit_id: string
+  order: number
+}
+export interface IMovieCrew {
+  adult: boolean
+  gender: number | null
+  id: number
+  known_for_department: string
+  name: string
+  original_name: string
+  popularity: number
+  profile_path: string | null
+  credit_id: string
+  department: string
+  job: string
+}
+
+export interface IMovieCredits {
+  id: number
+  cast: IMovieCast[]
+  crew: IMovieCrew[]
 }

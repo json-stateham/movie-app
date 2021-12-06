@@ -9,7 +9,7 @@ interface IProps {
   children: ReactNode
 }
 
-const Animation: FC<IProps> = ({
+const PageChangeAnimation: FC<IProps> = ({
   children,
   classNames,
   keyProp,
@@ -37,4 +37,4 @@ const Animation: FC<IProps> = ({
   </SwitchTransition>
 )
 
-export { Animation }
+export { PageChangeAnimation }

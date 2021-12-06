@@ -1,3 +1,5 @@
+@import '@/styles/mixins.scss';
+
 .paginationWrapper {
   position: fixed;
   bottom: 0;
@@ -27,24 +29,30 @@
 }
 
 .paginationItem {
-  padding: 22px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 22px 0;
+  @include fluid(padding-left, 8, 16);
+  @include fluid(padding-right, 8, 16);
+  margin: auto 4px;
   height: 32px;
   text-align: center;
-  margin: auto 4px;
-  color: rgba(255, 255, 255, 0.705);
-  display: flex;
   box-sizing: border-box;
-  align-items: center;
+  color: rgba(255, 255, 255, 0.705);
   letter-spacing: 0.01071em;
-  border-radius: 100px;
   line-height: 1.43;
-  font-size: 20px;
-  min-width: 32px;
+  border-radius: 100px;
   user-select: none;
   opacity: 0.3;
 
   &.dots {
+    display: none;
     color: rgb(95, 95, 95);
+    transform: translateY(-8px);
+    @include media(374) {
+      display: block;
+    };
   }
 
   &.dots:hover {

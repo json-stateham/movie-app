@@ -18,6 +18,11 @@ export default defineConfig({
     }),
     tsconfigPaths(),
   ],
+  resolve: {
+    alias: {
+      '@': require('path').resolve(__dirname, 'src'),
+    },
+  },
   envPrefix: 'APP',
   server: {
     fs: {

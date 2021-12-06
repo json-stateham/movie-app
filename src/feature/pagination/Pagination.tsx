@@ -5,6 +5,7 @@ import { prevPage, nextPage, setPage, $page, $isAscending } from './model'
 import { usePagination, DOTS } from './usePagination'
 import { useCustomEventDetail } from 'shared/hooks/useCustomEventDetail'
 import { fetchMoviesList } from 'entities/MoviesCardsGrid/model'
+import { Text } from 'shared/ui'
 
 import { IPagination } from './types'
 
@@ -73,7 +74,7 @@ const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
               onClick={() => setPage(pageNumber)}
               onMouseEnter={() => prefetchPage(pageNumber)}
             >
-              {pageNumber}
+              <Text tag="span">{pageNumber}</Text>
             </li>
           )
         })}

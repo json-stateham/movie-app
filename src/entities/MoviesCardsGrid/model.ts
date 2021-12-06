@@ -1,4 +1,4 @@
-import { GENRES_URL, makeMoviesListURL } from 'config/api'
+import { GENRES_URL, makeMoviesListURL } from 'shared/config/api'
 import { fetchData } from 'shared/api'
 import { IMoviesItem, IGenres } from 'types/common'
 

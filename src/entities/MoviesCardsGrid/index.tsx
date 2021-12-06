@@ -2,8 +2,8 @@ import { FC } from 'react'
 import { useQuery } from 'react-query'
 import { Helmet } from 'react-helmet'
 import { fetchMoviesList } from './model'
-import { Grid, LoadingTape, Thumb } from 'ui'
-import { IMAGE_THUMB } from 'config/images'
+import { Grid, LoadingTape, Thumb } from 'shared/ui'
+import { IMAGE_THUMB } from 'shared/config/images'
 
 import NoImage from 'shared/assets/images/no_image.jpg'
 

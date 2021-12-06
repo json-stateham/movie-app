@@ -1,5 +1,5 @@
 import { Link } from 'react-location'
-import { Text } from 'ui'
+import { Text } from 'shared/ui'
 import { convertDateFormat } from 'shared/lib/convertDateFormat'
 
 import styles from './Thumb.module.scss'

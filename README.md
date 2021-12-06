@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/14d103ba-d2bd-4e4b-a25b-18097a5ba737/deploy-status)](https://app.netlify.com/sites/reactjs-movie-app/deploys)
+
 ## Frontend application for surfing movies info via TheMovieDataBase API
 
 ## Techstack:
