@@ -22,7 +22,7 @@
   "rules": {
     "strict": ["error", "never"],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warning",
+    "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/lang": "error",
     "react/jsx-no-literals": "off",
     "react/react-in-jsx-scope": "off",
