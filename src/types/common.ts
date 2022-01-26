@@ -119,3 +119,9 @@ export interface IMovieCredits {
   cast: IMovieCast[]
   crew: IMovieCrew[]
 }
+
+export interface IMainPageData {
+  topMovies: IMoviesItem[]
+  trendMovies: IMoviesItem[]
+  genres: IGenres[]
+}

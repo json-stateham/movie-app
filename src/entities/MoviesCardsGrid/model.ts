@@ -1,5 +1,5 @@
-import { GENRES_URL, makeMoviesListURL } from 'shared/config/api'
-import { fetchData } from 'shared/api'
+import { GENRES_URL, makeMoviesListURL, TListType } from 'shared/api/apiConfig'
+import { baseFetch } from 'shared/api/baseFetch'
 import { IMoviesItem, IGenres } from 'types/common'
 
 const mapGenresIdsToNames = (movies: IMoviesItem[], genres: IGenres[]) =>
@@ -11,15 +11,15 @@ const mapGenresIdsToNames = (movies: IMoviesItem[], genres: IGenres[]) =>
     ),
   }))
 
-export const fetchMoviesList = (page = 1) =>
+export const fetchMoviesList = (page = 1, listType: TListType = 'top_rated') =>
   Promise.all([
-    fetchData(GENRES_URL),
-    fetchData(makeMoviesListURL('top_rated', page)),
+    baseFetch(GENRES_URL),
+    baseFetch(makeMoviesListURL(listType, page)),
   ]).then(([{ genres }, { results: movies, total_pages }]) => {
     const preparedData = mapGenresIdsToNames(movies, genres)
 
     const totalPagesEvent = new CustomEvent('gotTotalPages', {
-      detail: total_pages,
+      detail: total_pages > 500 ? 500 : total_pages,
     })
 
     window.dispatchEvent(totalPagesEvent)

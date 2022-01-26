@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const Text: FC<IProps> = memo(
-  ({ children, className: additionalClassName, tag = 'p' }) => {
+  ({ children, className: extraClassName, tag = 'p' }) => {
     return createElement(
       tag,
       {
@@ -19,7 +19,7 @@ const Text: FC<IProps> = memo(
           {
             [styles[tag]]: tag,
           },
-          additionalClassName,
+          extraClassName,
         ),
       },
       [children],

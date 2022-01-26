@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import eslint from '@rollup/plugin-eslint'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 /*
@@ -33,6 +34,7 @@ export default defineConfig({
     target: 'esnext',
     rollupOptions: {
       plugins: [
+        eslint(),
         visualizer({
           gzipSize: true,
           brotliSize: true,

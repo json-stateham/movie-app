@@ -14,16 +14,13 @@ interface IProps {
 
 const Button: FC<IProps> = ({
   children,
-  className: additionalClassName,
+  className,
   onClick,
   variant = 'primary',
 }) => {
   return (
     <button
-      className={clsx(
-        { [styles[variant]]: variant, additionalClassName },
-        styles.button,
-      )}
+      className={clsx({ [styles[variant]]: variant }, styles.button, className)}
       onClick={onClick}
     >
       {children}

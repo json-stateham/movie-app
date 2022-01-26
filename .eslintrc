@@ -8,14 +8,18 @@
       "jsx": true
     }
   },
-  "plugins": ["effector", "react-hooks", "@typescript-eslint", "prettier"],
+  "plugins": [
+    "effector",
+    "react-hooks",
+    "@typescript-eslint",
+    "prettier"
+  ],
   "extends": [
     "plugin:effector/recommended",
     "plugin:react/recommended",
-    "plugin:react/all",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:react-perf/all",
+    "plugin:react-perf/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
@@ -30,6 +34,15 @@
     "react/jsx-max-depth": ["error", { "max": 10 }],
     "react/no-string-refs": ["error", { "noTemplateLiterals": true }],
     "react/no-unsafe": ["error", { "checkAliases": true }],
+    "react/jsx-indent": 0,
+    "react/require-default-props": 0,
+    "react/display-name": 0,
+    "react-perf/jsx-no-new-function-as-prop": 0,
+    "react-perf/jsx-no-new-array-as-prop": 0,
+    "react-perf/jsx-no-new-object-as-prop": 0,
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-noninteractive-element-interactions": "warn",
+    "react/function-component-definition": "off",
     "react/boolean-prop-naming": [
       "error",
       {
@@ -37,11 +50,7 @@
         "validateNested": true
       }
     ],
-    "react/require-default-props": [
-      "error",
-      { "forbidDefaultForRequired": true }
-    ],
-     "react/jsx-no-target-blank": ["error", { "forms": true }],
+    "react/jsx-no-target-blank": ["error", { "forms": true }],
     "react/jsx-key": [
       "error",
       { "checkFragmentShorthand": true, "checkKeyMustBeforeSpread": true }

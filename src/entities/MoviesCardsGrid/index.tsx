@@ -1,20 +1,32 @@
 import { FC } from 'react'
 import { useQuery } from 'react-query'
+import { useSearch, useNavigate } from 'react-location'
 import { Helmet } from 'react-helmet'
 import { fetchMoviesList } from './model'
 import { Grid, LoadingTape, Thumb } from 'shared/ui'
 import { IMAGE_THUMB } from 'shared/config/images'
 
+import type { LocationGenerics } from 'app/Routes'
+import type { TListType } from 'shared/api/apiConfig'
+
 import NoImage from 'shared/assets/images/no_image.jpg'
 
-interface IProps {
-  currentPage: number
-}
+const MoviesCardsGrid: FC = () => {
+  const navigate = useNavigate<LocationGenerics>()
+  const { list, page } = useSearch<LocationGenerics>()
 
-const MoviesCardsGrid: FC<IProps> = ({ currentPage }) => {
-  const { isLoading, error, data } = useQuery(
-    ['moviesList', currentPage],
-    () => fetchMoviesList(currentPage),
+  if (!page) {
+    navigate({
+      search: prev => ({
+        ...prev,
+        page: 1,
+      }),
+    })
+  }
+
+  const { isLoading, data } = useQuery(
+    ['moviesList', page],
+    () => fetchMoviesList(page, list as TListType),
     {
       keepPreviousData: true,
     },
@@ -34,20 +46,7 @@ const MoviesCardsGrid: FC<IProps> = ({ currentPage }) => {
         ? `${IMAGE_URL}/${IMAGE_THUMB.L}${poster_path}`
         : NoImage
 
-      return (
-        <Thumb
-          clickable
-          key={id}
-          alt={title}
-          movieId={id}
-          title={title}
-          release={release_date}
-          genres={genre_ids.join(', ')}
-          rating={vote_average}
-          image={moviePoster}
-          isLazy
-        />
-      )
+      return <Thumb key={id} alt={title} image={moviePoster} />
     },
   )
 

@@ -1,6 +1,8 @@
 import { useRef } from 'react'
 import { useIntersectionObserver } from 'shared/hooks/useIntersectionObserver'
 
+import styles from 'styles.module.scss'
+
 interface IProps {
   onIntersect: () => void
   enabled: boolean
@@ -16,12 +18,7 @@ const InfiniteScrollTrigger = ({ onIntersect, enabled }: IProps) => {
     rootMargin: '2000px',
   })
 
-  return (
-    <div
-      ref={loadMore}
-      style={{ background: 'transparent', padding: '20px' }}
-    />
-  )
+  return <div className={styles.refStyle} ref={loadMore} />
 }
 
 export { InfiniteScrollTrigger }

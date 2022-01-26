@@ -1,7 +1,7 @@
-import { fetchData } from 'shared/api'
-import { MOVIE_DETAILS_URL } from 'shared/config/api'
+import { baseFetch } from 'shared/api/baseFetch'
+import { MOVIE_DETAILS_URL } from 'shared/api/apiConfig'
 
 const fetchMovieDetails = (movieId: number) =>
-  fetchData(MOVIE_DETAILS_URL(movieId))
+  baseFetch(MOVIE_DETAILS_URL(movieId))
 
 export { fetchMovieDetails }

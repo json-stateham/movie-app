@@ -37,7 +37,7 @@ const Movie = () => {
     },
   )
 
-  const renderedCast = movie?.credits?.cast.map((item: IMovieCast) => {})
+  // const renderedCast = movie?.credits?.cast.map((item: IMovieCast) => {})
 
   const SEO = () => (
     <Helmet
