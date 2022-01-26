@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const useCustomEventDetail = (eventName: string) => {
-  const [eventState, setEventState] = useState<any>(1)
+  const [eventState, setEventState] = useState(1)
 
   const handleDetail = ({ detail }: CustomEventInit) => setEventState(detail)
 

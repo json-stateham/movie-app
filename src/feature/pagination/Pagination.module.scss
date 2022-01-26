@@ -1,5 +1,10 @@
 @import '@/styles/mixins.scss';
 
+button { 
+  background: transparent;
+  border: 0;
+}
+
 .paginationWrapper {
   position: fixed;
   bottom: 0;

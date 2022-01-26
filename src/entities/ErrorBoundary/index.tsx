@@ -1,4 +1,4 @@
-import { Component, ReactNode } from 'react'
+import { Component, ReactNode, ErrorInfo } from 'react'
 import { Button, Text } from 'shared/ui'
 
 interface IState {
@@ -16,9 +16,11 @@ class ErrorBoundary extends Component<IProps, IState> {
     return { error }
   }
 
-  componentDidCatch(error: Error, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('From ErrorBoundary:', error, errorInfo)
   }
+
+  handleRefreshPage = () => window.history.go()
 
   render() {
     if (this.state.error) {
@@ -27,7 +29,7 @@ class ErrorBoundary extends Component<IProps, IState> {
           <Text className="mb32 mt32" tag="h2">
             Something went wrong
           </Text>
-          <Button onClick={() => window.history.go()}>
+          <Button onClick={this.handleRefreshPage}>
             <Text tag="span">Refresh Page</Text>
           </Button>
         </div>

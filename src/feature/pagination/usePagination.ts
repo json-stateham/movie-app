@@ -45,7 +45,7 @@ const usePagination = ({
     }
 
     if (showLeftDots && showRightDots) {
-      let middleRange = range(leftSiblingIndex, rightSiblingIndex)
+      const middleRange = range(leftSiblingIndex, rightSiblingIndex)
       return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex]
     }
   }, [currentPage, totalPages, siblingCount])

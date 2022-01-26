@@ -1,28 +1,31 @@
-import { FC } from 'react'
-import { useStore } from 'effector-react'
+import { FC, useState } from 'react'
 import { useQueryClient } from 'react-query'
-import { prevPage, nextPage, setPage, $page, $isAscending } from './model'
+import { useNavigate, useSearch } from 'react-location'
 import { usePagination, DOTS } from './usePagination'
-import { useCustomEventDetail } from 'shared/hooks/useCustomEventDetail'
 import { fetchMoviesList } from 'entities/MoviesCardsGrid/model'
 import { Text } from 'shared/ui'
 
-import { IPagination } from './types'
+import type { IPagination } from './types'
+import type { LocationGenerics } from 'app/Routes'
+import type { TListType } from 'shared/api/apiConfig'
 
 import clsx from 'clsx'
 import styles from './Pagination.module.scss'
 
-const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
-  const isAscending = useStore($isAscending)
-  const currentPage = useStore($page)
-
-  const totalPages = useCustomEventDetail('gotTotalPages')
+const Pagination: FC<IPagination> = ({
+  currentPage,
+  totalPages,
+  siblingCount = 1,
+}) => {
+  const [isAscending, setIsAscending] = useState(true)
+  const { list } = useSearch<LocationGenerics>()
+  const navigate = useNavigate<LocationGenerics>()
 
   const queryClient = useQueryClient()
 
   const prefetchPage = async (pageParam: number) => {
     await queryClient.prefetchQuery(['moviesList', pageParam], () =>
-      fetchMoviesList(pageParam),
+      fetchMoviesList(pageParam, list as TListType),
     )
   }
 
@@ -32,37 +35,74 @@ const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
     siblingCount,
   }) as number[]
 
+  const nextPage = () => {
+    navigate({
+      search: prev => ({
+        ...prev,
+        page: prev?.page && prev.page + 1,
+      }),
+    })
+    setIsAscending(() => true)
+  }
+
+  const prevPage = () => {
+    navigate({
+      search: prev => ({
+        ...prev,
+        page: prev?.page && prev.page - 1,
+      }),
+    })
+    setIsAscending(() => false)
+  }
+
+  const concretePage = (pageNumber: number) => {
+    navigate({
+      search: prev => ({
+        ...prev,
+        page: pageNumber,
+      }),
+    })
+    if (currentPage && currentPage < pageNumber) {
+      setIsAscending(() => true)
+    } else {
+      setIsAscending(() => false)
+    }
+  }
+
   if (currentPage === 0 || paginationRange?.length < 2) {
     return null
   }
 
   return (
     <div className={styles.paginationWrapper}>
-      <ul className={styles.pagination}>
-        <li
+      <div className={styles.pagination} role="navigation">
+        <button
+          aria-label="Previous Page"
           className={clsx(styles.paginationItem, {
             [styles['disabled']]: currentPage === 1,
           })}
-          onClick={() => prevPage()}
+          onClick={prevPage}
           onMouseEnter={() => prefetchPage(currentPage - 1)}
-          onMouseDownCapture={() => prefetchPage(currentPage - 1)}
+          onMouseDown={() => prefetchPage(currentPage - 1)}
         >
           <span className={styles.arrow}>&#10094;</span>
-        </li>
+        </button>
         {paginationRange?.map((pageNumber: number, idx) => {
           if (pageNumber === DOTS) {
             return (
-              <li
+              <span
+                aria-hidden
                 key={`pagination-${idx}`}
                 className={clsx(styles.paginationItem, styles.dots)}
               >
                 ...
-              </li>
+              </span>
             )
           }
 
           return (
-            <li
+            <button
+              aria-label={`Page ${pageNumber}`}
               key={`pagination-${idx}`}
               className={clsx(styles.paginationItem, {
                 [styles['paginationForward']]:
@@ -71,24 +111,25 @@ const Pagination: FC<IPagination> = ({ siblingCount = 1 }) => {
                   pageNumber > 1 && pageNumber < totalPages && !isAscending,
                 [styles['selected']]: pageNumber === currentPage,
               })}
-              onClick={() => setPage(pageNumber)}
+              onClick={() => concretePage(pageNumber)}
               onMouseEnter={() => prefetchPage(pageNumber)}
             >
               <Text tag="span">{pageNumber}</Text>
-            </li>
+            </button>
           )
         })}
-        <li
+        <button
+          aria-label="Next Page"
           className={clsx(styles.paginationItem, {
             [styles['disabled']]: currentPage === totalPages,
           })}
-          onClick={() => nextPage()}
+          onClick={nextPage}
           onMouseEnter={() => prefetchPage(currentPage + 1)}
-          onMouseDownCapture={() => prefetchPage(currentPage + 1)}
+          onMouseDown={() => prefetchPage(currentPage + 1)}
         >
           <span className={styles.arrow}>&#10095;</span>
-        </li>
-      </ul>
+        </button>
+      </div>
     </div>
   )
 }

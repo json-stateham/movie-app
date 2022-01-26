@@ -1,13 +1,25 @@
+@import '@/styles/mixins.scss';
+
 .grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px 60px 20px;
-  will-change: transform;
+  display: grid;
+  justify-items: start;
+  align-items: flex-start;
 }
 
-.gridContent {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  justify-items: center;
-  gap: 40px;
+@for $i from 1 through 12 {
+  .cols-sm-#{$i} {
+    grid-template-columns: repeat($i, minmax(0, 1fr));
+  }
+
+  @include media('md') {
+    .cols-md-#{$i} {
+      grid-template-columns: repeat($i, minmax(0, 1fr));
+    }
+  }
+
+  @include media('lg') {
+    .cols-lg-#{$i} {
+      grid-template-columns: repeat($i, minmax(0, 1fr));
+    }
+  }
 }
