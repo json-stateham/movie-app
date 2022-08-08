@@ -1,0 +1,25 @@
+@import '../../../styles/mixins.scss';
+
+.grid {
+  display: grid;
+  justify-items: start;
+  align-items: flex-start;
+}
+
+@for $i from 1 through 12 {
+  .cols-sm-#{$i} {
+    grid-template-columns: repeat($i, minmax(0, 1fr));
+  }
+
+  @include media('md') {
+    .cols-md-#{$i} {
+      grid-template-columns: repeat($i, minmax(0, 1fr));
+    }
+  }
+
+  @include media('lg') {
+    .cols-lg-#{$i} {
+      grid-template-columns: repeat($i, minmax(0, 1fr));
+    }
+  }
+}
