@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import Layout from '@/components/layout/layout';
-import { Grid, Text, Thumb } from 'lib/ui';
+import { Grid, Text, Thumb, Wrapper } from 'lib/ui';
 import { fetchMainPage } from 'lib/network/fetchMainPage';
 import { IMoviesItem, IMainPageData } from 'types/common';
 
@@ -20,8 +19,7 @@ const App = ({ topMovies, trendMovies }: IMainPageData) => {
     ));
 
   return (
-    <>
-      <Layout>
+    <Wrapper>
         {/* <Link href="movies"> */}
         <Text tag="h2">TOP RATED</Text>
         {/* </Link> */}
@@ -30,8 +28,7 @@ const App = ({ topMovies, trendMovies }: IMainPageData) => {
         <Text tag="h2">TRENDING</Text>
         {/* </Link> */}
         <Grid cols={{ sm: 2, md: 3, lg: 5 }}>{renderCards(trendMovies)}</Grid>
-      </Layout>
-    </>
+    </Wrapper>
   );
 };
 

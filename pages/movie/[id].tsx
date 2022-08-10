@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import { jsonFetch } from 'lib/network/fetchClient';
 import { movieDetailsUrl } from 'lib/network/apiConfig';
 import { YoutubeVideo } from 'entities/YoutubeVideo';
-import { Text, Separator } from 'lib/ui';
+import { Text, Separator, Wrapper } from 'lib/ui';
 import { IMAGE_BACKDROP } from 'lib/config/images';
 import { IMovieDetails } from 'types/common';
 import styles from './movie.module.scss';
@@ -27,19 +27,24 @@ const Movie = (props: IMovieDetails) => {
   ));
 
   return (
-    <div
-      className={styles.wrapper}
-      style={{ backgroundImage: `url(${bgPath})` }}
-    >
-      <div className={styles.rowHalf}>
-        {trailer && <YoutubeVideo embedId={trailer.key} title={trailer.name} />}
-        <div className={styles.content}>
-          <Text tag="h1">{title}</Text>
-          <div className={styles.genres}>{renderedGenres}</div>
-          <Text>{overview}</Text>
+    <>
+      <div
+        className={styles.bg}
+        style={{ backgroundImage: `url(${bgPath})` }}
+      />
+      <Wrapper>
+        <div className={styles.rowHalf}>
+          {trailer && (
+            <YoutubeVideo embedId={trailer.key} title={trailer.name} />
+          )}
+          <div className={styles.content}>
+            <Text tag="h1">{title}</Text>
+            <div className={styles.genres}>{renderedGenres}</div>
+            <Text>{overview}</Text>
+          </div>
         </div>
-      </div>
-    </div>
+      </Wrapper>
+    </>
   );
 };
 

@@ -21,9 +21,12 @@ const makeParams = (params: TParams = {}) =>
   `?${serialUrlParams({ ...params, ...CONFIG.BASE_PARAMS })}`;
 
 export const movieDetailsUrl = (movieId: number) =>
-  makePath('movie', `${movieId}`) + makeParams(CONFIG.APPEND_MOVIE_DETAILS);
+  `${makePath('movie', movieId.toString())}${makeParams(CONFIG.APPEND_MOVIE_DETAILS)}`;
 
 export const makeMoviesListURL = (movieCategory: TMovieCategory, page: number) =>
-  makePath('movie', movieCategory) + makeParams({ page: `${page}` });
+  `${makePath('movie', movieCategory)}${makeParams({ page: page.toString() })}`;
 
-export const GENRES_URL = makePath('genre', 'movie', 'list') + makeParams();
+export const GENRES_URL = `${makePath('genre', 'movie', 'list')}${makeParams()}`;
+
+// export const discoverMovies = () => 
+// makePath('discover', 'movie') + makeParams({ page: '500', sort_by: 'release_date.desc' });
