@@ -1,7 +1,7 @@
 import { RefObject, useEffect } from 'react';
 
 interface IProps {
-  root?: Element | Document | null | undefined;
+  root?: Element | Document | null;
   target: RefObject<HTMLElement>;
   onIntersect: () => void;
   threshold?: number;

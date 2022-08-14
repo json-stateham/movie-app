@@ -1,15 +1,15 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode } from 'react';
 
-import clsx from 'clsx'
-import styles from './Button.module.scss'
+import clsx from 'clsx';
+import styles from './Button.module.scss';
 
-type ButtonType = 'primary' | 'secondary'
+type TVariant = 'primary' | 'secondary';
 
 interface IProps {
-  children: ReactNode
-  className?: string
-  onClick?: () => void
-  variant?: ButtonType
+  children: ReactNode;
+  className?: string;
+  onClick?: () => void;
+  variant?: TVariant;
 }
 
 const Button: FC<IProps> = ({
@@ -25,7 +25,7 @@ const Button: FC<IProps> = ({
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
-export { Button }
+export { Button };

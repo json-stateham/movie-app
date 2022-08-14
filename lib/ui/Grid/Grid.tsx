@@ -1,18 +1,18 @@
-import { FC, ReactNode } from 'react'
-import clsx from 'clsx'
-import styles from './Grid.module.scss'
+import { FC, ReactNode } from 'react';
+import clsx from 'clsx';
+import styles from './Grid.module.scss';
 
 interface IProps {
-  children: ReactNode
+  children: ReactNode;
   cols?: {
-    sm?: number
-    md?: number
-    lg?: number
-  }
+    sm?: number;
+    md?: number;
+    lg?: number;
+  };
   gap?: {
-    from?: number
-    to?: number
-  }
+    from?: number;
+    to?: number;
+  };
 }
 
 const Grid: FC<IProps> = ({ children, cols, gap }) => {
@@ -25,13 +25,13 @@ const Grid: FC<IProps> = ({ children, cols, gap }) => {
         styles[`cols-lg-${cols?.lg}`],
       )}
       style={{
-        gap: `calc(${gap?.from}px + (${gap?.to} - ${gap?.from}) * ((100vw - 320px) / (1200 - 320)))`,
+        gap: `min(${gap?.from}px, ${gap?.to}px)`,
       }}
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
 Grid.defaultProps = {
   cols: {
@@ -43,6 +43,6 @@ Grid.defaultProps = {
     from: 16,
     to: 32,
   },
-}
+};
 
-export { Grid }
+export { Grid };

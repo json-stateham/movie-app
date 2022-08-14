@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { throttle } from 'lib/throttle';
+import { throttle } from '@/lib/helpers/throttle';
 
 const HEADER_HEIGHT = 60;
 

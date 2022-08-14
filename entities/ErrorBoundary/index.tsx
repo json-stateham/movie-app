@@ -1,19 +1,11 @@
-import { Component, ReactNode, ErrorInfo } from 'react'
+import { Component, ErrorInfo } from 'react'
 import { Button, Text } from 'lib/ui'
 
-interface IState {
-  error: null | Error
-}
+export class ErrorBoundary extends Component {
+  state = { hasError: false };
 
-interface IProps {
-  children: ReactNode
-}
-
-class ErrorBoundary extends Component<IProps, IState> {
-  state = { error: null }
-
-  static getDerivedStateFromError(error: Error) {
-    return { error }
+  static getDerivedStateFromError() {
+    return { hasError: true }
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
@@ -23,7 +15,7 @@ class ErrorBoundary extends Component<IProps, IState> {
   handleRefreshPage = () => window.history.go()
 
   render() {
-    if (this.state.error) {
+    if (this.state.hasError) {
       return (
         <div className="flex flexCol flexAlCent">
           <Text className="mb32 mt32" tag="h2">
@@ -39,5 +31,3 @@ class ErrorBoundary extends Component<IProps, IState> {
     return this.props.children
   }
 }
-
-export { ErrorBoundary }

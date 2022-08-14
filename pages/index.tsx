@@ -19,7 +19,7 @@ export const getStaticProps = async ({ locale }: TLocale) => ({
 const App = ({ topMovies, trendMovies }: IMainPageData) => {
   const { t } = useTranslation('common');
   
-  const renderCards = (mainData: IMoviesItem[] = [], maxQty = 5) =>
+  const renderPosters = (mainData: IMoviesItem[] = [], maxQty = 5) =>
     mainData.slice(0, maxQty).map(({ id, title, poster_path }) => (
       <Link key={id} href={`/movie/${id}`}>
         <a>
@@ -30,14 +30,14 @@ const App = ({ topMovies, trendMovies }: IMainPageData) => {
 
   return (
     <Wrapper>
-        {/* <Link href="movies"> */}
+        <Link href="/movies">
         <Text tag="h2">{t('topRated').toUpperCase()}</Text>
-        {/* </Link> */}
-        <Grid cols={{ sm: 2, md: 3, lg: 5 }}>{renderCards(topMovies)}</Grid>
+        </Link>
+        <Grid cols={{ sm: 2, md: 3, lg: 5 }}>{renderPosters(topMovies)}</Grid>
         {/* <Link href="movies"> */}
         <Text tag="h2">{t('trending').toUpperCase()}</Text>
         {/* </Link> */}
-        <Grid cols={{ sm: 2, md: 3, lg: 5 }}>{renderCards(trendMovies)}</Grid>
+        <Grid cols={{ sm: 2, md: 3, lg: 5 }}>{renderPosters(trendMovies)}</Grid>
     </Wrapper>
   );
 };
