@@ -1,20 +1,18 @@
 import { GetServerSideProps } from 'next';
-import { jsonFetch } from 'lib/network/fetchClient';
-import { movieDetailsUrl } from 'lib/network/apiConfig';
+import { getMovieDetails } from 'api/movie';
+import { getBackdropImage } from 'api/images';
 import { YoutubeVideo } from 'entities/YoutubeVideo';
 import { Text, Separator, Wrapper } from 'lib/ui';
-import { IMAGE_BACKDROP } from 'lib/config/images';
 import { IMovieDetails } from 'types/common';
 import styles from './movie.module.scss';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => ({
-  props: await jsonFetch(movieDetailsUrl(Number(params?.id))),
+  props: await getMovieDetails(params?.id as string),
 });
 
 const Movie = (props: IMovieDetails) => {
   const { backdrop_path, videos, genres, title, overview } = props;
-  const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
-  const bgPath = `${IMAGE_URL}/${IMAGE_BACKDROP.L}${backdrop_path}`;
+
   const trailer = videos.results.filter(({ type }) => type === 'Trailer')[0];
 
   const renderedGenres = genres.map(({ id, name }, i, selfArr) => (
@@ -24,12 +22,13 @@ const Movie = (props: IMovieDetails) => {
     </span>
   ));
 
+  const backdropStyle = backdrop_path
+    ? { backgroundImage: `url(${getBackdropImage(backdrop_path)})` }
+    : {};
+
   return (
     <>
-      <div
-        className={styles.bg}
-        style={{ backgroundImage: `url(${bgPath})` }}
-      />
+      <div className={styles.bg} style={backdropStyle} />
       <Wrapper>
         <div className={styles.rowHalf}>
           {trailer && (

@@ -4,7 +4,7 @@ import { FC } from 'react'
 // import { Helmet } from 'react-helmet'
 import { fetchMoviesList } from './model'
 import { Grid, LoadingTape, Thumb } from 'lib/ui'
-import { IMAGE_THUMB } from 'lib/config/images'
+import { THUMB } from 'api/images/config'
 
 // import type { TMovieCategory } from 'shared/api/apiConfig'
 

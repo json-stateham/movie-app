@@ -1,35 +1,38 @@
-import Image, { ImageProps } from 'next/image'
-import { IMAGE_THUMB } from 'lib/config/images'
+import Image, { ImageProps } from 'next/image';
+import { IMAGE_CONFIG, THUMB } from 'api/images/config';
 
-import styles from './Thumb.module.scss'
+import styles from './Thumb.module.scss';
 
 interface IProps {
-  alt: string
-  image: string | null
-  width?: number
-  height?: number
+  alt: string;
+  image: string;
+  width?: number;
+  height?: number;
 }
-
-const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL
 
 const myLoader = ({ src, width, quality }: ImageProps) => {
-  return `${IMAGE_URL}${src}?w=${width}&q=${quality || 75}`
-}
+  return `${IMAGE_CONFIG.URL}${src}?w=${width}&q=${quality || 75}`;
+};
 
-const Thumb = ({ image, alt, width = 340, height = 510 }: IProps) => {
+const Thumb = ({
+  image,
+  alt,
+  width = Number(THUMB.L),
+  height = 510,
+}: IProps) => {
   return (
     <div className={styles.imageWrapper}>
       <div className={styles.image}>
         <Image
           loader={myLoader}
-          src={image ? `${IMAGE_THUMB.L}${image}` : '/images/no_image.jpg'}
+          src={image}
           alt={alt}
-          width={Number(`${IMAGE_THUMB.L}`.substring(1))}
+          width={width}
           height={height}
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export { Thumb }
+export { Thumb };
