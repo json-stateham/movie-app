@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next';
-import { getMovieDetails } from 'api/movie';
+import { getMovieDetails } from 'api/movies';
 import { getBackdropImage } from 'api/images';
 import { YoutubeVideo } from 'entities/YoutubeVideo';
 import { Text, Separator, Wrapper } from 'lib/ui';

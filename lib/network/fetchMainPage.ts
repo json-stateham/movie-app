@@ -1,4 +1,4 @@
-import { getGenres, getMoviesList } from '../../api/movie';
+import { getGenres, getMoviesList } from '../../api/movies';
 import { IMainPageData } from 'types/common';
 
 export const fetchMainPage = (): Promise<IMainPageData> =>

@@ -2,7 +2,7 @@ import { FC } from 'react'
 // import { useQuery } from 'react-query'
 // import { useSearch, useNavigate } from 'react-location'
 // import { Helmet } from 'react-helmet'
-import { fetchMoviesList } from './model'
+// import { fetchMoviesList } from './model'
 import { Grid, LoadingTape, Thumb } from 'lib/ui'
 import { THUMB } from 'api/images/config'
 
