@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { i18n } = require('./next-i18next.config');
+
 // const ContentSecurityPolicy = `
 //   default-src 'self';
 //   script-src 'self';
@@ -30,6 +33,7 @@ const securityHeaders = [
 ]
 
 module.exports = {
+  i18n,
   devIndicators: {
     buildActivityPosition: 'bottom-right',
   },

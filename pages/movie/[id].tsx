@@ -14,8 +14,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => ({
 const Movie = (props: IMovieDetails) => {
   const { backdrop_path, videos, genres, title, overview } = props;
   const IMAGE_URL = process.env.NEXT_PUBLIC_IMAGE_URL;
-
-  console.log('props', props);
   const bgPath = `${IMAGE_URL}/${IMAGE_BACKDROP.L}${backdrop_path}`;
   const trailer = videos.results.filter(({ type }) => type === 'Trailer')[0];
 
