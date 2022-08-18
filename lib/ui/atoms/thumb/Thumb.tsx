@@ -21,8 +21,8 @@ const Thumb = ({
   height = 510,
 }: IProps) => {
   return (
-    <div className={styles.imageWrapper}>
-      <div className={styles.image}>
+    <div className={styles.thumbWrapper}>
+      <div className={styles.thumbImage}>
         <Image
           loader={myLoader}
           src={image}

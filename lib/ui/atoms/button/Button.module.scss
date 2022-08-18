@@ -10,11 +10,11 @@
   background: #26000091;
   color: #d8d8d8;
   border: 1px solid #ff00004f;
-  box-shadow: $mystic-shadow;
+  box-shadow:$cool-shadow;
   transition: all 300ms ease-out;
 
   &:hover {
     background: #260000e7;
-    box-shadow: $mystic-shadow-hover;
+    box-shadow: $cool-shadow-hover;
   }
 }

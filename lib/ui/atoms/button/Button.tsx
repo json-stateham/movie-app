@@ -14,7 +14,7 @@ interface IProps {
 
 const Button: FC<IProps> = ({
   children,
-  className,
+  className = '',
   onClick,
   variant = 'primary',
 }) => {

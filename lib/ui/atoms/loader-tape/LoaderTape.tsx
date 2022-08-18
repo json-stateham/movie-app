@@ -1,6 +1,6 @@
-import styles from './LoadingTape.module.scss'
+import styles from './LoaderTape.module.scss'
 
-const LoadingTape = () => (
+export const LoaderTape = () => (
   <div className={styles.loadingTape}>
     <div
       className={styles.loadingTapeMover}
@@ -8,5 +8,3 @@ const LoadingTape = () => (
     />
   </div>
 )
-
-export { LoadingTape }

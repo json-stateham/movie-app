@@ -19,9 +19,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/styles/*": ["styles/*"],
       "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"]
+      "@/lib/*": ["lib/*"],
+      "@/styles/*": ["styles/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "incremental": true

@@ -1,10 +1,23 @@
+// COLORS
 $clr-accent: #070707;
 $clr-white: #ffffff;
 $clr-dark: #09001d;
 
+// SIZES
 $header-height: 60px;
 
-$mystic-shadow: rgb(3, 12, 51) 0px 20px 25px -5px,
+// SHADOWS
+$cool-shadow: rgb(3, 12, 51) 0px 20px 25px -5px,
   rgb(255, 18, 18) 0px 10px 10px -5px;
-$mystic-shadow-hover: rgb(3, 12, 51) 0px 16px 25px -5px,
+$cool-shadow-hover: rgb(3, 12, 51) 0px 16px 25px -5px,
   rgb(255, 18, 18) 0px 10px 10px -5px;
+
+// BACKGROUNDS
+$bg-main-linear: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 0%, #252936 100%);
+
+// OTHER
+$breakpoints: (
+  'sm': 576,
+  'md': 768,
+  'lg': 1024,
+);
