@@ -19,6 +19,9 @@ body {
   color: shade($clr-white, 10);
   box-sizing: border-box;
   background: $bg-main-linear;
-  overflow-x: hidden; // fix for page transition animation
   -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: lighten($clr-accent, 20);
 }

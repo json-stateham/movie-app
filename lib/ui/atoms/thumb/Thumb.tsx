@@ -1,4 +1,4 @@
-import Image, { ImageProps } from 'next/image';
+import Image, { ImageProps } from 'next/future/image';
 import { IMAGE_CONFIG, THUMB } from 'api/images/config';
 
 import styles from './Thumb.module.scss';
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const myLoader = ({ src, width, quality }: ImageProps) => {
-  return `${IMAGE_CONFIG.URL}${src}?w=${width}&q=${quality || 75}`;
+  return `${IMAGE_CONFIG.URL}${src}?w=${width}&q=${quality || 85}`;
 };
 
 const Thumb = ({
@@ -22,15 +22,14 @@ const Thumb = ({
 }: IProps) => {
   return (
     <div className={styles.thumbWrapper}>
-      <div className={styles.thumbImage}>
         <Image
+          className={styles.thumbImage}
           loader={myLoader}
           src={image}
           alt={alt}
           width={width}
           height={height}
         />
-      </div>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import styles from './Grid.module.scss';
 
 interface IProps {
   children: ReactNode;
+  className?: string;
   cols?: {
     sm?: number;
     md?: number;
@@ -15,11 +16,12 @@ interface IProps {
   };
 }
 
-const Grid: FC<IProps> = ({ children, cols, gap }) => {
+const Grid: FC<IProps> = ({ children, className: extraClassName, cols, gap }) => {
   return (
     <div
       className={clsx(
         styles.grid,
+        extraClassName,
         styles[`cols-sm-${cols?.sm}`],
         styles[`cols-md-${cols?.md}`],
         styles[`cols-lg-${cols?.lg}`],
