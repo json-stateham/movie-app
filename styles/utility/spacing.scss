@@ -1,4 +1,9 @@
-@for $i from 2 to 100 {
+@use 'sass:math';
+
+$max: 100;
+$step: 2;
+
+@for $i from 2 through ceil(math.div($max, $step)) {
   .p-#{$i} {
     padding: #{$i}px;
   }
@@ -16,7 +21,7 @@
   }
 }
 
-@for $i from 2 to 100 {
+@for $i from 2 through ceil(math.div($max, $step)) {
   .m-#{$i} {
     margin: #{$i}px;
   }
