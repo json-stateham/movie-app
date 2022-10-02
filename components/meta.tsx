@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 const Meta = () => (
   <Head>
+    <title>The Movie App</title>
     <meta charSet="utf-8" />
     <meta
       name="viewport"

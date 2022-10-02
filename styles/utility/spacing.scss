@@ -3,7 +3,7 @@
 $max: 100;
 $step: 2;
 
-@for $i from 2 through ceil(math.div($max, $step)) {
+@for $i from 0 through ceil(math.div($max, $step)) {
   .p-#{$i} {
     padding: #{$i}px;
   }
@@ -21,7 +21,7 @@ $step: 2;
   }
 }
 
-@for $i from 2 through ceil(math.div($max, $step)) {
+@for $i from 0 through ceil(math.div($max, $step)) {
   .m-#{$i} {
     margin: #{$i}px;
   }

@@ -32,7 +32,7 @@ const Movie = (props: IMovieDetails) => {
       <Wrapper>
         <div className={styles.rowHalf}>
           {trailer && (
-            <YoutubeVideo embedId={trailer.key} title={trailer.name} />
+            <YoutubeVideo videoId={trailer.key} title={trailer.name} />
           )}
           <div className={styles.content}>
             <Text tag="h1">{title}</Text>

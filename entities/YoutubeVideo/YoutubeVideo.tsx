@@ -1,24 +1,21 @@
 import styles from './YoutubeVideo.module.scss';
 
 interface IYoutubeVideo {
-  embedId: string;
+  videoId: string;
   title: string;
 }
 
-const YoutubeVideo = ({ embedId, title = 'Youtube video' }: IYoutubeVideo) => (
-  <div style={{ width: '100%' }}>
-    <div className={styles.responsiveVideo}>
-      <iframe
-        width="853"
-        height="480"
-        src={`https://www.youtube.com/embed/${embedId}`}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        title={title}
-      />
-    </div>
+export const YoutubeVideo = ({
+  videoId,
+  title = 'Youtube video',
+}: IYoutubeVideo) => (
+  <div className={styles.video}>
+    <iframe
+      src={`https://www.youtube.com/embed/${videoId}`}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      title={title}
+    />
   </div>
 );
-
-export { YoutubeVideo };

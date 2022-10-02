@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
-import Layout from 'components/layout/layout';
+import Layout from '@/components/layout';
 import { ErrorBoundary } from 'entities/ErrorBoundary';
 import 'styles/index.scss';
 

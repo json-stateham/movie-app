@@ -20,6 +20,8 @@ export const getStaticProps = async ({ locale }: TLocale) => ({
 const App = ({ topMovies, trendMovies }: IMainPageData) => {
   const { t } = useTranslation('common');
 
+  console.log(topMovies)
+
   const renderPosters = (mainData: IMoviesItem[] = [], maxQty = 5) =>
     mainData
       .slice(0, maxQty)

@@ -1,15 +1,11 @@
-.responsiveVideo {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
+.video {
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  box-shadow: rgb(3, 12, 51) 0px 20px 25px -5px, rgb(255, 18, 18) 0px 10px 10px -5px;
+  box-shadow: var(--clr-blue-900) 0px 20px 25px -5px,
+    var(--clr-red-500) 0px 10px 10px -5px;
 }
 
-.responsiveVideo iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
+.video iframe {
   width: 100%;
   height: 100%;
 }

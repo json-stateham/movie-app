@@ -1,27 +1,37 @@
 @import './vars.scss';
 @import './functions.scss';
+@import 'breakpoints';
 
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-html {
-  min-height: 100vh;
+:root {
+  --body-bg-gradient: linear-gradient(
+    90deg,
+    var(--clr-blue-900) 0%,
+    var(--clr-neutral-900) 0%,
+    var(--clr-slate-500) 100%
+  );
 }
 
 body {
-  height: inherit;
   font-family: 'Exo', sans-serif;
-  color: shade($clr-white, 10);
-  box-sizing: border-box;
-  background: $bg-main-linear;
+  color: var(--clr-neutral-100);
+  background: var(--body-bg-gradient);
   -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
-  background: lighten($clr-accent, 20);
+  background: var(--clr-neutral-300);
+}
+
+.wrapper {
+  --max-width: 1200px;
+  --padding: 20px;
+
+  margin-inline: auto;
+  max-width: min(var(--max-width), 100% - (var(--padding) * 2));
+
+  @media (min-width: $md) {
+    --padding: 40px;
+
+    max-width: min(var(--max-width), 100% - (var(--padding) * 2));
+  }
 }

@@ -1,0 +1,29 @@
+@import '../functions';
+
+// generating .fw-100 .fw-200 .fw-300 ...
+// .fw-300 === font-weight: 300;
+
+$max-font-weight: 900;
+
+@for $i from 100 through $max-font-weight {
+  @if $i % 100 == 0 {
+    .fw-#{$i} {
+      font-weight: #{$i};
+    }
+  }
+}
+
+// generating .fs-12 .fs-16 .fs-60 ...
+// .fs-16 === font-size: 16px; (1rem)
+
+$max-font-size: 60;
+$min-font-size: 12;
+
+@for $i from $min-font-size through $max-font-size {
+  @if $i % 2 == 0 {
+    $current: $i * 1px;
+    .fs-#{$i} {
+      font-size: rem($current);
+    }
+  }
+}
