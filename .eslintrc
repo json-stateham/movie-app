@@ -40,6 +40,7 @@
     "react-perf/jsx-no-new-object-as-prop": 0,
     "jsx-a11y/click-events-have-key-events": "warn",
     "jsx-a11y/no-noninteractive-element-interactions": "warn",
+    "react-perf/jsx-no-new-array-as-prop": 0,
     // "react/function-component-definition": "off",
     "react/boolean-prop-naming": [
       "error",

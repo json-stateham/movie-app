@@ -1,34 +1,33 @@
-import { FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import clsx from 'clsx';
 import styles from './Grid.module.scss';
 
 interface IProps {
   children: ReactNode;
   className?: string;
-  cols?: {
-    sm?: number;
-    md?: number;
-    lg?: number;
-  };
-  gap?: {
-    from?: number;
-    to?: number;
-  };
+  cols: [number, number, number]; // mobile -> tablet -> laptop
+  gap: [number, number, number];
 }
 
-const Grid: FC<IProps> = ({ children, className: extraClassName, cols, gap }) => {
+const Grid: FC<IProps> = ({
+  children,
+  className: extraClassName,
+  cols,
+  gap,
+}) => {
   return (
     <div
-      className={clsx(
-        styles.grid,
-        extraClassName,
-        styles[`cols-sm-${cols?.sm}`],
-        styles[`cols-md-${cols?.md}`],
-        styles[`cols-lg-${cols?.lg}`],
-      )}
-      style={{
-        gap: `min(${gap?.from}px, ${gap?.to}px)`,
-      }}
+      className={clsx(styles.grid, extraClassName)}
+      style={
+        {
+          '--cols-sm': cols[0],
+          '--cols-md': cols[1],
+          '--cols-lg': cols[2],
+          '--gap-sm': `${gap[0]}px`,
+          '--gap-md': `${gap[1]}px`,
+          '--gap-lg': `${gap[2]}px`,
+        } as React.CSSProperties
+      }
     >
       {children}
     </div>
@@ -36,15 +35,8 @@ const Grid: FC<IProps> = ({ children, className: extraClassName, cols, gap }) =>
 };
 
 Grid.defaultProps = {
-  cols: {
-    sm: 2,
-    md: 3,
-    lg: 5,
-  },
-  gap: {
-    from: 16,
-    to: 32,
-  },
+  cols: [2, 3, 5],
+  gap: [16, 24, 32],
 };
 
 export { Grid };

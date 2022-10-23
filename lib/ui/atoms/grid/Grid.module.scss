@@ -4,22 +4,17 @@
   display: grid;
   justify-items: start;
   grid-auto-rows: 1fr;
-}
 
-@for $i from 1 through 12 {
-  .cols-sm-#{$i} {
-    grid-template-columns: repeat($i, minmax(0, 1fr));
-  }
+  grid-template-columns: repeat(var(--cols-sm), minmax(0, 1fr));
+  gap: var(--gap-sm);
 
   @include media('md') {
-    .cols-md-#{$i} {
-      grid-template-columns: repeat($i, minmax(0, 1fr));
-    }
+    grid-template-columns: repeat(var(--cols-md), minmax(0, 1fr));
+    gap: var(--gap-md);
   }
 
   @include media('lg') {
-    .cols-lg-#{$i} {
-      grid-template-columns: repeat($i, minmax(0, 1fr));
-    }
+    grid-template-columns: repeat(var(--cols-lg), minmax(0, 1fr));
+    gap: var(--gap-lg);
   }
 }

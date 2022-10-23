@@ -20,8 +20,6 @@ export const getStaticProps = async ({ locale }: TLocale) => ({
 const App = ({ topMovies, trendMovies }: IMainPageData) => {
   const { t } = useTranslation('common');
 
-  console.log(topMovies)
-
   const renderPosters = (mainData: IMoviesItem[] = [], maxQty = 5) =>
     mainData
       .slice(0, maxQty)
@@ -44,7 +42,7 @@ const App = ({ topMovies, trendMovies }: IMainPageData) => {
           <a>{t('topRated').toUpperCase()}</a>
         </Link>
       </Text>
-      <Grid cols={{ sm: 2, md: 3, lg: 5 }} className="mb-50">
+      <Grid cols={[2, 3, 5]} gap={[16, 24, 32]} className="mb-50">
         {renderPosters(topMovies)}
       </Grid>
       <Text tag="h2" className="mb-12">
@@ -52,7 +50,7 @@ const App = ({ topMovies, trendMovies }: IMainPageData) => {
           <a>{t('trending').toUpperCase()}</a>
         </Link>
       </Text>
-      <Grid cols={{ sm: 2, md: 3, lg: 5 }} className="mb-50">
+      <Grid cols={[2, 3, 5]} gap={[16, 24, 32]} className="mb-50">
         {renderPosters(trendMovies)}
       </Grid>
     </Wrapper>
