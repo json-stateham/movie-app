@@ -1,31 +1,29 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import clsx from 'clsx';
 import styles from './Grid.module.scss';
 
 interface IProps {
   children: ReactNode;
   className?: string;
-  cols: [number, number, number]; // mobile -> tablet -> laptop
-  gap: [number, number, number];
+  cols: string;
+  gap: string;
 }
 
-const Grid: FC<IProps> = ({
-  children,
-  className: extraClassName,
-  cols,
-  gap,
-}) => {
+const Grid = ({ children, className: extraClassName, cols, gap }: IProps) => {
+  const [colsSm, colsMd, colsLg] = cols.split('-');
+  const [gapSm, gapMd, gapLg] = gap.split('-');
+
   return (
     <div
       className={clsx(styles.grid, extraClassName)}
       style={
         {
-          '--cols-sm': cols[0],
-          '--cols-md': cols[1],
-          '--cols-lg': cols[2],
-          '--gap-sm': `${gap[0]}px`,
-          '--gap-md': `${gap[1]}px`,
-          '--gap-lg': `${gap[2]}px`,
+          '--cols-sm': colsSm,
+          '--cols-md': colsMd,
+          '--cols-lg': colsLg,
+          '--gap-sm': `${gapSm}px`,
+          '--gap-md': `${gapMd}px`,
+          '--gap-lg': `${gapLg}px`,
         } as React.CSSProperties
       }
     >
@@ -35,8 +33,8 @@ const Grid: FC<IProps> = ({
 };
 
 Grid.defaultProps = {
-  cols: [2, 3, 5],
-  gap: [16, 24, 32],
+  cols: '2-3-5', // mobile -> tablet -> laptop
+  gap: '16-24-32',
 };
 
 export { Grid };

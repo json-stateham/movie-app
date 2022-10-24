@@ -18,4 +18,8 @@ export class UrlBuilder extends URL {
   clone() {
     return new UrlBuilder(this);
   }
+
+  getHref() {
+    return this.href
+  }
 }

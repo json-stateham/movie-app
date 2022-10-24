@@ -4,37 +4,37 @@ import { Box, Thumb, Text } from 'lib/ui';
 
 interface IProps {
   image: string;
-  info: {
-    title: string;
-    releaseDate: string;
-    link: string;
-  };
+  title: string;
+  releaseDate: string;
+  link: string;
   wrapperClassname?: string;
 }
 
 export const Card: FC<IProps> = ({
   image,
-  info,
+  title,
+  releaseDate,
+  link,
   wrapperClassname = 'coolShadowAnimatedHover',
 }) => (
   <div className='flex flexCol'>
   <Box className={wrapperClassname}>
-    <Link href={info.link}>
+    <Link href={link}>
       <a>
-        <Thumb image={image} alt={info.title} />
+        <Thumb image={image} alt={title} />
       </a>
     </Link>    
   </Box>
   <div className="mt-24">
-      <Link href={info.link}>
+      <Link href={link}>
         <a>
           <Text tag="h4" className="fw-700">
-            {info.title}
+            {title}
           </Text>
         </a>
       </Link>
       <Text tag="p" className="mt-4 fs-14 fw-300">
-        {info.releaseDate}
+        {releaseDate}
       </Text>
     </div>
   </div>

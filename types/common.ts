@@ -75,7 +75,7 @@ interface IMovieDetailsVideosResults {
   key: string
   site: string
   size: number
-  type: string
+  type: "Trailer" | "Clip" | "Behind the Scenes"
   official: boolean
   published_at: string
   id: string

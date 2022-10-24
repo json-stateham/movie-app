@@ -6,6 +6,8 @@ import { fetchMainPage } from 'lib/network/fetchMainPage';
 import { convertDateFormat } from 'lib/helpers/convertDateFormat';
 import { IMoviesItem, IMainPageData } from 'types/common';
 import { getImageSrc } from 'api/images';
+import { jsonFetch } from '@/lib/network/fetchClient';
+import { discoverMovies } from 'api/movies';
 
 type TLocale = { locale: string };
 
@@ -13,6 +15,7 @@ export const getStaticProps = async ({ locale }: TLocale) => ({
   props: {
     ...(await serverSideTranslations(locale, ['common'])),
     ...(await fetchMainPage()),
+    // discover: await jsonFetch(discoverMovies(1))
   },
   revalidate: 10,
 });
@@ -26,11 +29,9 @@ const App = ({ topMovies, trendMovies }: IMainPageData) => {
       .map(({ id, title, poster_path, release_date }) => (
         <Card
           key={id}
-          info={{
-            title,
-            releaseDate: convertDateFormat(release_date),
-            link: `/movie/${id}`,
-          }}
+          title={title}
+          releaseDate={convertDateFormat(release_date)}
+          link={`/movie/${id}`}
           image={getImageSrc(poster_path as string)}
         />
       ));
@@ -42,7 +43,7 @@ const App = ({ topMovies, trendMovies }: IMainPageData) => {
           <a>{t('topRated').toUpperCase()}</a>
         </Link>
       </Text>
-      <Grid cols={[2, 3, 5]} gap={[16, 24, 32]} className="mb-50">
+      <Grid cols="2-3-5" gap="16-24-32" className="mb-50">
         {renderPosters(topMovies)}
       </Grid>
       <Text tag="h2" className="mb-12">
@@ -50,7 +51,7 @@ const App = ({ topMovies, trendMovies }: IMainPageData) => {
           <a>{t('trending').toUpperCase()}</a>
         </Link>
       </Text>
-      <Grid cols={[2, 3, 5]} gap={[16, 24, 32]} className="mb-50">
+      <Grid cols="2-3-5" gap="16-24-32" className="mb-50">
         {renderPosters(trendMovies)}
       </Grid>
     </Wrapper>

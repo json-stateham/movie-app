@@ -13,6 +13,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => ({
 const Movie = (props: IMovieDetails) => {
   const { backdrop_path, videos, genres, title, overview } = props;
 
+  console.log(props)
+
   const trailer = videos.results.filter(({ type }) => type === 'Trailer')[0];
 
   const renderedGenres = genres.map(({ id, name }, i, selfArr) => (
