@@ -1,4 +1,4 @@
-import Image, { ImageProps } from 'next/future/image';
+import Image, { ImageProps, ImageLoader } from 'next/image';
 import { IMAGE_CONFIG, THUMB } from 'api/images/config';
 
 import styles from './Thumb.module.scss';
@@ -24,7 +24,7 @@ const Thumb = ({
     <div className={styles.thumbWrapper}>
         <Image
           className={styles.thumbImage}
-          loader={myLoader}
+          loader={myLoader as ImageLoader}
           src={image}
           alt={alt}
           width={width}

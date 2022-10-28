@@ -39,17 +39,13 @@ const App = ({ topMovies, trendMovies }: IMainPageData) => {
   return (
     <Wrapper>
       <Text tag="h2" className="mb-12">
-        <Link href="/top-rated">
-          <a>{t('topRated').toUpperCase()}</a>
-        </Link>
+        <Link href="/top-rated">{t('topRated').toUpperCase()}</Link>
       </Text>
       <Grid cols="2-3-5" gap="16-24-32" className="mb-50">
         {renderPosters(topMovies)}
       </Grid>
       <Text tag="h2" className="mb-12">
-        <Link href="/trends">
-          <a>{t('trending').toUpperCase()}</a>
-        </Link>
+        <Link href="/trends">{t('trending').toUpperCase()}</Link>
       </Text>
       <Grid cols="2-3-5" gap="16-24-32" className="mb-50">
         {renderPosters(trendMovies)}

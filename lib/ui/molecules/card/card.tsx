@@ -17,21 +17,19 @@ export const Card: FC<IProps> = ({
   link,
   wrapperClassname = 'coolShadowAnimatedHover',
 }) => (
-  <div className='flex flexCol'>
-  <Box className={wrapperClassname}>
-    <Link href={link}>
-      <a>
-        <Thumb image={image} alt={title} />
-      </a>
-    </Link>    
-  </Box>
-  <div className="mt-24">
+  <div className="flex flexCol">
+    <Box className={wrapperClassname}>
       <Link href={link}>
         <a>
-          <Text tag="h4" className="fw-700">
-            {title}
-          </Text>
+          <Thumb image={image} alt={title} />
         </a>
+      </Link>
+    </Box>
+    <div className="mt-24">
+      <Link href={link}>
+        <Text tag="h4" className="fw-700">
+          {title}
+        </Text>
       </Link>
       <Text tag="p" className="mt-4 fs-14 fw-300">
         {releaseDate}
