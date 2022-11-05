@@ -1,19 +1,20 @@
-import { GetServerSideProps } from 'next';
 import { getMovieDetails } from 'api/movies';
 import { getBackdropImage } from 'api/images';
 import { YoutubeVideo } from 'entities/YoutubeVideo';
-import { Text, Separator, Wrapper } from 'lib/ui';
+import { Separator, Wrapper } from 'lib/ui';
+import { Text } from 'components/text';
 import { IMovieDetails } from 'types/common';
-import styles from './movie.module.scss';
+import styles from './styles.module.scss';
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => ({
-  props: await getMovieDetails(params?.id as string),
-});
+interface Props {
+  params: {
+    slug: string
+  }
+}
 
-const Movie = (props: IMovieDetails) => {
-  const { backdrop_path, videos, genres, title, overview } = props;
-
-  console.log(props)
+export default async function Page({ params }: Props) {
+  const details: IMovieDetails = await getMovieDetails(params.slug)
+  const { backdrop_path, videos, genres, title, overview } = details;
 
   const trailer = videos.results.filter(({ type }) => type === 'Trailer')[0];
 
@@ -45,6 +46,4 @@ const Movie = (props: IMovieDetails) => {
       </Wrapper>
     </>
   );
-};
-
-export default Movie;
+}

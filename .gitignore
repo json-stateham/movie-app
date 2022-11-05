@@ -12,3 +12,4 @@ yarn-error.log*
 
 stats.html
 .next
+.vscode

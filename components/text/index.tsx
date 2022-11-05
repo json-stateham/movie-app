@@ -20,6 +20,4 @@ const Text = ({ children, className: extraClassName, tag = 'p' }: IProps) => {
   );
 };
 
-Text.displayName = 'Text';
-
 export { Text };

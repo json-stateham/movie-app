@@ -1,12 +1,11 @@
+"use client";
 export { Box } from './atoms/box/Box';
 export { Button } from './atoms/button/Button';
-export { Grid } from './atoms/grid/Grid';
 export { HeroBlock } from './molecules/HeroBlock/HeroBlock';
 export { HeroPoster } from './molecules/HeroBlock/HeroPoster';
 export { HeroInfo } from './molecules/HeroBlock/HeroInfo';
 export { LoaderTape } from './atoms/loader-tape/LoaderTape';
 export { Thumb } from './atoms/thumb/Thumb';
-export { Text } from './atoms/text/Text';
 export { Separator } from './atoms/separator/Separator';
 export { Wrapper } from './atoms/wrapper/wrapper';
 export { Card } from './molecules/card/card';

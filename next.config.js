@@ -1,5 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { i18n } = require('./next-i18next.config');
+const path = require('path');
+/* eslint-enable */
 
 // const ContentSecurityPolicy = `
 //   default-src 'self';
@@ -33,18 +35,18 @@ const securityHeaders = [
 ]
 
 module.exports = {
+  experimental: {
+    appDir: true,
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
   i18n,
   devIndicators: {
     buildActivityPosition: 'bottom-right',
   },
   images: {
-    domains: [process.env.NEXT_PUBLIC_IMAGE_URL],
-    allowFutureImage: true,
-  },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
+    domains: [process.env.NEXT_PUBLIC_IMAGE_URL]
   },
   async headers() {
     return [

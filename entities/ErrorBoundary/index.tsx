@@ -1,5 +1,6 @@
 import { Component, ErrorInfo } from 'react'
-import { Button, Text } from 'lib/ui'
+import { Button } from 'lib/ui'
+import { Text } from 'components/text'
 
 export class ErrorBoundary extends Component {
   state = { hasError: false };

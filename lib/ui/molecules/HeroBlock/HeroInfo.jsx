@@ -1,3 +1,4 @@
+// "use client";
 import { Text, Separator } from '@/lib/ui'
 import { useIsMounted } from './useIsMounted'
 import { CSSTransition } from 'react-transition-group'
@@ -9,13 +10,13 @@ const HeroInfo = ({ title, release, genres, overview}) => {
   return (
     <CSSTransition in={mounted} timeout={1500} classNames="fade">
       <div className={styles.movieInfoWrapper}>
-        <Text tag="h1">{title}</Text>
+        {/* <Text tag="h1">{title}</Text>
         <Text tag="h3">
           {release}
           <Separator>&#9898;</Separator>
           {genres}
         </Text>
-        <Text>{overview}</Text>
+        <Text>{overview}</Text> */}
       </div>
     </CSSTransition>
   )

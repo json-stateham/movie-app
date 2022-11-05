@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Link from 'next/link';
-import { Box, Thumb, Text } from 'lib/ui';
+import { Box, Thumb } from 'lib/ui';
+import { Text } from 'components/text'
 
 interface IProps {
   image: string;
@@ -20,9 +21,7 @@ export const Card: FC<IProps> = ({
   <div className="flex flexCol">
     <Box className={wrapperClassname}>
       <Link href={link}>
-        <a>
-          <Thumb image={image} alt={title} />
-        </a>
+        <Thumb image={image} alt={title} />
       </Link>
     </Box>
     <div className="mt-24">

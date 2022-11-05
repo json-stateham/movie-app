@@ -3,7 +3,7 @@ import { useQueryClient } from 'react-query'
 // import { useNavigate, useSearch } from 'react-location'
 import { usePagination, DOTS } from './usePagination'
 // import { fetchMoviesList } from 'entities/MoviesCardsGrid/model'
-import { Text } from 'lib/ui'
+import { Text } from 'components/text'
 
 import type { IPagination } from './types'
 // import type { LocationGenerics } from 'app/Routes'
