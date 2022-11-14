@@ -1,0 +1,13 @@
+$ TIMING=1 eslint "**/*.ts*"
+Rule                              | Time (ms) | Relative
+:---------------------------------|----------:|--------:
+react/display-name                |     1.992 |    38.5%
+react/require-render-return       |     0.421 |     8.1%
+react-hooks/rules-of-hooks        |     0.252 |     4.9%
+react/jsx-no-comment-textnodes    |     0.185 |     3.6%
+react/no-unescaped-entities       |     0.185 |     3.6%
+jsx-a11y/role-supports-aria-props |     0.171 |     3.3%
+@next/next/no-duplicate-head      |     0.150 |     2.9%
+react/no-deprecated               |     0.148 |     2.9%
+react/no-direct-mutation-state    |     0.130 |     2.5%
+react/no-danger-with-children     |     0.112 |     2.2%
