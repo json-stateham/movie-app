@@ -1,10 +1,18 @@
-## What's inside?
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mister-webdev/movie-app/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mister-webdev/movie-app/?branch=master)
 
-This turborepo includes the following packages/apps:
+## Frontend application for the movies surfing via TheMovieDataBase API
 
-### Apps and Packages
+## Techstack:
 
-- `web`:  [Next.js](https://nextjs.org/) app
-- `ui`: a React component library
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+* Next.js
+* Effector for managing state [https://effector.dev]
+* PostCSS modules and clsx for styling
+* Feature-sliced for project architecture [https://feature-sliced.design/]
+* Jest, React-Testing-Library for tests
+
+Deployed application: [https://reactjs-movie-app.netlify.app/]  
+API: [https://developers.themoviedb.org/]
+
+run dev: `npm run dev`  
+run build: `npm run build`
+

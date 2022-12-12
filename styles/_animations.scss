@@ -1,0 +1,21 @@
+@use 'mixins';
+
+@keyframes opacityIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.coolShadowAnimatedHover {
+  box-shadow: var(--cool-shadow);
+  transition: box-shadow 0.3s ease-out;
+  animation: fadeIn 3s;
+  will-change: box-shadow;
+
+  @include mediaHover {
+    box-shadow: var(--cool-shadow-hover);
+  }
+}

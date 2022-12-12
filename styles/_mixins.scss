@@ -1,0 +1,36 @@
+@import 'breakpoints';
+
+// css-tricks.com/snippets/css/fluid-typography/
+@mixin fluid($property, $min, $max) {
+  #{$property}: calc(
+    #{$min}px + (#{$max} - #{$min}) * ((100vw - 320px) / (1200 - 320))
+  );
+
+  @media (min-width: 1200px) {
+    #{$property}: #{$max}px;
+  }
+}
+
+// mobile first media-query
+@mixin media($viewport) {
+  @media (min-width: #{map-get($breakpoints, $viewport)}) {
+    @content;
+  }
+}
+
+@mixin mediaHover() {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin full-width() {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}

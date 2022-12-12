@@ -1,0 +1,15 @@
+@import 'mixins';
+
+.wrapper {
+  --max-width: 1280px;
+  --padding: 20px;
+
+  margin-inline: auto;
+  max-width: min(var(--max-width), 100% - (var(--padding) * 2));
+
+  @include media('md') {
+    --padding: 40px;
+
+    max-width: min(var(--max-width), 100% - (var(--padding) * 2));
+  }
+}
