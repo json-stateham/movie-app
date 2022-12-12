@@ -1,5 +1,5 @@
 import { Component, ErrorInfo } from 'react'
-import { Button } from 'shared/ui'
+import { Button } from 'components'
 import { Text } from '@/components/text'
 
 export class ErrorBoundary extends Component {
