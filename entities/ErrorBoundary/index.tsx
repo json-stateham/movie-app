@@ -1,34 +1,31 @@
-import { Component, ErrorInfo } from 'react'
-import { Button } from 'components'
-import { Text } from '@/components/text'
+import { Component, ErrorInfo } from 'react';
+import { Button } from 'components';
 
 export class ErrorBoundary extends Component {
   state = { hasError: false };
 
   static getDerivedStateFromError() {
-    return { hasError: true }
+    return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('From ErrorBoundary:', error, errorInfo)
+    console.error('From ErrorBoundary:', error, errorInfo);
   }
 
-  handleRefreshPage = () => window.history.go()
+  handleRefreshPage = () => window.history.go();
 
   render() {
     if (this.state.hasError) {
       return (
         <div className="flex flexCol flexAlCent">
-          <Text className="mb32 mt32" tag="h2">
-            Something went wrong
-          </Text>
+          <h2 className="mb32 mt32">Something went wrong</h2>
           <Button onClick={this.handleRefreshPage}>
-            <Text tag="span">Refresh Page</Text>
+            <span>Refresh Page</span>
           </Button>
         </div>
-      )
+      );
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }
