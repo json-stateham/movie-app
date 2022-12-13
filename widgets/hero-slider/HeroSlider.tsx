@@ -1,9 +1,15 @@
-import { useState, useMemo, useReducer, useEffect } from 'react';
-import { Button, CustomImage, ArrowIcon, CloseIcon, PlayIcon } from 'components';
+import { useState, useMemo, useReducer, useEffect, useCallback } from 'react';
+import { useKeenSlider, KeenSliderOptions } from 'keen-slider/react';
+import cx from 'clsx';
+import {
+  Button,
+  CustomImage,
+  ArrowIcon,
+  CloseIcon,
+  PlayIcon,
+} from 'components';
 import { YoutubeVideo } from 'entities/YoutubeVideo';
 import { GENRES } from 'api/genres';
-import cx from 'clsx';
-import { useKeenSlider, KeenSliderOptions } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import styles from './HeroSlider.module.scss';
 import type { IMoviesItem } from 'types/common';
@@ -96,28 +102,35 @@ export const HeroSlider = ({ images, options }: Props) => {
         >
           <CustomImage
             imgSrc={image.backdrop_path}
-            priority={index === 0}
-            imageType="backdrop"
-            alt=""
             width={1280}
             height={720}
+            alt=""
+            priority={index === 0}
+            imageType="backdrop"
           />
           <figcaption>
             <h2>{image.title}</h2>
             <ul className={styles.tags}>
               {image.genre_ids.slice(0, 3).map((genreId, index) => (
-                <li key={index}><span>{GENRES[genreId]}</span></li>
+                <li key={index}>
+                  <span>{GENRES[genreId]}</span>
+                </li>
               ))}
             </ul>
             <p>{image.overview}</p>
           </figcaption>
-          <Button onClick={setTrailerOpen} className={styles.playButton}>
-            <PlayIcon />
-          </Button>
+          <Button
+            children={<PlayIcon />}
+            onClick={setTrailerOpen}
+            className={styles.playButton}
+          />
         </figure>
       )),
     [],
   );
+
+  const handlePrevSlide = useCallback(() => instanceRef.current?.prev(), []);
+  const handleNextSlide = useCallback(() => instanceRef.current?.next(), []);
 
   const { name: trailerTitle, key: trailerKey } =
     images[currentSlide].trailers[0] || {};
@@ -142,12 +155,12 @@ export const HeroSlider = ({ images, options }: Props) => {
         <Button
           children={<ArrowIcon />}
           className={cx(styles.arrow, styles.arrowLeft)}
-          onClick={() => instanceRef.current?.prev()}
+          onClick={handlePrevSlide}
         />
         <Button
           children={<ArrowIcon />}
           className={cx(styles.arrow, styles.arrowRight)}
-          onClick={() => instanceRef.current?.next()}
+          onClick={handleNextSlide}
         />
       </div>
 
@@ -156,6 +169,7 @@ export const HeroSlider = ({ images, options }: Props) => {
           {[...Array(slides.length).keys()].map(idx => (
             <button
               key={idx}
+              type="button"
               onClick={() => instanceRef.current?.moveToIdx(idx)}
               className={cx(
                 styles.dot,
