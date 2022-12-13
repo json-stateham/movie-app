@@ -106,7 +106,7 @@ export const HeroSlider = ({ images, options }: Props) => {
             <h2>{image.title}</h2>
             <ul className={styles.tags}>
               {image.genre_ids.slice(0, 3).map((genreId, index) => (
-                <li key={index}>{GENRES[genreId]}</li>
+                <li key={index}><span>{GENRES[genreId]}</span></li>
               ))}
             </ul>
             <p>{image.overview}</p>

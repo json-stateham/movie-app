@@ -1,0 +1,94 @@
+@import 'mixins';
+@import 'functions';
+
+h1 {
+  $size: 28px;
+  @include typography($size);
+  margin-block: fontMarginBlock($size);
+
+  @include media('md') {
+    $size: 28px;
+    @include typography($size);
+  }
+
+  @include media('lg') {
+    $size: 52px;
+    @include typography($size);
+  }
+}
+
+h2 {
+  $size: 20px;
+  @include typography($size);
+  margin-block: fontMarginBlock($size);
+
+  @include media('md') {
+    $size: 24px;
+    @include typography($size);
+  }
+
+  @include media('lg') {
+    $size: 36px;
+    @include typography($size);
+  }
+}
+
+h3 {
+  $size: 20px;
+  @include typography($size);
+  margin-block: fontMarginBlock($size);
+
+  @include media('md') {
+    $size: 22px;
+    @include typography($size);
+  }
+
+  @include media('lg') {
+    $size: 28px;
+    @include typography($size);
+  }
+}
+
+h4 {
+  $size: 20px;
+  @include typography($size);
+  margin-block: fontMarginBlock($size);
+
+  @include media('lg') {
+    $size: 26px;
+    @include typography($size);
+  }
+}
+
+h5 {
+  $size: 18px;
+  @include typography($size);
+  margin-block: fontMarginBlock($size);
+
+  @include media('lg') {
+    $size: 21px;
+    @include typography($size);
+  }
+}
+
+p {
+  $size: 16px;
+  @include typography($size);
+  margin-block: fontMarginBlock($size);
+
+  @include media('lg') {
+    $size: 18px;
+    @include typography($size);
+  }
+}
+
+span {
+  $size: 14px;
+  @include typography($size);
+  margin-block: fontMarginBlock($size);
+
+  @include media('lg') {
+    $size: 16px;
+    @include typography($size);
+  }
+}

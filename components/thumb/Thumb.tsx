@@ -1,5 +1,6 @@
 import { CustomImage } from '@/components/index';
 import { POSTER } from 'api/images/config';
+import cx from 'clsx';
 import styles from './Thumb.module.scss';
 
 interface Props {
@@ -7,6 +8,7 @@ interface Props {
   image: string;
   width?: number;
   height?: number;
+  className?: string;
 }
 
 export const Thumb = ({
@@ -14,8 +16,9 @@ export const Thumb = ({
   alt,
   width = Number(POSTER.L),
   height = 510,
+  className,
 }: Props) => (
-  <figure className={styles.thumbWrapper}>
+  <div className={cx(styles.thumbWrapper, className)}>
     <CustomImage
       className={styles.thumbImage}
       imgSrc={image}
@@ -23,5 +26,5 @@ export const Thumb = ({
       width={width}
       height={height}
     />
-  </figure>
+  </div>
 );

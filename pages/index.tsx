@@ -31,15 +31,15 @@ const Page = ({ topMovies, trendMovies }: Props) => {
   return (
     <Wrapper>
       <HeroSlider images={trendMovies} />
-      <Text tag="h2" className="mb-12">
+      <h2>
         <Link href="/trends">{t('trending').toUpperCase()}</Link>
-      </Text>
+      </h2>
       <Grid cols="2-3-4" gap="16-24-32" className="mb-50">
         {renderPosters(trendMovies)}
       </Grid>
-      <Text tag="h2" className="mb-12">
+      <h2>
         <Link href="/top-rated">{t('topRated').toUpperCase()}</Link>
-      </Text>
+      </h2>
       <Grid cols="2-3-4" gap="16-24-32" className="mb-50">
         {renderPosters(topMovies)}
       </Grid>

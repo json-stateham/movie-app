@@ -1,7 +1,15 @@
-@use 'sass:math';
-
 // px to rem
 // example - font-face: rem(20px);
 @function rem($pxValue) {
-    @return math.div($pxValue, 16px) * 1rem; 
+  @return calc($pxValue / 16px) * 1rem;
+}
+
+// https://spectrum.adobe.com/page/heading/#Margins
+@function fontMarginBlock($fontSize) {
+  @return calc($fontSize / 1.125) calc($fontSize * 0.25);
+}
+
+// https://spectrum.adobe.com/page/heading/#Line-height
+@function calcFontLineHeight($fontSize) {
+  @return $fontSize * 1.3;
 }

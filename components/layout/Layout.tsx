@@ -7,7 +7,7 @@ interface Props {
 }
 
 const exoFont = Exo({
-  weight: ['300', '400', '500', '900'],
+  weight: ['400', '500'],
   subsets: ['latin'],
 });
 

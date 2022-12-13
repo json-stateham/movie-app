@@ -20,7 +20,7 @@ export const Button = ({
 }: Props) => (
   <button
     type={type}
-    className={clsx(styles.button, className, { [styles[variant]]: variant })}
+    className={clsx(styles.button, className, styles?.[variant] || '')}
     onClick={onClick}
   >
     {children}

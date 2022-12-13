@@ -1,23 +1,29 @@
-import { ReactNode } from 'react';
-import clsx from 'clsx';
-import styles from './Text.module.scss';
+import { ReactNode, createElement } from 'react';
+import cx from 'clsx';
 
-type TextTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'span';
+type TextType =
+  | 'heading-primary'
+  | 'heading-secondary'
+  | 'heading-tertiary'
+  | 'text-label'
+  | 'text-body';
 
-interface IProps {
-  children: ReactNode;
-  className?: string;
-  tag?: TextTag;
-}
-
-const Text = ({ children, className: extraClassName, tag = 'p' }: IProps) => {
-  const Component = tag;
-
-  return (
-    <Component className={clsx(styles[tag], extraClassName)}>
-      {children}
-    </Component>
-  );
+const TextTypeTags = {
+  'heading-primary': 'h1',
+  'heading-secondary': 'h2',
+  'heading-tertiary': 'h3',
+  'text-label': 'span',
+  'text-body': 'p',
 };
 
-export { Text };
+interface Props {
+  children: ReactNode;
+  className?: string;
+  type: TextType;
+}
+
+export const Text = ({ children, className, type }: Props) => {  
+  const Component = TextTypeTags[type];
+
+  return createElement(Component, { className: cx(type, className) }, children);
+};

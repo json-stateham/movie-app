@@ -6,7 +6,7 @@
 
 .slide {
   position: relative;
-  cursor: e-resize;
+  cursor: ew-resize;
   isolation: isolate;
 
   figcaption {
@@ -20,18 +20,15 @@
 
   figcaption h2 {
     display: none;
-    font-size: 42px;
     font-weight: 600;
-    line-height: 1.2;
     text-shadow: 2px 2px 0px #00000070;
     user-select: all;
   }
 
   figcaption p {
-    margin-top: 8px;
-    font-size: 18px;
-    user-select: all;
     display: none;
+    margin-top: 8px;
+    user-select: all;
   }
 
   &::after {
