@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
-import { MetaTags } from 'components/MetaTags';
+import { MetaTags } from 'ui/components/MetaTags';
 
 const Document = () => {
   return (

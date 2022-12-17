@@ -1,12 +1,11 @@
 export { Button } from './button';
-export { Card } from './card';
+export { BaseCard, MovieCard } from './card';
 export { CustomImage } from './custom-image';
-export { Header } from './header';
 export { Grid } from './grid';
 export { Modal } from './modal';
-export { Layout } from './layout';
 export { LoaderTape } from './loader-tape';
 export { Text } from './text';
 export { Thumb } from './thumb';
 export { Wrapper } from './wrapper';
 export { ArrowIcon, CloseIcon, PlayIcon } from './icons';
+export { YoutubeVideo } from './youtube-video';

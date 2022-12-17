@@ -7,8 +7,8 @@ import {
   ArrowIcon,
   CloseIcon,
   PlayIcon,
-} from 'components';
-import { YoutubeVideo } from 'entities/YoutubeVideo';
+} from 'ui/components';
+import { YoutubeVideo } from 'ui/components';
 import { GENRES } from 'api/genres';
 import 'keen-slider/keen-slider.min.css';
 import styles from './HeroSlider.module.scss';

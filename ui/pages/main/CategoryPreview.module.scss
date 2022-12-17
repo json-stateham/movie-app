@@ -1,0 +1,32 @@
+@import 'mixins';
+
+.wrapper {
+  margin-top: 30px;
+}
+
+.title {
+  text-transform: uppercase;
+  letter-spacing: 0;
+  font-weight: 500;
+
+  a::after {
+    display: inline-block;
+    content: '\3009';
+    font-weight: 600;
+    padding-left: 10px;
+    color: hsl(0deg 0% 33%);
+    transition: 800ms ease-out;
+  }
+
+  @include mediaHover {
+    a::after {
+      color: hsl(0, 0%, 90%);
+    }
+  }
+}
+
+@include media('lg') {
+  .wrapper {
+    margin-top: 60px;
+  }
+}

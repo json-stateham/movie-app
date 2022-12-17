@@ -3,7 +3,7 @@ import { FC, useState } from 'react'
 // import { useNavigate, useSearch } from 'react-location'
 import { usePagination, DOTS } from './usePagination'
 // import { fetchMoviesList } from 'entities/MoviesCardsGrid/model'
-import { Text } from '@/components/text'
+import { Text } from 'ui/components/text'
 
 import type { IPagination } from './types'
 // import type { LocationGenerics } from 'app/Routes'

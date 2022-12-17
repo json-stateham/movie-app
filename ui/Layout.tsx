@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { Exo } from '@next/font/google';
-import { Header } from 'components';
+import { Header } from 'ui/widgets';
 
 interface Props {
   children: ReactElement;

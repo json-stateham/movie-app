@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
-import { Wrapper, Card, Grid, Text } from 'components';
-import { HeroSlider } from 'widgets';
+import { Wrapper } from 'ui/components';
+import { HeroSlider } from 'ui/widgets';
+import { CategoryPreview } from 'ui/pages/main/CategoryPreview';
 import { fetchMainPage } from 'shared/network/fetchMainPage';
 import { getMovieDetails } from 'api/movies';
-import { convertDateFormat } from 'shared/helpers/convertDateFormat';
 import { IMoviesItem } from 'types/common';
 
 interface Props {
@@ -14,35 +13,20 @@ interface Props {
 
 const Page = ({ topMovies, trendMovies }: Props) => {
   const { t } = useTranslation('common');
-  
-  const renderPosters = (mainData: IMoviesItem[] = [], maxQty = 4) =>
-    mainData
-      .slice(0, maxQty)
-      .map(({ id, title, poster_path, release_date }) => (
-        <Card
-          key={id}
-          title={title}
-          releaseDate={convertDateFormat(release_date)}
-          link={`/movie/${id}`}
-          image={poster_path as string}
-        />
-      ));
 
   return (
     <Wrapper>
       <HeroSlider images={trendMovies} />
-      <h2>
-        <Link href="/trends">{t('trending').toUpperCase()}</Link>
-      </h2>
-      <Grid cols="2-3-4" gap="16-24-32" className="mb-50">
-        {renderPosters(trendMovies)}
-      </Grid>
-      <h2>
-        <Link href="/top-rated">{t('topRated').toUpperCase()}</Link>
-      </h2>
-      <Grid cols="2-3-4" gap="16-24-32" className="mb-50">
-        {renderPosters(topMovies)}
-      </Grid>
+      <CategoryPreview
+        link="/trends"
+        title={t('trending')}
+        items={trendMovies}
+      />
+      <CategoryPreview
+        link="/top-rated"
+        title={t('topRated')}
+        items={topMovies}
+      />
     </Wrapper>
   );
 };

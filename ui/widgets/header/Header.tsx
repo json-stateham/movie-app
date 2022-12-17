@@ -1,4 +1,4 @@
-import { Wrapper, CustomImage } from 'components';
+import { Wrapper, CustomImage } from 'ui/components';
 import Link from 'next/link';
 import clsx from 'clsx';
 import styles from './Header.module.scss';

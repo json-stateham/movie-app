@@ -1,4 +1,4 @@
-import { Layout } from 'components';
+import { Layout } from 'ui/Layout';
 import 'styles/index.scss';
 
 function MyApp({ Component, pageProps }) {

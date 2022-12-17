@@ -1,4 +1,4 @@
-import { CustomImage } from '@/components/index';
+import { CustomImage } from 'ui/components';
 import { POSTER } from 'api/images/config';
 import cx from 'clsx';
 import styles from './Thumb.module.scss';
