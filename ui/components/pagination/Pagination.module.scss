@@ -1,34 +1,29 @@
-@import '@/styles/mixins.scss';
-
-button { 
-  background: transparent;
-  border: 0;
-}
-
-.paginationWrapper {
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  transition: all 0.3s ease-out;
-}
+@import 'mixins';
 
 .pagination {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 4px;
-  max-width: 100%;
-  background: rgba(0, 0, 0, 0.514);
+  margin: auto;
+  max-width: max-content;
+  background: rgba(0, 0, 0, 0.808);
   border-radius: 10px 10px 0 0;
   box-shadow: 2px 5px 10px 5px #0000008f;
   border: 1px solid #252525;
   transition: all 0.3s ease-out;
 
-  &:hover {
-    background: rgba(0, 0, 0, 0.808);
+  button {
+    border: 0;
+    background-color: transparent;
 
-    & > * {
-      opacity: 1;
+    span {
+      margin: 0;
     }
   }
 }
@@ -37,36 +32,14 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 22px 0;
-  @include fluid(padding-left, 8, 16);
-  @include fluid(padding-right, 8, 16);
+  padding: 22px 8px;
   margin: auto 4px;
   height: 32px;
-  text-align: center;
-  box-sizing: border-box;
   color: rgba(255, 255, 255, 0.705);
-  letter-spacing: 0.01071em;
-  line-height: 1.43;
-  border-radius: 100px;
+  border-radius: 100vmax;
   user-select: none;
-  opacity: 0.3;
 
-  &.dots {
-    display: none;
-    color: rgb(95, 95, 95);
-    transform: translateY(-8px);
-    @include media(374) {
-      display: block;
-    };
-  }
-
-  &.dots:hover {
-    color: rgb(95, 95, 95);
-    background-color: transparent;
-    cursor: default;
-  }
-
-  &:hover {
+  @include mediaHover {
     color: rgba(255, 255, 255, 0.959);
     background-color: rgba(47, 0, 255, 0.185);
     cursor: pointer;
@@ -85,54 +58,35 @@ button {
     pointer-events: none;
     color: rgb(95, 95, 95);
 
-    &:hover {
+    @include mediaHover {
       cursor: default;
     }
   }
 }
 
-.arrow {
-  font-size: 24px;
-}
 
-.paginationForward {
-  animation: paginationForwardAnim 1s;
-}
+.dots {
+  align-items: baseline;
+  color: rgb(194, 194, 194);
+  transform: translateY(-8px);
 
-.paginationBackward {
-  animation: paginationBackwardAnim 1s;
-}
-
-@keyframes selectedAnim {
-  0% {
-    background-color: rgba(153, 0, 0, 0.712);
-  }
-  50% {
+  @include mediaHover {
     background-color: transparent;
+    cursor: default;
   }
-  100% {
-    background-color: rgba(153, 0, 0, 0.712);
-  }
+
 }
 
-@keyframes paginationForwardAnim {
-  from {
-    opacity: 0.3;
-    transform: translateX(50%) skew(-4deg);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.arrow {
+  font-size: 16px;
 }
 
-@keyframes paginationBackwardAnim {
-  from {
-    opacity: 0.3;
-    transform: translateX(-50%) skew(4deg);
+@media (min-width: 567px) {
+  .paginationItem {
+    padding: 22px 18px;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+
+  .dots {
+    padding: 22px 0px;
   }
 }

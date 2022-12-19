@@ -4,6 +4,7 @@ export { CustomImage } from './custom-image';
 export { Grid } from './grid';
 export { Modal } from './modal';
 export { LoaderTape } from './loader-tape';
+export { Pagination } from './pagination';
 export { Text } from './text';
 export { Thumb } from './thumb';
 export { Wrapper } from './wrapper';

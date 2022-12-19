@@ -17,16 +17,14 @@ export const getMovieDetails = (
   return jsonFetch(reqUrl.href);
 };
 
-export const getMoviesList = (movieCategory: TMovieCategory, page: number) => {
-  const reqUrl = BASE_MOVIE_URL.clone()
+export const getMovies = (movieCategory: TMovieCategory, page: number) => {
+  const url = BASE_MOVIE_URL.clone()
     .addPath('movie', movieCategory)
     .addParams({
       page: String(page),
-      sort_by: 'release_date.desc',
-      with_genres: "28"
-      // year: '2000',
-    });
-  return jsonFetch(reqUrl.href);
+    }).href;
+
+  return jsonFetch(url);
 };
 
 export const getGenres = () => {
@@ -37,5 +35,4 @@ export const getGenres = () => {
 export const discoverMovies = (page: number) =>
   BASE_MOVIE_URL.clone()
     .addPath('discover', 'movie')
-    .addParams({ page: String(page), sort_by: 'popularity.desc' })
-    .href;
+    .addParams({ page: String(page), sort_by: 'popularity.desc' }).href;

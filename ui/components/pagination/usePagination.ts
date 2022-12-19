@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
-
-import { IPagination } from './types'
+import type { IPagination } from './types'
 
 const DOTS = 0
 
@@ -10,16 +9,14 @@ const range = (start: number, end: number) => {
 }
 
 const usePagination = ({
-  totalPages,
+  totalPages = 500,
   siblingCount = 1,
   currentPage,
 }: IPagination) => {
   const paginationRange = useMemo(() => {
     const totalPageNumbers = siblingCount + 5
 
-    if (totalPageNumbers >= totalPages) {
-      return range(1, totalPages)
-    }
+    if (totalPageNumbers >= totalPages) return range(1, totalPages)
 
     const leftSiblingIndex = Math.max(currentPage - siblingCount, 1)
     const rightSiblingIndex = Math.min(currentPage + siblingCount, totalPages)

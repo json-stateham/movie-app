@@ -40,7 +40,7 @@ export const CustomImage = ({
   return (
     <Image
       loader={loader}
-      src={imgSrc}
+      src={imgSrc || IMAGE_CONFIG.FALLBACK}
       alt={alt}
       width={420}
       height={420}

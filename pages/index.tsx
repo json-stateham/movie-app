@@ -18,12 +18,12 @@ const Page = ({ topMovies, trendMovies }: Props) => {
     <Wrapper>
       <HeroSlider images={trendMovies} />
       <CategoryPreview
-        link="/trends"
+        link="/movies/popular"
         title={t('trending')}
         items={trendMovies}
       />
       <CategoryPreview
-        link="/top-rated"
+        link="/movies/top_rated"
         title={t('topRated')}
         items={topMovies}
       />

@@ -26,7 +26,14 @@ export const CategoryPreview = ({ items, title, link }: Props) => {
   return (
     <section className={styles.wrapper}>
       <h2 className={styles.title}>
-        <Link href={link}>{title}</Link>
+        <Link
+          href={{
+            pathname: link,
+            query: { page: 1 },
+          }}
+        >
+          {title}
+        </Link>
       </h2>
       <Grid cols="2-3-4" gap="16-24-32">
         {renderPosters(items)}

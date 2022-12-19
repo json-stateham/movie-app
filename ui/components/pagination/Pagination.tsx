@@ -1,139 +1,101 @@
-import { FC, useState } from 'react'
-// import { useQueryClient } from 'react-query'
-// import { useNavigate, useSearch } from 'react-location'
-import { usePagination, DOTS } from './usePagination'
-// import { fetchMoviesList } from 'entities/MoviesCardsGrid/model'
-import { Text } from 'ui/components/text'
+import { useRouter } from 'next/router';
+import { usePagination, DOTS } from './usePagination';
+import clsx from 'clsx';
+import type { IPagination } from './types';
+import styles from './Pagination.module.scss';
 
-import type { IPagination } from './types'
-// import type { LocationGenerics } from 'app/Routes'
-// import type { TMovieCategory } from 'lib/network/apiConfig'
-
-import clsx from 'clsx'
-import styles from './Pagination.module.scss'
-
-const Pagination: FC<IPagination> = ({
+const Pagination = ({
   currentPage,
-  totalPages,
+  totalPages = 500,
   siblingCount = 1,
-}) => {
-  // const [isAscending, setIsAscending] = useState(true)
-  // // const { list } = useSearch<LocationGenerics>()
-  // const list = 'top_rated';
-  // // const navigate = useNavigate<LocationGenerics>()
+}: IPagination) => {
+  const router = useRouter();
 
-  // const queryClient = useQueryClient()
+  const paginationRange = usePagination({
+    currentPage: Number(router.query.page),
+    totalPages,
+    siblingCount,
+  }) as number[];
 
-  // // const prefetchPage = async (pageParam: number) => {
-  // //   await queryClient.prefetchQuery(['moviesList', pageParam], () =>
-  // //     fetchMoviesList(pageParam, list as TMovieCategory),
-  // //   )
-  // // }
+  const nextPage = () => {
+    router.push({
+      query: {
+        ...router.query,
+        page: currentPage + 1,
+      },
+    });
+  };
 
-  // const paginationRange = usePagination({
-  //   currentPage,
-  //   totalPages,
-  //   siblingCount,
-  // }) as number[]
+  const prevPage = () => {
+    router.push({
+      query: {
+        ...router.query,
+        page: currentPage - 1,
+      },
+    });
+  };
 
-  // const nextPage = () => {
-  //   // navigate({
-  //   //   search: prev => ({
-  //   //     ...prev,
-  //   //     page: prev?.page && prev.page + 1,
-  //   //   }),
-  //   // })
-  //   setIsAscending(() => true)
-  // }
+  const setPage = (page: number) => {
+    router.push({
+      query: {
+        ...router.query,
+        page,
+      },
+    });
+  };
 
-  // const prevPage = () => {
-  //   // navigate({
-  //   //   search: prev => ({
-  //   //     ...prev,
-  //   //     page: prev?.page && prev.page - 1,
-  //   //   }),
-  //   // })
-  //   setIsAscending(() => false)
-  // }
+  if (currentPage === 0 || paginationRange?.length < 2) {
+    return null;
+  }
 
-  // const concretePage = (pageNumber: number) => {
-  //   // navigate({
-  //   //   search: prev => ({
-  //   //     ...prev,
-  //   //     page: pageNumber,
-  //   //   }),
-  //   // })
-  //   if (currentPage && currentPage < pageNumber) {
-  //     setIsAscending(() => true)
-  //   } else {
-  //     setIsAscending(() => false)
-  //   }
-  // }
+  return (
+    <div className={styles.pagination} role="navigation">
+      <button
+        aria-label="Previous Page"
+        className={clsx(styles.paginationItem, {
+          [styles['disabled']]: currentPage === 1,
+        })}
+        onClick={prevPage}
+      >
+        <span className={styles.arrow}>&#10094;</span>
+      </button>
+      {paginationRange?.map((pageNumber: number, idx) => {
+        if (pageNumber === DOTS) {
+          return (
+            <span
+              aria-hidden
+              key={`pagination-${idx}`}
+              className={clsx(styles.paginationItem, styles.dots)}
+            >
+              ...
+            </span>
+          );
+        }
 
-  // if (currentPage === 0 || paginationRange?.length < 2) {
-  //   return null
-  // }
+        return (
+          <button
+            aria-label={`Page ${pageNumber}`}
+            key={`pagination-${idx}`}
+            className={clsx(styles.paginationItem, {
+              [styles['selected']]: pageNumber === currentPage,
+            })}
+            onClick={() => setPage(pageNumber)}
+          >
+            <span>{pageNumber}</span>
+          </button>
+        );
+      })}
+      <button
+        aria-label="Next Page"
+        className={clsx(styles.paginationItem, {
+          [styles['disabled']]: currentPage === totalPages,
+        })}
+        onClick={nextPage}
+      >
+        <span className={styles.arrow}>&#10095;</span>
+      </button>
+    </div>
+  );
+};
 
-  // return (
-  //   <div className={styles.paginationWrapper}>
-  //     <div className={styles.pagination} role="navigation">
-  //       <button
-  //         aria-label="Previous Page"
-  //         className={clsx(styles.paginationItem, {
-  //           [styles['disabled']]: currentPage === 1,
-  //         })}
-  //         onClick={prevPage}
-  //         onMouseEnter={() => prefetchPage(currentPage - 1)}
-  //         onMouseDown={() => prefetchPage(currentPage - 1)}
-  //       >
-  //         <span className={styles.arrow}>&#10094;</span>
-  //       </button>
-  //       {paginationRange?.map((pageNumber: number, idx) => {
-  //         if (pageNumber === DOTS) {
-  //           return (
-  //             <span
-  //               aria-hidden
-  //               key={`pagination-${idx}`}
-  //               className={clsx(styles.paginationItem, styles.dots)}
-  //             >
-  //               ...
-  //             </span>
-  //           )
-  //         }
-
-  //         return (
-  //           <button
-  //             aria-label={`Page ${pageNumber}`}
-  //             key={`pagination-${idx}`}
-  //             className={clsx(styles.paginationItem, {
-  //               [styles['paginationForward']]:
-  //                 pageNumber > 1 && pageNumber < totalPages && isAscending,
-  //               [styles['paginationBackward']]:
-  //                 pageNumber > 1 && pageNumber < totalPages && !isAscending,
-  //               [styles['selected']]: pageNumber === currentPage,
-  //             })}
-  //             onClick={() => concretePage(pageNumber)}
-  //             onMouseEnter={() => prefetchPage(pageNumber)}
-  //           >
-  //             <Text tag="span">{pageNumber}</Text>
-  //           </button>
-  //         )
-  //       })}
-  //       <button
-  //         aria-label="Next Page"
-  //         className={clsx(styles.paginationItem, {
-  //           [styles['disabled']]: currentPage === totalPages,
-  //         })}
-  //         onClick={nextPage}
-  //         onMouseEnter={() => prefetchPage(currentPage + 1)}
-  //         onMouseDown={() => prefetchPage(currentPage + 1)}
-  //       >
-  //         <span className={styles.arrow}>&#10095;</span>
-  //       </button>
-  //     </div>
-  //   </div>
-  // )
-  return <div>1</div>
-}
-
-export { Pagination }
+export { Pagination };
