@@ -32,7 +32,7 @@ module.exports = nextTranslate({
     buildActivityPosition: 'bottom-right',
   },
   images: {
-    domains: [process.env.NEXT_PUBLIC_IMAGE_URL],
+    domains: ['https://image.tmdb.org/t/p'],
   },
   async headers() {
     return [

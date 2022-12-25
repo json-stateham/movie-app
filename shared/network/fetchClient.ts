@@ -8,7 +8,7 @@ interface CustomOptions {
 
 type Options = RequestInit & CustomOptions;
 
-const baseFetch = (
+const fetchClient = (
   url: RequestInfo,
   { timeout = 0, retry = 0, controller, ...options }: Options = {},
 ): Promise<Response> => {
@@ -54,7 +54,7 @@ const baseFetch = (
 
       if (retry > 0) {
         console.log(`Retrying to fetch: ${url} \n Retry: ${retry}`);
-        return baseFetch(url, { ...options, retry: retry - 1 });
+        return fetchClient(url, { ...options, retry: retry - 1 });
       }
 
       return Promise.reject(error);
@@ -62,4 +62,4 @@ const baseFetch = (
 };
 
 export const jsonFetch = (url: RequestInfo, options?: Options) =>
-  baseFetch(url, options).then(res => res.json());
+  fetchClient(url, options).then(res => res.json());

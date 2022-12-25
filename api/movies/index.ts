@@ -22,13 +22,18 @@ export const getMovies = (movieCategory: TMovieCategory, page: number) => {
     .addPath('movie', movieCategory)
     .addParams({
       page: String(page),
+      // with_genres: 12
     }).href;
 
   return jsonFetch(url);
 };
 
 export const getGenres = () => {
-  const reqUrl = BASE_MOVIE_URL.clone().addPath('genre', 'movie', 'list');
+  const reqUrl =
+    BASE_MOVIE_URL
+      .clone()
+      .addPath('genre', 'movie', 'list');
+
   return jsonFetch(reqUrl.href);
 };
 

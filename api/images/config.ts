@@ -3,14 +3,14 @@ export const IMAGE_CONFIG = {
   FALLBACK: '/images/no_image.webp'
 };
 
-export const BACKDROP: Record<string, string> = {
+export const BACKDROP = {
   S: '300',
   M: '700',
   L: '1280',
   ORIGINAL: 'original',
 }
 
-export const POSTER: Record<string, string> = {
+export const POSTER = {
   XS: '92',
   S: '154',
   M: '185',

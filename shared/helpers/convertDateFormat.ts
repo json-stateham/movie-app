@@ -13,4 +13,3 @@ export const convertDateFormat = (dateParam: string, local = 'en-EN') => {
   return new Intl.DateTimeFormat(local, options).format(dateUTC);
 };
 
-// convertDateFormat('2021-03-03') ===> April 3, 2021

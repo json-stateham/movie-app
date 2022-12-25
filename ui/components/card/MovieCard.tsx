@@ -11,13 +11,21 @@ interface Props {
   release: string;
 }
 
-export const MovieCard = ({ image, className = '', link, release, title }: Props) => {
+export const MovieCard = ({
+  image,
+  className = '',
+  link,
+  release,
+  title,
+}: Props) => {
+  const releaseYear = release.split('-')[0] || '';
+
   return (
     <BaseCard className={className} link={link} image={image}>
       <h5 className="fw-600">
         <Link href={link}>{title}</Link>
       </h5>
-      <span className="m-0">{convertDateFormat(release)}</span>
+      {releaseYear && <span className="m-0">{releaseYear}</span>}
     </BaseCard>
   );
 };

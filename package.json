@@ -1,11 +1,5 @@
 {
   "name": "react-rmdb",
-  "jest": {
-    "verbose": true,
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-dom/extend-expect"
-    ]
-  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write",
+    "test": "jest --watch",
     "test:safari": "npx playwright test --headed --browser=webkit"
   },
   "dependencies": {
@@ -27,8 +22,8 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.27.1",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/node": "^16.11.0",
     "@types/react": "^17.0.0",
@@ -44,6 +39,8 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-react-perf": "^3.3.0",
     "husky": "^7.0.4",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
     "lint-staged": "^11.2.6",
     "postcss": "^8.3.9",
     "prettier": "^2.4.1",

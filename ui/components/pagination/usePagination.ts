@@ -1,12 +1,8 @@
 import { useMemo } from 'react'
+import { range } from 'shared/helpers/range'
 import type { IPagination } from './types'
 
 const DOTS = 0
-
-const range = (start: number, end: number) => {
-  const length = end - start + 1
-  return Array.from({ length }, (_, idx) => idx + start)
-}
 
 const usePagination = ({
   totalPages = 500,

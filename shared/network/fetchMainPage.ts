@@ -1,5 +1,4 @@
 import { getGenres, getMovies } from 'api/movies';
-import { jsonFetch } from "shared/network/fetchClient";
 import { IMainPageData } from 'types/common';
 
 export const fetchMainPage = (): Promise<IMainPageData> =>
