@@ -15,7 +15,7 @@ const Page = ({ topMovies, trendMovies }: Props) => {
   const { t } = useTranslation('common');
 
   return (
-    <Wrapper>
+    <Wrapper className='pb-50'>
       <HeroSlider images={trendMovies} />
       <CategoryPreview
         link="/movies/popular"

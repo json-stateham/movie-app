@@ -6,9 +6,16 @@ import type { NextApiRequest, NextApiResponse } from "next";
 const imagesProxy = async (req: NextApiRequest, res: NextApiResponse) => {
   const { imagePath, imageType } = req.query;
 
+  const isMobile = req.headers['sec-ch-ua-mobile'] === '?1'
+
   const imageBuffer = await processExternalImage(
-    imageUrl({ imagePath, imageType } as ImageUrlProps),
+    imageUrl({ imagePath, imageType, size: isMobile ? 'MOBILE' : 'L' } as ImageUrlProps),
   );
+
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=10, stale-while-revalidate=59'
+  )
 
   res.status(200).send(imageBuffer);
 };

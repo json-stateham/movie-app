@@ -109,13 +109,13 @@
   flex-basis: 100%;
   border: none;
   height: 2px;
-  background: var(--clr-slider-dot);
-  transition: 300ms ease-out;
+  background-color: var(--clr-slider-dot);
+  transition: background-color 300ms ease-out;
   cursor: pointer;
 }
 
 .dotActive {
-  background: var(--clr-slider-dot-active);
+  background-color: var(--clr-slider-dot-active);
 }
 
 .tags {

@@ -7,16 +7,17 @@ interface IProps {
   children: ReactNode;
   className?: string;
   link?: string;
+  priority?: boolean;
 }
 
-export const BaseCard = ({ image, children, link, className }: IProps) => (
+export const BaseCard = ({ image, children, link, className, priority }: IProps) => (
   <figure className={className}>
     {link ? (
       <Link href={link}>
-        <Thumb image={image} alt="" />
+        <Thumb image={image} alt="" priority={priority} />
       </Link>
     ) : (
-      <Thumb image={image} alt="" />
+      <Thumb image={image} alt="" priority={priority} />
     )}
     {children && <figcaption>{children}</figcaption>}
   </figure>

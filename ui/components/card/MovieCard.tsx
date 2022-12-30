@@ -1,7 +1,6 @@
-import { ReactNode } from 'react';
+
 import Link from 'next/link';
 import { BaseCard } from './BaseCard';
-import { convertDateFormat } from 'shared/helpers/convertDateFormat';
 
 interface Props {
   image: string;
@@ -9,6 +8,7 @@ interface Props {
   link: string;
   title: string;
   release: string;
+  priority?: boolean;
 }
 
 export const MovieCard = ({
@@ -17,11 +17,12 @@ export const MovieCard = ({
   link,
   release,
   title,
+  priority
 }: Props) => {
   const releaseYear = release.split('-')[0] || '';
 
   return (
-    <BaseCard className={className} link={link} image={image}>
+    <BaseCard className={className} link={link} image={image} priority={priority}>
       <h5 className="fw-600">
         <Link href={link}>{title}</Link>
       </h5>

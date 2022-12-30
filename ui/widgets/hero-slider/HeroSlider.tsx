@@ -7,8 +7,8 @@ import {
   ArrowIcon,
   CloseIcon,
   PlayIcon,
+  YoutubeVideo
 } from 'ui/components';
-import { YoutubeVideo } from 'ui/components';
 import { GENRES } from 'api/genres';
 import 'keen-slider/keen-slider.min.css';
 import styles from './HeroSlider.module.scss';
@@ -18,6 +18,8 @@ interface Props {
   images: IMoviesItem[];
   options?: KeenSliderOptions;
 }
+
+const SLIDE_CHANGE_TIMEOUT = 3000
 
 export const HeroSlider = ({ images, options }: Props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -51,7 +53,7 @@ export const HeroSlider = ({ images, options }: Props) => {
         const nextTimeout = () => {
           clearTimeout(timeout);
           if (mouseOver) return;
-          timeout = setTimeout(() => slider.next(), 2000);
+          timeout = setTimeout(() => slider.next(), SLIDE_CHANGE_TIMEOUT);
         };
 
         const onMouseOver = () => {
@@ -101,7 +103,7 @@ export const HeroSlider = ({ images, options }: Props) => {
           key={image.id}
         >
           <CustomImage
-            imgSrc={image.backdrop_path}
+            imgSrc={image.backdrop_path.replace('.jpg', '.webp')}
             width={1280}
             height={720}
             alt=""

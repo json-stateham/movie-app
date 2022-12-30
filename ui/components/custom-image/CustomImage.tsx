@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { IMAGE_CONFIG } from 'api/images/config';
+import { Shimmer } from './Shimmer';
 
 interface ComponentProps {
   imgSrc: string;
@@ -15,7 +16,7 @@ interface ComponentProps {
 }
 
 interface ImageLoaderProps {
-  src: string
+  src: string;
 }
 
 export const CustomImage = ({
@@ -46,6 +47,8 @@ export const CustomImage = ({
       height={420}
       className={className}
       priority={priority}
+      placeholder="blur"
+      blurDataURL={Shimmer(420, 420)}
       onError={() => setError(true)}
       {...restProps}
     />

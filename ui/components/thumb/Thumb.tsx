@@ -9,6 +9,7 @@ interface Props {
   width?: number;
   height?: number;
   className?: string;
+  priority?: boolean;
 }
 
 export const Thumb = ({
@@ -17,6 +18,7 @@ export const Thumb = ({
   width = Number(POSTER.L),
   height = 510,
   className,
+  priority
 }: Props) => (
   <div className={cx(styles.thumbWrapper, className)}>
     <CustomImage
@@ -25,6 +27,7 @@ export const Thumb = ({
       alt={alt}
       width={width}
       height={height}
+      priority={priority}
     />
   </div>
 );

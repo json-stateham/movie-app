@@ -8,6 +8,7 @@
   text-transform: uppercase;
   letter-spacing: 0;
   font-weight: 500;
+  margin-top: 0;
 
   a::after {
     display: inline-block;
@@ -28,5 +29,9 @@
 @include media('lg') {
   .wrapper {
     margin-top: 60px;
+  }
+
+  .title {
+    margin-bottom: 24px;
   }
 }
