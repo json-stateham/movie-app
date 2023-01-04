@@ -126,5 +126,4 @@ export interface IMovieCredits {
 export interface IMainPageData {
   topMovies: IMoviesItem[]
   trendMovies: IMoviesItem[]
-  genres: IGenres[]
 }

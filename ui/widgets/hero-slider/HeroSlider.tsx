@@ -7,7 +7,7 @@ import {
   ArrowIcon,
   CloseIcon,
   PlayIcon,
-  YoutubeVideo
+  YoutubeVideo,
 } from 'ui/components';
 import { GENRES } from 'api/genres';
 import 'keen-slider/keen-slider.min.css';
@@ -19,7 +19,7 @@ interface Props {
   options?: KeenSliderOptions;
 }
 
-const SLIDE_CHANGE_TIMEOUT = 3000
+const SLIDE_CHANGE_TIMEOUT = 3000;
 
 export const HeroSlider = ({ images, options }: Props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -107,7 +107,7 @@ export const HeroSlider = ({ images, options }: Props) => {
             width={1280}
             height={720}
             alt=""
-            priority={index === 0}
+            priority
             imageType="backdrop"
           />
           <figcaption>
@@ -121,11 +121,13 @@ export const HeroSlider = ({ images, options }: Props) => {
             </ul>
             <p>{image.overview}</p>
           </figcaption>
-          <Button
-            children={<PlayIcon />}
-            onClick={setTrailerOpen}
-            className={styles.playButton}
-          />
+          {image.trailers && (
+            <Button
+              children={<PlayIcon />}
+              onClick={setTrailerOpen}
+              className={styles.playButton}
+            />
+          )}
         </figure>
       )),
     [],
@@ -135,7 +137,7 @@ export const HeroSlider = ({ images, options }: Props) => {
   const handleNextSlide = useCallback(() => instanceRef.current?.next(), []);
 
   const { name: trailerTitle, key: trailerKey } =
-    images[currentSlide].trailers[0] || {};
+    images[currentSlide]?.trailers?.[0] || {};
 
   return (
     <section>

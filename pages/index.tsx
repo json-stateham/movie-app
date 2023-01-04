@@ -15,18 +15,22 @@ const Page = ({ topMovies, trendMovies }: Props) => {
   const { t } = useTranslation('common');
 
   return (
-    <Wrapper className='pb-50'>
-      <HeroSlider images={trendMovies} />
-      <CategoryPreview
-        link="/movies/popular"
-        title={t('trending')}
-        items={trendMovies}
-      />
-      <CategoryPreview
-        link="/movies/top_rated"
-        title={t('topRated')}
-        items={topMovies}
-      />
+    <Wrapper className="pb-50">
+      {trendMovies && <HeroSlider images={trendMovies} />}
+      {trendMovies && (
+        <CategoryPreview
+          link="/movies/popular"
+          title={t('trending')}
+          items={trendMovies}
+        />
+      )}
+      {topMovies && (
+        <CategoryPreview
+          link="/movies/top_rated"
+          title={t('topRated')}
+          items={topMovies}
+        />
+      )}
     </Wrapper>
   );
 };
@@ -34,12 +38,17 @@ const Page = ({ topMovies, trendMovies }: Props) => {
 export async function getStaticProps() {
   const { topMovies, trendMovies } = await fetchMainPage();
 
-  for (const movie of trendMovies) {
-    const movieDetail = await getMovieDetails(String(movie.id));
-    const trailers = movieDetail.videos.results.filter(
-      ({ type }) => type === 'Trailer',
-    );
-    movie.trailers = trailers;
+  if (trendMovies) {
+    for (const movie of trendMovies) {
+      const movieDetail = await getMovieDetails(String(movie.id)).catch(
+        console.error,
+      );      
+      if (movieDetail) {
+        movie.trailers = movieDetail.videos.results.filter(
+          ({ type }) => type === 'Trailer',
+        );
+      }
+    }
   }
 
   return {

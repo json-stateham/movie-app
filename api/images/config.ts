@@ -12,7 +12,7 @@ export const BACKDROP = {
 }
 
 export const POSTER = {
-  MOBILE: '185',
+  MOBILE: '342',
   XS: '92',
   S: '154',
   M: '185',
