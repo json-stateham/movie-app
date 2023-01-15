@@ -16,7 +16,7 @@ export interface IMoviesItem {
   vote_average: number
   imgPlaceholder?: any
   imgSrc?: any
-  trailers: IMovieDetailsVideosResults
+  trailers: IMovieDetailsVideosResults[]
 }
 
 export interface IMoviesResponse {
@@ -71,7 +71,7 @@ export interface IMovieDetailsVideos {
   id: number
   results: IMovieDetailsVideosResults[]
 }
-interface IMovieDetailsVideosResults {
+export interface IMovieDetailsVideosResults {
   iso_639_1: string
   iso_3166_1: string
   name: string

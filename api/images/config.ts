@@ -4,7 +4,7 @@ export const IMAGE_CONFIG = {
 };
 
 export const BACKDROP = {
-  MOBILE: '300',
+  MOBILE: '780',
   S: '300',
   M: '780',
   L: '1280',
@@ -18,6 +18,6 @@ export const POSTER = {
   M: '185',
   L: '342',
   XL: '500',
-  XXL: '700',
+  XXL: '780',
   ORIGINAL: 'original',
 }

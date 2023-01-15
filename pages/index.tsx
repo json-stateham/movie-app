@@ -4,7 +4,7 @@ import { HeroSlider } from 'ui/widgets';
 import { CategoryPreview } from 'ui/pages/main/CategoryPreview';
 import { fetchMainPage } from 'shared/network/fetchMainPage';
 import { getMovieDetails } from 'api/movies';
-import { IMoviesItem } from 'types/common';
+import { IMoviesItem, IMovieDetails } from 'types/common';
 
 interface Props {
   topMovies: IMoviesItem[];
@@ -39,16 +39,17 @@ export async function getStaticProps() {
   const { topMovies, trendMovies } = await fetchMainPage();
 
   if (trendMovies) {
-    for (const movie of trendMovies) {
-      const movieDetail = await getMovieDetails(String(movie.id)).catch(
-        console.error,
-      );      
-      if (movieDetail) {
-        movie.trailers = movieDetail.videos.results.filter(
-          ({ type }) => type === 'Trailer',
-        );
+    const movieDetails = await Promise.allSettled(
+      trendMovies.map(m => getMovieDetails(String(m.id))),
+    );
+
+    trendMovies.forEach((movie: IMoviesItem, i) => {
+      if (movieDetails[i].status === 'fulfilled') {
+        const { value } = movieDetails[i] as PromiseFulfilledResult<IMovieDetails>
+
+        movie.trailers = value?.videos?.results?.filter(({ type }) => type === 'Trailer');
       }
-    }
+    });
   }
 
   return {

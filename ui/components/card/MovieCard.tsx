@@ -20,11 +20,12 @@ export const MovieCard = ({
   priority
 }: Props) => {
   const releaseYear = release.split('-')[0] || '';
+  const linkTitle = `${link}-${title.replace(/\W+/g, '-').toLowerCase()}`
 
   return (
-    <BaseCard className={className} link={link} image={image} priority={priority}>
+    <BaseCard className={className} link={linkTitle} image={image} priority={priority}>
       <h5 className="fw-600">
-        <Link href={link}>{title}</Link>
+        <Link href={linkTitle}>{title}</Link>
       </h5>
       {releaseYear && <span className="m-0">{releaseYear}</span>}
     </BaseCard>

@@ -97,7 +97,7 @@ export const HeroSlider = ({ images, options }: Props) => {
 
   const slides = useMemo(
     () =>
-      images.slice(0, 10).map((image, index) => (
+      images.slice(0, 10).map((image) => (
         <figure
           className={cx('keen-slider__slide', styles.slide)}
           key={image.id}

@@ -16,7 +16,7 @@ export const Thumb = ({
   image,
   alt,
   width = Number(POSTER.L),
-  height = 510,
+  height = 513,
   className,
   priority
 }: Props) => (

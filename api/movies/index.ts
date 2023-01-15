@@ -1,24 +1,28 @@
 import { jsonFetch } from 'shared/network/fetchClient';
 import { UrlBuilder } from 'shared/network/urlBuilder';
-import { API_CONFIG } from './config';
+import { API_URL } from './config';
 import type { TMovieCategory, TParams } from './types';
 
-const BASE_MOVIE_URL = new UrlBuilder(API_CONFIG.URL).addParams({
-  ...API_CONFIG.PARAMS,
+const BASE_URL = new UrlBuilder(API_URL).addParams({
+  api_key: process.env.API_KEY as string,
+  language: 'en-US',
 });
 
 export const getMovieDetails = (
   movieId: string,
   params: Partial<TParams> = {},
 ) => {
-  const reqUrl = BASE_MOVIE_URL.clone()
+  const url = BASE_URL.clone()
     .addPath('movie', movieId)
-    .addParams({ ...API_CONFIG.APPEND_MOVIE_DETAILS, ...params });
-  return jsonFetch(reqUrl.href);
-};
+    .addParams({
+      append_to_response: 'videos,images,credits,similar,reviews',
+      ...params
+    }).href
+  return jsonFetch(url)
+}
 
 export const getMovies = (movieCategory: TMovieCategory, page: number) => {
-  const url = BASE_MOVIE_URL.clone()
+  const url = BASE_URL.clone()
     .addPath('movie', movieCategory)
     .addParams({
       page: String(page),
@@ -30,7 +34,7 @@ export const getMovies = (movieCategory: TMovieCategory, page: number) => {
 
 export const getGenres = () => {
   const reqUrl =
-    BASE_MOVIE_URL
+    BASE_URL
       .clone()
       .addPath('genre', 'movie', 'list');
 
@@ -38,6 +42,6 @@ export const getGenres = () => {
 };
 
 export const discoverMovies = (page: number) =>
-  BASE_MOVIE_URL.clone()
+  BASE_URL.clone()
     .addPath('discover', 'movie')
     .addParams({ page: String(page), sort_by: 'popularity.desc' }).href;

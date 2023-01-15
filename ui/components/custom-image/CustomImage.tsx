@@ -10,6 +10,7 @@ interface ComponentProps {
   className?: string;
   alt?: string;
   imageType?: 'backdrop' | 'poster';
+  imageSize?: string;
   width?: number;
   height?: number;
   external?: boolean;
@@ -25,7 +26,10 @@ export const CustomImage = ({
   priority,
   alt = '',
   imageType = 'poster',
+  imageSize = 'L',
   external = true,
+  width = 400,
+  height = 700,
   ...restProps
 }: ComponentProps) => {
   const [error, setError] = useState<boolean>(false);
@@ -35,20 +39,20 @@ export const CustomImage = ({
 
     return error
       ? IMAGE_CONFIG.FALLBACK
-      : `/api/imagesProxy${src}?imageType=${imageType}`;
+      : `/api/imagesProxy${src}?imageType=${imageType}&imageSize=${imageSize}`;
   };
 
   return (
     <Image
       loader={loader}
-      src={imgSrc || IMAGE_CONFIG.FALLBACK}
+      src={imgSrc.replace('.jpg', '.webp') || IMAGE_CONFIG.FALLBACK}
       alt={alt}
-      width={420}
-      height={420}
+      width={width}
+      height={height}
       className={className}
       priority={priority}
       placeholder="blur"
-      blurDataURL={Shimmer(420, 420)}
+      blurDataURL={Shimmer(width, height)}
       onError={() => setError(true)}
       {...restProps}
     />

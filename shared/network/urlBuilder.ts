@@ -4,7 +4,12 @@ export class UrlBuilder extends URL {
   }
 
   addPath(...path: string[]) {
-    this.pathname = `${this.pathname}/${path.join('/')}`;
+    if (this.pathname === '/') {
+      this.pathname = `${path.join('/')}`;
+    } else {
+      const slashAtStart = this.pathname.endsWith('/') ? '' : '/'
+      this.pathname = `${this.pathname}${slashAtStart}${path.join('/')}`;
+    }
     return this;
   }
 

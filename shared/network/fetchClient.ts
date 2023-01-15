@@ -8,7 +8,7 @@ interface CustomOptions {
 
 type Options = RequestInit & CustomOptions;
 
-const fetchClient = (
+export const fetchClient = (
   url: RequestInfo,
   { timeout = 0, retry = 0, controller, ...options }: Options = {},
 ): Promise<Response> => {
@@ -26,11 +26,8 @@ const fetchClient = (
     },
   };
 
-  if (config.body) {
-    config.body =
-      config.body.constructor.name === 'FormData'
-        ? config.body
-        : JSON.stringify(config.body);
+  if (config.body && config.body.constructor.name !== 'FormData') {
+    config.body = JSON.stringify(config.body)
   }
 
   if (!controller) controller = new AbortController();
