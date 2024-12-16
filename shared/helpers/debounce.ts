@@ -1,10 +1,8 @@
-export const debounce = (fn: (...args: any[]) => void, ms: number) => {
-  let isCooldown = false;
+export const debounce = (fn: (...args: any[]) => void, delay: number) => {
+  let timer: ReturnType<typeof setTimeout>;
 
   return (...args: unknown[]) => {
-    if (isCooldown) return;
-    fn(...(args as []));
-    isCooldown = true;
-    queueMicrotask(() => setTimeout(() => (isCooldown = false), ms));
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
   };
 };
