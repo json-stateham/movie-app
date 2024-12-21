@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { IMAGE_CONFIG } from 'api/images/config';
 import { Shimmer } from './Shimmer';
 
