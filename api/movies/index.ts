@@ -1,14 +1,17 @@
 import { jsonFetch } from 'shared/network/fetchClient';
 import { UrlBuilder } from 'shared/network/urlBuilder';
 import { API_URL } from './config';
-import type { TMovieCategory, TParams } from './types';
+import type { MovieCategory, MovieRequestParams } from './types';
 
 const BASE_URL = new UrlBuilder(API_URL).addParams({
   api_key: process.env.API_KEY as string,
   language: 'en-US',
 });
 
-export const getMovieDetails = (movieId: number, params: Partial<TParams> = {}) => {
+export const getMovieDetails = (
+  movieId: number,
+  params: Partial<MovieRequestParams> = {},
+) => {
   const url = BASE_URL.clone()
     .addPath('movie', movieId)
     .addParams({
@@ -18,7 +21,7 @@ export const getMovieDetails = (movieId: number, params: Partial<TParams> = {}) 
   return jsonFetch(url);
 };
 
-export const getMovies = (movieCategory: TMovieCategory, page: number) => {
+export const getMovies = (movieCategory: MovieCategory, page: number) => {
   const url = BASE_URL.clone()
     .addPath('movie', movieCategory)
     .addParams({
@@ -31,7 +34,6 @@ export const getMovies = (movieCategory: TMovieCategory, page: number) => {
 
 export const getGenres = () => {
   const reqUrl = BASE_URL.clone().addPath('genre', 'movie', 'list');
-
   return jsonFetch(reqUrl.href);
 };
 

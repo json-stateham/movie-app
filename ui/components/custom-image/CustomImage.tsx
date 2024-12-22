@@ -1,9 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import { IMAGE_CONFIG } from 'api/images/config';
 import { Shimmer } from './Shimmer';
+import { imageUrl } from 'api/images';
+import type { ImageSize } from 'api/images/types';
 
 interface ComponentProps {
   imgSrc: string;
@@ -12,7 +14,7 @@ interface ComponentProps {
   className?: string;
   alt?: string;
   imageType?: 'backdrop' | 'poster';
-  imageSize?: string;
+  imageSize?: ImageSize;
   width?: number;
   height?: number;
   external?: boolean;
@@ -41,13 +43,13 @@ export const CustomImage = ({
 
     return error
       ? IMAGE_CONFIG.FALLBACK
-      : `/api/imagesProxy${src}?imageType=${imageType}&imageSize=${imageSize}`;
+      : imageUrl({ imagePath: imgSrc, size: imageSize, imageType });
   };
 
   return (
     <Image
       loader={loader}
-      src={imgSrc.replace('.jpg', '.webp') || IMAGE_CONFIG.FALLBACK}
+      src={imgSrc || IMAGE_CONFIG.FALLBACK}
       alt={alt}
       width={width}
       height={height}

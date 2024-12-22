@@ -10,7 +10,13 @@ interface IProps {
   priority?: boolean;
 }
 
-export const BaseCard = ({ image, children, link, className, priority }: IProps) => (
+export const BaseCard = ({
+  image,
+  children,
+  link,
+  className,
+  priority,
+}: IProps) => (
   <figure className={className}>
     {link ? (
       <Link href={link}>

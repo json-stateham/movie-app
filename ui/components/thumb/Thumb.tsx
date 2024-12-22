@@ -18,7 +18,7 @@ export const Thumb = ({
   width = Number(POSTER.L),
   height = 513,
   className,
-  priority
+  priority,
 }: Props) => (
   <div className={cx(styles.thumbWrapper, className)}>
     <CustomImage

@@ -1,3 +1,9 @@
-type TParamsKeys = 'page' | 'api_key' | 'language' | 'append_to_response';
-export type TMovieCategory = 'popular' | 'top_rated';
-export type TParams = Record<TParamsKeys, string>;
+type MovieRequestParamsKeys =
+  | 'page'
+  | 'api_key'
+  | 'language'
+  | 'append_to_response';
+
+export type MovieCategory = 'popular' | 'top_rated';
+
+export type MovieRequestParams = Record<MovieRequestParamsKeys, string>;

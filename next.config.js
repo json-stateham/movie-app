@@ -32,7 +32,15 @@ module.exports = nextTranslate({
     buildActivityPosition: 'bottom-right',
   },
   images: {
-    domains: ['https://image.tmdb.org/t/p'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+        port: '',
+        pathname: '/t/p/',
+        search: '',
+      },
+    ],
   },
   async headers() {
     return [

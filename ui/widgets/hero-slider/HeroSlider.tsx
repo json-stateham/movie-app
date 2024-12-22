@@ -95,7 +95,7 @@ export const HeroSlider = ({ images, options }: Props) => {
   useEffect(() => {
     if (trailerOpen) instanceRef.current?.emit('stopped' as any);
     else instanceRef.current?.emit('resumed' as any);
-  }, [trailerOpen]);
+  }, [instanceRef, trailerOpen]);
 
   const slides = useMemo(
     () =>
@@ -105,7 +105,7 @@ export const HeroSlider = ({ images, options }: Props) => {
           key={image.id}
         >
           <CustomImage
-            imgSrc={image.backdrop_path.replace('.jpg', '.webp')}
+            imgSrc={image.backdrop_path}
             width={1280}
             height={720}
             alt=""
@@ -124,19 +124,23 @@ export const HeroSlider = ({ images, options }: Props) => {
             <p>{image.overview}</p>
           </figcaption>
           {image.trailers && (
-            <Button
-              children={<PlayIcon />}
-              onClick={setTrailerOpen}
-              className={styles.playButton}
-            />
+            <Button onClick={setTrailerOpen} className={styles.playButton}>
+              <PlayIcon />
+            </Button>
           )}
         </figure>
       )),
     [],
   );
 
-  const handlePrevSlide = useCallback(() => instanceRef.current?.prev(), []);
-  const handleNextSlide = useCallback(() => instanceRef.current?.next(), []);
+  const handlePrevSlide = useCallback(
+    () => instanceRef.current?.prev(),
+    [instanceRef],
+  );
+  const handleNextSlide = useCallback(
+    () => instanceRef.current?.next(),
+    [instanceRef],
+  );
 
   const { name: trailerTitle, key: trailerKey } =
     images[currentSlide]?.trailers?.[0] || {};
@@ -149,25 +153,25 @@ export const HeroSlider = ({ images, options }: Props) => {
           {trailerOpen && (
             <div className={styles.trailer}>
               <YoutubeVideo videoId={trailerKey} title={trailerTitle} />
-              <Button
-                children={<CloseIcon />}
-                className={styles.trailerClose}
-                onClick={setTrailerOpen}
-              />
+              <Button className={styles.trailerClose} onClick={setTrailerOpen}>
+                <CloseIcon />
+              </Button>
             </div>
           )}
         </div>
 
         <Button
-          children={<ArrowIcon />}
           className={cx(styles.arrow, styles.arrowLeft)}
           onClick={handlePrevSlide}
-        />
+        >
+          <ArrowIcon />
+        </Button>
         <Button
-          children={<ArrowIcon />}
           className={cx(styles.arrow, styles.arrowRight)}
           onClick={handleNextSlide}
-        />
+        >
+          <ArrowIcon />
+        </Button>
       </div>
 
       {loaded && (

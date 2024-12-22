@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import { BaseCard } from './BaseCard';
 
@@ -17,13 +16,18 @@ export const MovieCard = ({
   link,
   release,
   title,
-  priority
+  priority,
 }: Props) => {
   const releaseYear = release.split('-')[0] || '';
-  const linkTitle = `${link}-${title.replace(/\W+/g, '-').toLowerCase()}`
+  const linkTitle = `${link}-${title.replace(/\W+/g, '-').toLowerCase()}`;
 
   return (
-    <BaseCard className={className} link={linkTitle} image={image} priority={priority}>
+    <BaseCard
+      className={className}
+      link={linkTitle}
+      image={image}
+      priority={priority}
+    >
       <h5 className="fw-600">
         <Link href={linkTitle}>{title}</Link>
       </h5>

@@ -1,6 +1,7 @@
 import { processExternalImage } from '@/lib/helpers/processExternalImage';
 import { imageUrl } from 'api/images';
-import type { ImageUrlProps } from 'api/images';
+import { ImageUrlProps } from 'api/images/types';
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const imagesProxy = async (req: NextApiRequest, res: NextApiResponse) => {
