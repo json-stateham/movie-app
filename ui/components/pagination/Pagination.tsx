@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/router';
 import { usePagination, DOTS } from './usePagination';
 import clsx from 'clsx';

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useMemo, useReducer, useEffect, useCallback } from 'react';
 import { useKeenSlider, KeenSliderOptions } from 'keen-slider/react';
 import cx from 'clsx';
@@ -97,7 +99,7 @@ export const HeroSlider = ({ images, options }: Props) => {
 
   const slides = useMemo(
     () =>
-      images.slice(0, 10).map((image) => (
+      images.slice(0, 10).map(image => (
         <figure
           className={cx('keen-slider__slide', styles.slide)}
           key={image.id}

@@ -1,21 +1,16 @@
-import { ReactElement } from 'react';
-import { Exo } from '@next/font/google';
+import { type ReactNode } from 'react';
+
 import { Header } from 'ui/widgets';
 
 interface Props {
-  children: ReactElement;
+  children: ReactNode;
 }
-
-const exoFont = Exo({
-  weight: ['400', '500'],
-  subsets: ['latin'],
-});
 
 export const Layout = ({ children }: Props) => {
   return (
-    <div className={exoFont.className}>
+    <div>
       <Header />
       <section>{children}</section>
     </div>
   );
-}
+};
