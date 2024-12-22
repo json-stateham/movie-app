@@ -1,7 +1,7 @@
 import { fetchMainPage } from '@/lib/network/fetchMainPage';
 import { getMovieDetails } from 'api/movies';
-import type { Metadata } from 'next';
-import { IMovieDetails, IMoviesItem } from 'types/common';
+import type { Metadata, Viewport } from 'next';
+import type { IMovieDetails, IMoviesItem } from 'types/common';
 import HomePage from './home-page';
 
 export const metadata: Metadata = {
@@ -10,8 +10,6 @@ export const metadata: Metadata = {
     charset: 'utf-8',
   },
 };
-
-import type { Viewport } from 'next';
 
 export const viewport: Viewport = {
   width: 'device-width',

@@ -7,7 +7,7 @@ const Page = props => {
   return (
     <Wrapper>
       <h2>Top Rated</h2>
-      <Grid cols="2-3-4" gap="16-24-32" className='pb-50'>
+      <Grid cols="2-3-4" gap="16-24-32" className="pb-50">
         {movies.results.map(({ id, title, poster_path, release_date }, i) => (
           <MovieCard
             key={id}

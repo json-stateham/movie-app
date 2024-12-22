@@ -1,14 +1,14 @@
 import { useEffect, RefObject } from 'react';
 
 interface Props {
-  ref: RefObject<HTMLElement>;
+  ref: RefObject<HTMLElement | null>;
   callback: () => void;
 }
 
 export const useClickOutside = ({ ref, callback }: Props) => {
   const handler = (event: MouseEvent | TouchEvent) => {
     const { target } = event;
-    if (ref.current && !ref.current.contains(target as any)) {
+    if (!ref.current?.contains(target as any)) {
       callback();
     }
   };

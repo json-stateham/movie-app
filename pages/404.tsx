@@ -1,3 +1,3 @@
-const PageNotFound = () => 404
+const PageNotFound = () => 404;
 
-export default PageNotFound
+export default PageNotFound;
