@@ -3,7 +3,17 @@ import { getFormattedRuntime } from 'shared/helpers/getFormattedRuntime';
 import { formatMoney } from 'shared/helpers/formatMoney';
 import { getMovieDetails } from 'api/movies';
 
-const Movie = ({ movie }) => {
+const getMovie = async (id: number) => {
+  try {
+    return await getMovieDetails(id);
+  } catch (error) {
+    return { message: error };
+  }
+};
+
+export default async function Movie({ params }) {
+  const id = (await params).id.split('-')[0];
+
   const {
     title,
     release_date,
@@ -12,9 +22,8 @@ const Movie = ({ movie }) => {
     overview,
     budget,
     revenue,
-  } = movie;
-  console.log(getFormattedRuntime);
-  console.log(movie);
+  } = await getMovie(id);
+
   return (
     <Wrapper>
       <CustomImage
@@ -30,18 +39,4 @@ const Movie = ({ movie }) => {
       <p>Revenue: {formatMoney(revenue)}</p>
     </Wrapper>
   );
-};
-
-export async function getServerSideProps({ query }) {
-  const id = query.id.split('-')[0];
-
-  const movie = await getMovieDetails(id);
-
-  return {
-    props: {
-      movie,
-    },
-  };
 }
-
-export default Movie;

@@ -1,6 +1,6 @@
 export const IMAGE_CONFIG = {
   URL: process.env.NEXT_PUBLIC_IMAGE_URL as string,
-  FALLBACK: '/images/no_image.webp'
+  FALLBACK: '/images/no_image.webp',
 };
 
 export const BACKDROP = {
@@ -9,7 +9,7 @@ export const BACKDROP = {
   M: '780',
   L: '1280',
   ORIGINAL: 'original',
-}
+};
 
 export const POSTER = {
   MOBILE: '342',
@@ -20,4 +20,4 @@ export const POSTER = {
   XL: '500',
   XXL: '780',
   ORIGINAL: 'original',
-}
+};

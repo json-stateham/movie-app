@@ -27,7 +27,7 @@ export const fetchClient = (
   };
 
   if (config.body && config.body.constructor.name !== 'FormData') {
-    config.body = JSON.stringify(config.body)
+    config.body = JSON.stringify(config.body);
   }
 
   if (!controller) controller = new AbortController();

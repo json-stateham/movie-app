@@ -8,18 +8,15 @@ const BASE_URL = new UrlBuilder(API_URL).addParams({
   language: 'en-US',
 });
 
-export const getMovieDetails = (
-  movieId: string,
-  params: Partial<TParams> = {},
-) => {
+export const getMovieDetails = (movieId: number, params: Partial<TParams> = {}) => {
   const url = BASE_URL.clone()
     .addPath('movie', movieId)
     .addParams({
       append_to_response: 'videos,images,credits,similar,reviews',
-      ...params
-    }).href
-  return jsonFetch(url)
-}
+      ...params,
+    }).href;
+  return jsonFetch(url);
+};
 
 export const getMovies = (movieCategory: TMovieCategory, page: number) => {
   const url = BASE_URL.clone()
@@ -33,10 +30,7 @@ export const getMovies = (movieCategory: TMovieCategory, page: number) => {
 };
 
 export const getGenres = () => {
-  const reqUrl =
-    BASE_URL
-      .clone()
-      .addPath('genre', 'movie', 'list');
+  const reqUrl = BASE_URL.clone().addPath('genre', 'movie', 'list');
 
   return jsonFetch(reqUrl.href);
 };

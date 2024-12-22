@@ -7,7 +7,7 @@ export class UrlBuilder extends URL {
     if (this.pathname === '/') {
       this.pathname = `${path.join('/')}`;
     } else {
-      const slashAtStart = this.pathname.endsWith('/') ? '' : '/'
+      const slashAtStart = this.pathname.endsWith('/') ? '' : '/';
       this.pathname = `${this.pathname}${slashAtStart}${path.join('/')}`;
     }
     return this;
@@ -21,6 +21,6 @@ export class UrlBuilder extends URL {
   }
 
   clone() {
-    return Reflect.construct(this.constructor, [this])
+    return Reflect.construct(this.constructor, [this]);
   }
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import useTranslation from 'next-translate/useTranslation';
 import { useCallback } from 'react';
 import { Button } from 'ui/components';
 
@@ -9,12 +10,17 @@ type Props = {
 };
 
 export default function GlobalError({ error, reset }: Props) {
-  console.error('error', error);
+  const { lang } = useTranslation();
+
+  console.error(
+    'errorFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
+    error,
+  );
 
   const handleReset = useCallback(() => reset(), [reset]);
 
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body>
         <div className="flex flexCol flexAlCent">
           <h2 className="mb32 mt32">Something went wrong</h2>

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { Layout } from 'ui/Layout';
 import 'styles/index.scss';
 import { Exo } from 'next/font/google';
+import useTranslation from 'next-translate/useTranslation';
 
 type Props = {
   children: ReactNode;
@@ -13,8 +14,10 @@ const exoFont = Exo({
 });
 
 export default function RootLayout({ children }: Props) {
+  const { lang } = useTranslation();
+
   return (
-    <html lang="en" className={exoFont.className}>
+    <html lang={lang} className={exoFont.className}>
       <body>
         <Layout>{children}</Layout>
       </body>
