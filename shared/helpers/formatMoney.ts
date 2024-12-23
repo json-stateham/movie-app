@@ -5,4 +5,3 @@ export const formatMoney = (value: number, currency = 'USD'): string =>
     currency,
     minimumFractionDigits: 0,
   }).format(value);
-

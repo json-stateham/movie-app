@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 interface Props {
-    callback: () => void
+  callback: () => void;
 }
 
 export const useEscapeKey = ({ callback }: Props) => {

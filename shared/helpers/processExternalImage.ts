@@ -14,6 +14,6 @@ export const processExternalImage = async (
   const imageBlob = await (await fetch(imgSrc.replace('.webp', '.jpg'))).blob();
   const buffer = await blob2buffer(imageBlob);
   const imageBuffer = await Sharp(buffer).toFormat(imageExt).toBuffer();
-  
+
   return imageBuffer;
 };

@@ -1,14 +1,14 @@
 const throttle = (fn: () => void, ms: number) => {
-  let prev = 0
+  let prev = 0;
 
   return () => {
-    const now: number = new Date().valueOf()
+    const now: number = new Date().valueOf();
 
     if (now - prev >= ms) {
-      fn()
-      prev = now
+      fn();
+      prev = now;
     }
-  }
-}
+  };
+};
 
-export { throttle }
+export { throttle };

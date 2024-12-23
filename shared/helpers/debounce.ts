@@ -1,4 +1,4 @@
-export const debounce = (fn: (...args: any[]) => void, delay: number) => {
+export const debounce = (fn: (...args: unknown[]) => void, delay: number) => {
   let timer: ReturnType<typeof setTimeout>;
 
   return (...args: unknown[]) => {

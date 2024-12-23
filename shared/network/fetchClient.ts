@@ -8,9 +8,9 @@ interface CustomOptions {
 
 type Options = RequestInit & CustomOptions;
 
-export const fetchClient = (
+export const fetchClient = async (
   url: RequestInfo,
-  { timeout = 0, retry = 0, controller, ...options }: Options = {},
+  { timeout = 0, controller, ...options }: Options = {},
 ): Promise<Response> => {
   const headers = new Headers({
     'Content-Type': 'application/json',
@@ -37,25 +37,15 @@ export const fetchClient = (
     queueMicrotask(() => setTimeout(() => controller?.abort(), timeout));
   }
 
-  return fetch(url, { ...config, signal })
-    .then(res => {
-      if (!res.ok) {
-        return Promise.reject(
-          new HttpError(`Fiasco to fetch from: ${res.url}`, res),
-        );
-      }
-      return res;
-    })
-    .catch(error => {
-      console.error(error);
+  const response = await fetch(url, { ...config, signal });
 
-      if (retry > 0) {
-        console.log(`Retrying to fetch: ${url} \n Retry: ${retry}`);
-        return fetchClient(url, { ...options, retry: retry - 1 });
-      }
+  if (!response.ok) {
+    return Promise.reject(
+      new HttpError(`Fiasco to fetch from: ${response.url}`, response),
+    );
+  }
 
-      return Promise.reject(error);
-    });
+  return response;
 };
 
 export const jsonFetch = (url: RequestInfo, options?: Options) =>

@@ -1,4 +1,4 @@
-import { fetchMainPage } from '@/lib/network/fetchMainPage';
+import { fetchMainPage } from 'api/fetchMainPage';
 import { getMovieDetails } from 'api/movies';
 import type { Metadata, Viewport } from 'next';
 import type { IMovieDetails, IMoviesItem } from 'types/common';
