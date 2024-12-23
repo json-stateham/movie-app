@@ -5,7 +5,6 @@
 .title {
   text-transform: uppercase;
   letter-spacing: 0;
-  font-weight: 500;
   margin-top: 0;
 
   &a::after {

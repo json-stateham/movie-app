@@ -25,7 +25,7 @@ export const CategoryPreview = ({ items, title, link }: Props) => {
 
   return (
     <section className={styles.wrapper}>
-      <Text className={styles.title} type="h3" size="m">
+      <Text className={styles.title} type="h3" size="m" weight="bold">
         <Link
           href={{
             pathname: link,
