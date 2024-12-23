@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Grid, MovieCard } from 'ui/components';
+import { Grid, MovieCard, Text } from 'ui/components';
 import type { IMoviesItem } from 'types/common';
 import styles from './CategoryPreview.module.css';
 
@@ -25,7 +25,7 @@ export const CategoryPreview = ({ items, title, link }: Props) => {
 
   return (
     <section className={styles.wrapper}>
-      <h2 className={styles.title}>
+      <Text className={styles.title} type="h3" size="m">
         <Link
           href={{
             pathname: link,
@@ -34,7 +34,7 @@ export const CategoryPreview = ({ items, title, link }: Props) => {
         >
           {title}
         </Link>
-      </h2>
+      </Text>
       <Grid cols="2-3-4" gap="16-24-32">
         {renderPosters(items)}
       </Grid>

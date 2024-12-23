@@ -27,7 +27,6 @@
 @media (min-width: $breakpoint-lg) {
   .wrapper {
     margin-top: 60px;
-    background-color: green;
   }
 
   .title {
