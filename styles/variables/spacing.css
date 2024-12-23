@@ -1,0 +1,17 @@
+// https://carbondesignsystem.com/guidelines/spacing/overview/#spacing-scale
+
+:root {
+  --spacing-100: 0.125rem;  /* 2px */
+  --spacing-200: 0.25rem;   /* 4px */
+  --spacing-300: 0.5rem;    /* 8px */
+  --spacing-400: 0.75rem;   /* 12px */
+  --spacing-500: 1rem;      /* 16px */
+  --spacing-600: 1.5rem;    /* 24px */
+  --spacing-700: 2rem;      /* 32px */
+  --spacing-800: 2.5rem;    /* 40px */
+  --spacing-900: 3rem;      /* 48px */
+  --spacing-1000: 4rem;     /* 64px */
+  --spacing-1100: 5rem;     /* 80px */
+  --spacing-1200: 6rem;     /* 96px */
+  --spacing-1300: 10rem;    /* 160px */
+}

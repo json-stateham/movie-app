@@ -40,7 +40,7 @@ export default [
       'react/prop-types': 'off',
       'react/jsx-max-depth': ['error', { max: 5 }],
       'prefer-const': 'warn',
-      '@typescript-eslint/no-require-imports': 'warn',
+      '@typescript-eslint/no-require-imports': 'off',
     },
   },
   {

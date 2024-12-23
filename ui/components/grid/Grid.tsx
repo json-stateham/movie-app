@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import clsx from 'clsx';
-import styles from './Grid.module.scss';
+import styles from './Grid.module.css';
 
 interface IProps {
   children: ReactNode;

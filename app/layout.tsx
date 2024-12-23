@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Layout } from 'ui/Layout';
-import 'styles/index.scss';
+import 'styles/index.css';
 import { Exo } from 'next/font/google';
 import useTranslation from 'next-translate/useTranslation';
 

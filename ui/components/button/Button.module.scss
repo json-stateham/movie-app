@@ -1,5 +1,3 @@
-@import 'mixins';
-
 .button {
   border: 0;
   background-color: transparent;
@@ -13,7 +11,7 @@
   box-shadow: var(--cool-shadow);
   transition: all 300ms ease-out;
 
-  @include mediaHover {
+  @media (hover: hover) {
     background: #260000e7;
     box-shadow: var(--cool-shadow-hover);
   }

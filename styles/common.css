@@ -1,0 +1,19 @@
+body {
+  color: var(--clr-text-body);
+  background-color: var(--clr-bg-body);
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--clr-bg-selection);
+}
+
+.full-bleed-container {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}

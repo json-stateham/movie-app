@@ -1,5 +1,3 @@
-@use 'mixins';
-
 @keyframes opacityIn {
   from {
     opacity: 0;
@@ -15,7 +13,7 @@
   animation: fadeIn 3s;
   will-change: box-shadow;
 
-  @include mediaHover {
+  @media (hover:hover) {
     box-shadow: var(--cool-shadow-hover);
   }
 }

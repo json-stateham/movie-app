@@ -1,0 +1,37 @@
+/* https://spectrum.adobe.com/page/typography/#Font-sizes */
+
+:root {
+    --font-size-50: 11px;
+    --font-size-75: 12px;
+    --font-size-100: 14 px;
+    --font-size-200: 16px;
+    --font-size-300: 18px;
+    --font-size-400: 20px;
+    --font-size-500: 22px;
+    --font-size-600: 25px;
+    --font-size-700: 28px;
+    --font-size-800: 32px;
+    --font-size-900: 36px;
+    --font-size-1000: 40px;
+    --font-size-1100: 45px;
+    --font-size-1200: 50px;
+    --font-size-1300: 60px;
+
+    @media (min-width: $breakpoint-md) {
+        --font-size-50: 13px;
+        --font-size-75: 15px;
+        --font-size-100: 17px;
+        --font-size-200: 19px;
+        --font-size-300: 22px;
+        --font-size-400: 24px;
+        --font-size-500: 27px;
+        --font-size-600: 31px;
+        --font-size-700: 34px;
+        --font-size-800: 39px;
+        --font-size-900: 44px;
+        --font-size-1000: 49px;
+        --font-size-1100: 55px;
+        --font-size-1200: 62px;
+        --font-size-1300: 70px;
+    }
+}

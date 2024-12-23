@@ -13,7 +13,7 @@ import {
 } from 'ui/components';
 import { GENRES } from 'api/genres';
 import 'keen-slider/keen-slider.min.css';
-import styles from './HeroSlider.module.scss';
+import styles from './HeroSlider.module.css';
 import type { IMoviesItem } from 'types/common';
 
 interface Props {

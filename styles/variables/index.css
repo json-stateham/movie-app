@@ -1,0 +1,12 @@
+@import 'colors';
+@import 'typography';
+@import 'spacing';
+
+:root {
+  --header-height: 60px;
+
+  --cool-shadow: var(--clr-blue-900) 0px 20px 25px -5px,
+    var(--clr-red-500) 0px 10px 10px -5px;
+  --cool-shadow-hover: var(--clr-blue-900) 0px 16px 25px -5px,
+    var(--clr-red-500) 0px 10px 10px -5px;
+}

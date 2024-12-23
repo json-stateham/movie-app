@@ -1,0 +1,21 @@
+:root {
+    --clr-neutral-900: hsl(0, 0%, 0%);
+    --clr-neutral-600: hsl(0, 0%, 40%);
+    --clr-neutral-400: hsl(0, 0%, 60%);
+    --clr-neutral-300: hsl(0, 0%, 70%);
+    --clr-neutral-200: hsl(0, 0%, 80%);
+    --clr-neutral-100: hsl(0, 0%, 90%);
+    --clr-neutral-50: hsl(0, 0%, 100%);
+  
+    --clr-blue-900: hsl(230, 90%, 10%);
+  
+    --clr-slate-500: hsl(226, 20%, 20%);
+  
+    --clr-red-500: hsl(0, 100%, 50%);
+  
+    --clr-bg-body: var(--clr-neutral-900);
+    --clr-bg-selection: var(--clr-neutral-600);
+    --clr-text-body: var(--clr-neutral-200);
+    --clr-slider-dot: var(--clr-neutral-600);
+    --clr-slider-dot-active: var(--clr-neutral-200);
+}

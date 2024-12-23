@@ -1,5 +1,3 @@
-@import 'mixins';
-
 .slider {
   position: relative;
 }
@@ -9,7 +7,7 @@
   cursor: ew-resize;
   isolation: isolate;
 
-  figcaption {
+  &figcaption {
     position: absolute;
     left: 80px;
     bottom: 38px;
@@ -18,14 +16,14 @@
     cursor: text;
   }
 
-  figcaption h2 {
+  &figcaption h2 {
     display: none;
     font-weight: 600;
     text-shadow: 2px 2px 0px #00000070;
     user-select: all;
   }
 
-  figcaption p {
+  &figcaption p {
     display: none;
     margin-top: 8px;
     user-select: all;
@@ -36,13 +34,11 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    background-image: linear-gradient(
-      0deg,
-      hsl(0deg 0% 0%) 0%,
-      hsl(339deg 0% 0%) -2%,
-      hsla(56deg, 100%, 16%, 0) 34%,
-      hsla(55deg, 100%, 50%, 0) 100%
-    );
+    background-image: linear-gradient(0deg,
+        hsl(0deg 0% 0%) 0%,
+        hsl(339deg 0% 0%) -2%,
+        hsla(56deg, 100%, 16%, 0) 34%,
+        hsla(55deg, 100%, 50%, 0) 100%);
   }
 }
 
@@ -56,14 +52,14 @@
   transition: 300ms ease-out;
   opacity: 0;
 
-  @include mediaHover {
+  @media (hover: hover) {
     background: rgba(0, 0, 0, 0.5);
     cursor: pointer;
   }
 }
 
 .slider {
-  @include mediaHover {
+  @media (hover: hover) {
     .arrow {
       opacity: 1;
     }
@@ -74,12 +70,12 @@
   left: 0;
   transform: translateY(-50%);
 
-  svg {
+  &svg {
     transform: rotate(180deg);
   }
 
   &:active {
-    svg {
+    &svg {
       transition: 100ms ease-out;
       transform: rotate(180deg) translateX(1px);
     }
@@ -91,7 +87,7 @@
   transform: translateY(-50%);
 
   &:active {
-    svg {
+    &svg {
       transition: 100ms ease-out;
       transform: translateX(1px);
     }
@@ -123,7 +119,7 @@
   display: none;
   gap: 10px;
 
-  li {
+  &li {
     padding: 4px 12px;
     font-weight: 500;
     background-color: rgb(0 0 0 / 36%);
@@ -137,8 +133,8 @@
   z-index: 4;
   background-color: rgb(0, 0, 0);
 
-  @include mediaHover {
-    button {
+  @media (hover: hover) {
+    &button {
       opacity: 1;
     }
   }
@@ -152,7 +148,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
 
-  svg g {
+  &svg g {
     fill: var(--clr-neutral-50);
   }
 }
@@ -168,7 +164,7 @@
   cursor: pointer;
   transition: 100ms ease-out;
 
-  svg {
+  &svg {
     fill: var(--clr-neutral-50);
   }
 }
@@ -185,26 +181,23 @@
   border-radius: 100vmax;
   transition: 200ms ease-out;
 
-  @include mediaHover {
+  @media (hover: hover) {
     background-color: rgba(0, 0, 0, 0.335);
 
-    svg {
+    &svg {
       transition: 300ms ease-out;
       transform: scale(0.9);
     }
   }
 }
 
-@include media('xl') {
+@media (min-width: $breakpoint-xl) {
   .slide {
-    figcaption h2,
-    figcaption p {
+    &figcaption h2,
+    &figcaption p {
       display: block;
+      color: red;
     }
-  }
-
-  .arrow {
-    // display: block;
   }
 
   .tags {

@@ -1,5 +1,3 @@
-@import 'mixins';
-
 .pagination {
   position: fixed;
   left: 0;
@@ -39,7 +37,7 @@
   border-radius: 100vmax;
   user-select: none;
 
-  @include mediaHover {
+  @media (hover: hover) {
     color: rgba(255, 255, 255, 0.959);
     background-color: rgba(47, 0, 255, 0.185);
     cursor: pointer;
@@ -58,7 +56,7 @@
     pointer-events: none;
     color: rgb(95, 95, 95);
 
-    @include mediaHover {
+    @media (hover: hover) {
       cursor: default;
     }
   }
@@ -70,7 +68,7 @@
   color: rgb(194, 194, 194);
   transform: translateY(-8px);
 
-  @include mediaHover {
+  @media (hover: hover) {
     background-color: transparent;
     cursor: default;
   }

@@ -1,5 +1,3 @@
-@import 'mixins';
-
 .wrapper {
   margin-top: 30px;
 }
@@ -10,7 +8,7 @@
   font-weight: 500;
   margin-top: 0;
 
-  a::after {
+  &a::after {
     display: inline-block;
     content: '\3009';
     font-weight: 600;
@@ -19,16 +17,17 @@
     transition: 800ms ease-out;
   }
 
-  @include mediaHover {
-    a::after {
+  @media (hover: hover) {
+    &a::after {
       color: hsl(0, 0%, 90%);
     }
   }
 }
 
-@include media('lg') {
+@media (min-width: $breakpoint-lg) {
   .wrapper {
     margin-top: 60px;
+    background-color: green;
   }
 
   .title {

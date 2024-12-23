@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import cx from 'clsx';
-import styles from './Wrapper.module.scss';
+import styles from './Wrapper.module.css';
 
 interface Props {
   children: ReactNode;

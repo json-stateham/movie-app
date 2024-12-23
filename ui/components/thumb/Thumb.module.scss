@@ -1,5 +1,3 @@
-@import 'mixins';
-
 .thumbWrapper {
   position: relative;
   overflow: hidden;
@@ -10,7 +8,7 @@
   transition: transform 1s ease-out;
   will-change: transform;
 
-  @include mediaHover {
+  @media (hover: hover) {
     transform: scale(1.1);
     transition: transform 3s ease-out;
   }

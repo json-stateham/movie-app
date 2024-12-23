@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Grid, MovieCard } from 'ui/components';
 import type { IMoviesItem } from 'types/common';
-import styles from './CategoryPreview.module.scss';
+import styles from './CategoryPreview.module.css';
 
 interface Props {
   items: IMoviesItem[];
