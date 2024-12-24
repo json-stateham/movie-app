@@ -1,8 +1,8 @@
 'use client';
 
+import { Button } from 'components/shared';
 import useTranslation from 'next-translate/useTranslation';
 import { useCallback } from 'react';
-import { Button } from 'ui/components';
 
 type Props = {
   error: Error & { digest?: string };
@@ -12,10 +12,7 @@ type Props = {
 export default function GlobalError({ error, reset }: Props) {
   const { lang } = useTranslation();
 
-  console.error(
-    'errorFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
-    error,
-  );
+  console.error(error);
 
   const handleReset = useCallback(() => reset(), [reset]);
 

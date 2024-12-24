@@ -2,7 +2,7 @@ import { fetchMainPage } from 'api/fetchMainPage';
 import { getMovieDetails } from 'api/movies';
 import type { Metadata, Viewport } from 'next';
 import type { IMovieDetails, IMoviesItem } from 'types/common';
-import HomePage from './home-page';
+import { HomePage } from '../components/pages/home/home-page';
 import { PreloadResources } from './preload-resources';
 
 export const metadata: Metadata = {

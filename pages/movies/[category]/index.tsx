@@ -1,4 +1,4 @@
-import { Grid, MovieCard, Wrapper, Pagination } from 'ui/components';
+import { Grid, MovieCard, Wrapper, Pagination } from 'components/shared';
 import { getMovies } from 'api/movies';
 
 const Page = props => {
@@ -15,7 +15,7 @@ const Page = props => {
             image={poster_path as string}
             title={title}
             release={release_date}
-            priority={i < 4} // image loading priority
+            loadImageInPriority={i < 4}
           />
         ))}
       </Grid>

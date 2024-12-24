@@ -1,4 +1,4 @@
-import { Wrapper, CustomImage } from 'ui/components';
+import { Wrapper, CustomImage } from 'components/shared';
 import { getFormattedRuntime } from 'shared/helpers/getFormattedRuntime';
 import { formatMoney } from 'shared/helpers/formatMoney';
 import { getMovieDetails } from 'api/movies';
