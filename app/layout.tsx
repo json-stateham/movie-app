@@ -16,8 +16,13 @@ const exoFont = Exo({
 export default function RootLayout({ children }: Props) {
   const { lang } = useTranslation();
 
+  const isDev = process.env.NODE_ENV === 'development';
+
   return (
     <html lang={lang} className={exoFont.className}>
+      {isDev && (
+        <script src="https://unpkg.com/react-scan/dist/auto.global.js" async />
+      )}
       <body>
         <AppShell>{children}</AppShell>
       </body>
