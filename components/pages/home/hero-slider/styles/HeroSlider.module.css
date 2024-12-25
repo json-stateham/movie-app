@@ -7,6 +7,7 @@
   position: relative;
   cursor: ew-resize;
   isolation: isolate;
+  min-width: 100%;
 
   & > figcaption {
     position: absolute;
@@ -43,83 +44,6 @@
   }
 }
 
-.arrow {
-  position: absolute;
-  top: 50%;
-  z-index: 1;
-  padding: 30px 24px;
-  border: 0;
-  background: rgba(0, 0, 0, 0.2);
-  transition: 300ms ease-out;
-  opacity: 0;
-  height: 100px;
-
-  & > svg {
-    height: 30px;
-
-  }
-
-  @media (hover: hover) {
-    background: rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-  }
-}
-
-.slider {
-  @media (hover: hover) {
-    .arrow {
-      opacity: 1;
-    }
-  }
-}
-
-.arrowLeft {
-  left: 0;
-  transform: translateY(-50%);
-
-  & > svg {
-    transform: rotate(180deg);
-  }
-
-  &:active {
-    & > svg {
-      transition: 100ms ease-out;
-      transform: rotate(180deg) translateX(1px);
-    }
-  }
-}
-
-.arrowRight {
-  right: 0;
-  transform: translateY(-50%);
-
-  &:active {
-    & > svg {
-      transition: 100ms ease-out;
-      transform: translateX(1px);
-    }
-  }
-}
-
-.dots {
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-}
-
-.dot {
-  flex-basis: 100%;
-  border: none;
-  height: 2px;
-  background-color: var(--clr-slider-dot);
-  transition: background-color 300ms ease-out;
-  cursor: pointer;
-}
-
-.dotActive {
-  background-color: var(--clr-slider-dot-active);
-}
 
 .tags {
   margin-top: 8px;
@@ -211,7 +135,6 @@
   }
 
   .trailerClose {
-    opacity: 0;
     padding: 12px;
   }
 }

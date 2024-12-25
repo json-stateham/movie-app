@@ -9,10 +9,16 @@
 }
 
 .headerContent {
-  padding-block: var(--spacing-500);
+  padding-block: var(--spacing-300);
 }
 
 .logo {
   max-width: 100px;
   user-select: none;
+}
+
+@media (min-width: $breakpoint-lg) {
+  .headerContent {
+    padding-block: var(--spacing-500);
+  }
 }

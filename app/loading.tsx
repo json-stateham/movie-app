@@ -1,3 +1,9 @@
+import { Skeleton, Wrapper } from 'components/shared';
+
 export default function Loading() {
-  return <div>Loading...</div>;
+  return (
+    <Wrapper>
+      <Skeleton width={1280} height={738} />
+    </Wrapper>
+  );
 }

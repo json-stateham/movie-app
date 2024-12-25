@@ -2,6 +2,9 @@ body {
   color: var(--clr-text-body);
   background-color: var(--clr-bg-body);
   -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
 }
 

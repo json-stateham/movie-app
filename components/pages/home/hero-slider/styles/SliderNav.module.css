@@ -1,0 +1,20 @@
+.container {
+  margin-top: 10px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.navItem {
+  flex-basis: 100%;
+  border: none;
+  height: 2px;
+  background-color: var(--clr-slider-dot);
+  transition: background-color 300ms ease-out;
+  cursor: pointer;
+}
+
+.navItemActive {
+  background-color: var(--clr-slider-dot-active);
+}

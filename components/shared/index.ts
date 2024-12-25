@@ -11,3 +11,4 @@ export { Thumb } from './thumb/Thumb';
 export { Wrapper } from './wrapper/Wrapper';
 export { ArrowIcon, CloseIcon, PlayIcon } from './icons';
 export { YoutubeVideo } from './youtube-video/YoutubeVideo';
+export { Skeleton } from './skeleton/Skeleton';

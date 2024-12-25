@@ -18,6 +18,7 @@ export const Header = () => {
             width={100}
             height={40}
             external={false}
+            priority
             alt={t('siteLogo')}
           />
         </Link>
