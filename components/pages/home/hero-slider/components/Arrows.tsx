@@ -1,7 +1,7 @@
 import { ArrowIcon, Button } from 'components/shared';
 import cx from 'clsx';
-import styles from './styles/Arrows.module.css';
-import { useHeroSlider } from './useHeroSlider';
+import styles from '../styles/Arrows.module.css';
+import { useHeroSlider } from '../useHeroSlider';
 import { memo } from 'react';
 
 type ArrowsProps = {

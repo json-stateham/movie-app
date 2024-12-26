@@ -1,10 +1,10 @@
 // https://developers.themoviedb.org/3/movies/get-top-rated-movies
-export interface IMoviesItem {
+export interface MoviesItem {
   poster_path: string | null;
   adult: boolean;
   overview: string;
   release_date: string;
-  genre_ids: number[] | string[];
+  genre_ids: number[];
   id: number;
   original_title: string;
   original_language: string;
@@ -21,7 +21,7 @@ export interface IMoviesItem {
 
 export interface IMoviesResponse {
   page: number;
-  results: IMoviesItem[];
+  results: MoviesItem[];
   total_results: number;
   total_pages: number;
 }
@@ -124,6 +124,6 @@ export interface IMovieCredits {
 }
 
 export interface IMainPageData {
-  topMovies: IMoviesItem[];
-  trendMovies: IMoviesItem[];
+  topMovies: MoviesItem[];
+  trendMovies: MoviesItem[];
 }

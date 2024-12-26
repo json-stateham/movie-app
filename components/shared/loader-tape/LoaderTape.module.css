@@ -5,7 +5,7 @@
   min-height: 99vh;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  background: rgba(199, 199, 199, 0);
+  background-color: rgba(199, 199, 199, 0);
   filter: invert(70%);
 }
 

@@ -1,0 +1,48 @@
+.progressBar {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  border-radius: 99vmax;
+  border: none;
+  background-color: var(--clr-slider-dot);
+  overflow: hidden;
+}
+
+.bar {
+  background-color: var(--clr-slider-dot-active);
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: -100%;
+}
+
+.barAnimation {
+  background-color: var(--clr-slider-dot-active);
+  animation-name: autoplay-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  animation-duration: var(--hero-slider-animation-duration, 3s);
+}
+
+.animationCompleted {
+  transform: translateX(100%);
+}
+
+.animationPaused {
+  animation-play-state: paused;
+}
+
+.animationRunning {
+  animation-play-state: running;
+}
+
+@keyframes autoplay-progress {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

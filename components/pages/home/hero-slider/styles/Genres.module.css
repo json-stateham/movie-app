@@ -1,0 +1,19 @@
+.genres {
+  display: none;
+  margin-top: 8px;
+  gap: 10px;
+
+  & > li {
+    padding: 4px 12px;
+    font-weight: 500;
+    background-color: rgb(0 0 0 / 36%);
+    list-style: none;
+    border-top: 1px solid var(--clr-neutral-800);
+  }
+}
+
+@media (min-width: $breakpoint-xl) {
+  .genres {
+    display: flex;
+  }
+}

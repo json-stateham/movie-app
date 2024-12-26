@@ -1,11 +1,11 @@
 import Link from 'next/link';
 
-import type { IMoviesItem } from 'types/common';
+import type { MoviesItem } from 'types/common';
 import styles from './CategoryPreview.module.css';
 import { Grid, MovieCard, Text } from 'components/shared';
 
 interface Props {
-  items: IMoviesItem[];
+  items: MoviesItem[];
   title: string;
   link: string;
 }

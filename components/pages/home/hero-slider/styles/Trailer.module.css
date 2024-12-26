@@ -1,0 +1,13 @@
+.trailer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background-color: rgb(0, 0, 0);
+
+  @media (hover: hover) {
+    & > button {
+      opacity: 1;
+    }
+  }
+}
+

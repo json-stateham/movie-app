@@ -1,7 +1,7 @@
 import { fetchMainPage } from 'api/fetchMainPage';
 import { getMovieDetails } from 'api/movies';
 import type { Metadata, Viewport } from 'next';
-import type { IMovieDetails, IMoviesItem } from 'types/common';
+import type { IMovieDetails, MoviesItem } from 'types/common';
 import { HomePage } from '../components/pages/home/home-page';
 import { PreloadResources } from './preload-resources';
 
@@ -28,7 +28,7 @@ async function getMovies() {
       trendMovies.map(movie => getMovieDetails(movie.id)),
     );
 
-    trendMovies.forEach((movie: IMoviesItem, i) => {
+    trendMovies.forEach((movie: MoviesItem, i) => {
       if (movieDetails[i].status === 'fulfilled') {
         const { value } = movieDetails[
           i

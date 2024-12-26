@@ -1,123 +1,120 @@
 import { useMatchMediaQuery } from '@/lib/hooks/useMatchMediaQuery';
-import {
-  KeenSliderInstance,
-  KeenSliderOptions,
-  useKeenSlider,
-} from 'keen-slider/react';
-import { useCallback, useEffect, useReducer, useState } from 'react';
+import { useSetAtom } from 'jotai';
+import { useCallback, useEffect, useReducer, useRef } from 'react';
+import { currentSlideAtom, isSlideAnimationPausedAtom } from './store';
+import useEmblaCarousel from 'embla-carousel-react';
+import { pausableTimeout } from '@/lib/helpers/pausibleTimeout';
+import { TrailerAction } from './types';
 
-type Props = {
-  options?: KeenSliderOptions;
-};
+const SLIDE_ANIMATION_DURATION = 5000;
 
-const CHANGE_SLIDE_TIMEOUT = 3000;
-
-export const useHeroSlider = ({ options }: Props) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isTrailerOpened, setIsTrailerOpened] = useReducer(
+export const useHeroSlider = () => {
+  const setCurrentSlide = useSetAtom(currentSlideAtom);
+  const setIsSlideAnimationPaused = useSetAtom(isSlideAnimationPausedAtom);
+  const isSliderInit = useRef(false);
+  const isFullBleed = useMatchMediaQuery('(max-width: 1324px)');
+  const [isTrailerOpened, toggleIsTrailerOpened] = useReducer(
     prev => !prev,
     false,
   );
 
-  const isFullBleed = useMatchMediaQuery('(max-width: 1324px)');
+  const timeout = useRef<ReturnType<typeof pausableTimeout>>(null);
 
-  const [sliderRef, instanceRef] = useKeenSlider(
-    {
-      loop: true,
-      slides: { origin: 'auto', perView: 1 },
-      defaultAnimation: {
-        duration: 400,
-        // https://easings.net/#easeOutSine
-        easing: x => Math.sin((x * Math.PI) / 2),
-      },
-      slideChanged(slider) {
-        setCurrentSlide(slider.track.details.rel);
-      },
-      ...options,
-    },
-    [
-      (slider: KeenSliderInstance) => {
-        let timeout: ReturnType<typeof setTimeout>;
-        let mouseOver = false;
-
-        const clearNextTimeout = () => clearTimeout(timeout);
-
-        const nextTimeout = () => {
-          clearTimeout(timeout);
-          if (mouseOver) return;
-          timeout = setTimeout(() => slider.next(), CHANGE_SLIDE_TIMEOUT);
-        };
-
-        const onMouseOver = () => {
-          mouseOver = true;
-          clearNextTimeout();
-        };
-
-        const onMouseOut = () => {
-          mouseOver = false;
-          nextTimeout();
-        };
-
-        const onStart = () => {
-          slider.container.addEventListener('mouseover', onMouseOver);
-          slider.container.addEventListener('mouseout', onMouseOut);
-          slider.on('animationEnded', nextTimeout);
-          nextTimeout();
-        };
-
-        const onStop = () => {
-          slider.container.removeEventListener('mouseover', onMouseOver);
-          slider.container.removeEventListener('mouseout', onMouseOut);
-          slider.on('animationEnded', nextTimeout, true);
-          clearNextTimeout();
-        };
-
-        slider.on('created', onStart);
-        slider.on('destroyed', onStop);
-        slider.on('animationStopped', onStop);
-        slider.on('animationStarted', onStart);
-        slider.on('dragStarted', clearNextTimeout);
-        slider.on('updated', nextTimeout);
-      },
-    ],
-  );
+  const [sliderRef, sliderApi] = useEmblaCarousel({ loop: true });
 
   const handleChangeSlide = useCallback(
     (direction: 'prev' | 'next') => {
       if (direction === 'next') {
-        instanceRef.current?.next();
+        sliderApi?.scrollNext();
       } else {
-        instanceRef.current?.prev();
+        sliderApi?.scrollPrev();
       }
     },
-    [instanceRef],
+    [sliderApi],
   );
 
-  const handleMoveToIdx = useCallback(
-    (idx: number) => {
-      instanceRef.current?.moveToIdx(idx);
+  const scrollToSlide = useCallback(
+    (index: number) => {
+      sliderApi?.scrollTo(index);
     },
-    [instanceRef],
+    [sliderApi],
+  );
+
+  const handleTrailer = useCallback(
+    (action: TrailerAction) => {
+      const isOpen = action === 'open';
+      setIsSlideAnimationPaused(isOpen);
+
+      if (isOpen) {
+        timeout.current?.pause();
+      } else {
+        timeout.current?.resume();
+      }
+
+      toggleIsTrailerOpened();
+    },
+    [setIsSlideAnimationPaused],
   );
 
   useEffect(() => {
-    const onTrailerOpened = () => {
-      if (isTrailerOpened) {
-        instanceRef.current?.emit('animationStopped');
-      } else {
-        instanceRef.current?.emit('animationStarted');
-      }
+    if (!sliderApi) return;
+
+    if (!timeout.current) {
+      timeout.current = pausableTimeout({
+        callback: () => sliderApi.scrollNext(),
+        delay: SLIDE_ANIMATION_DURATION,
+      });
+    }
+
+    const { start, pause, resume, clear } = timeout.current;
+
+    const onSelect = () => {
+      setCurrentSlide(sliderApi.selectedScrollSnap());
+      start();
     };
-    onTrailerOpened();
-  }, [instanceRef, isTrailerOpened]);
+
+    const onPointerDown = () => {
+      pause();
+      setIsSlideAnimationPaused(true);
+    };
+
+    const onPointerUp = () => {
+      resume();
+      setIsSlideAnimationPaused(false);
+    };
+
+    if (!isSliderInit.current) {
+      start();
+      isSliderInit.current = true;
+    }
+
+    sliderApi.on('select', onSelect);
+    sliderApi.on('pointerDown', onPointerDown);
+    sliderApi.on('pointerUp', onPointerUp);
+    sliderApi.on('destroy', clear);
+
+    return () => {
+      sliderApi.off('select', onSelect);
+      sliderApi.off('pointerDown', onPointerDown);
+      sliderApi.off('pointerUp', onPointerUp);
+      sliderApi.off('destroy', clear);
+    };
+  }, [isTrailerOpened, setCurrentSlide, setIsSlideAnimationPaused, sliderApi]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--hero-slider-animation-duration',
+      `${SLIDE_ANIMATION_DURATION}ms`,
+    );
+  }, []);
 
   return {
     sliderRef,
-    currentSlide,
+    sliderApi,
     handleChangeSlide,
-    handleMoveToIdx,
+    scrollToSlide,
     isTrailerOpened,
-    setIsTrailerOpened,
+    handleTrailer,
     isFullBleed,
   };
 };

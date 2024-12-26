@@ -10,7 +10,7 @@
   padding: 4px;
   margin: auto;
   max-width: max-content;
-  background: rgba(0, 0, 0, 0.808);
+  background-color: rgba(0, 0, 0, 0.808);
   border-radius: 10px 10px 0 0;
   box-shadow: 2px 5px 10px 5px #0000008f;
   border: 1px solid #252525;
