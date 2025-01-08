@@ -1,5 +1,5 @@
-import { Grid, MovieCard, Wrapper, Pagination } from 'src/shared/ui';
-import { getMovies } from 'src/api/movies';
+import { Grid, MovieCard, Wrapper, Pagination } from 'shared/ui';
+import { getMovies } from 'api/movies';
 
 const Page = props => {
   const { movies } = props;

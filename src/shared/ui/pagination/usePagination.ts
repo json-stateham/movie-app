@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { range } from 'src/shared/helpers/range';
+import { range } from 'shared/helpers/range';
 import type { PaginationProps } from './types';
 
 const DOTS = 0;

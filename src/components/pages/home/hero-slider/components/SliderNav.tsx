@@ -1,7 +1,7 @@
 import { useAtomValue } from 'jotai';
 import styles from '../styles/SliderNav.module.css';
 import { useHeroSlider } from '../useHeroSlider';
-import { ProgressBar } from 'src/components/pages/home/hero-slider/components/ProgressBar';
+import { ProgressBar } from 'components/pages/home/hero-slider/components/ProgressBar';
 import { currentSlideAtom } from '../store';
 
 type Props = {

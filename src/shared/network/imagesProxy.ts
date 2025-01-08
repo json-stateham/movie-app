@@ -1,6 +1,6 @@
-import { processExternalImage } from '@/lib/helpers/processExternalImage';
-import { imageUrl } from 'src/api/images';
-import { ImageUrlProps } from 'src/api/images/types';
+import { processExternalImage } from 'shared/helpers/processExternalImage';
+import { imageUrl } from 'api/images';
+import { ImageUrlProps } from 'api/images/types';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 

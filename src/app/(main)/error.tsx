@@ -2,7 +2,7 @@
 
 import useTranslation from 'next-translate/useTranslation';
 import { useCallback } from 'react';
-import { Button } from 'src/shared/ui';
+import { Button } from 'shared/ui';
 
 type Props = {
   error: Error & { digest?: string };

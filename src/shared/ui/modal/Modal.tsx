@@ -2,8 +2,8 @@
 
 import { ReactNode, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { useClickOutside } from 'src/shared/hooks/useClickOutside';
-import { useEscapeKey } from 'src/shared/hooks/useEscapeKey';
+import { useClickOutside } from 'shared/hooks/useClickOutside';
+import { useEscapeKey } from 'shared/hooks/useEscapeKey';
 import cx from 'clsx';
 import styles from './styles.module.css';
 

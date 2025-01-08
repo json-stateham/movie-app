@@ -1,4 +1,4 @@
-import { GENRES } from 'src/api/genres';
+import { GENRES } from 'api/genres';
 import styles from '../styles/Genres.module.css';
 
 type Props = {

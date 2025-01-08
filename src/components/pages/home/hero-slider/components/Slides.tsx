@@ -1,6 +1,6 @@
-import type { MoviesItem } from 'src/types/common';
+import type { MoviesItem } from 'types/common';
 import styles from '../styles/Slides.module.css';
-import { CustomImage, Text } from 'src/shared/ui';
+import { CustomImage, Text } from 'shared/ui';
 import { Genres } from './Genres';
 import { useHeroSlider } from '../useHeroSlider';
 import { TrailerButton } from './TrailerButton';

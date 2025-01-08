@@ -1,7 +1,7 @@
-import { Wrapper, CustomImage } from 'src/shared/ui';
-import { getFormattedRuntime } from 'src/shared/helpers/getFormattedRuntime';
-import { formatMoney } from 'src/shared/helpers/formatMoney';
-import { getMovieDetails } from 'src/api/movies';
+import { Wrapper, CustomImage } from 'shared/ui';
+import { getFormattedRuntime } from 'shared/helpers/getFormattedRuntime';
+import { formatMoney } from 'shared/helpers/formatMoney';
+import { getMovieDetails } from 'api/movies';
 
 const getMovie = async (id: number) => {
   try {

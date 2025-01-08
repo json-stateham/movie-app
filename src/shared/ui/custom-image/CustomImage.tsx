@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { IMAGE_CONFIG } from 'src/api/images/config';
+import { IMAGE_CONFIG } from 'api/images/config';
 import { Shimmer } from './Shimmer';
-import { imageUrl } from 'src/api/images';
-import type { ImageSize } from 'src/api/images/types';
+import { imageUrl } from 'api/images';
+import type { ImageSize } from 'api/images/types';
 
 type Props = {
   imgSrc: string;

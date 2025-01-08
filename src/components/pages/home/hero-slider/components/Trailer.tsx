@@ -1,7 +1,7 @@
-import { YoutubeVideo } from 'src/shared/ui';
+import { YoutubeVideo } from 'shared/ui';
 import styles from '../styles/Trailer.module.css';
 
-import { MoviesItem } from 'src/types/common';
+import { MoviesItem } from 'types/common';
 import { useHeroSlider } from '../useHeroSlider';
 import { useAtomValue } from 'jotai';
 import { currentSlideAtom } from '../store';

@@ -1,9 +1,9 @@
-import { useMatchMediaQuery } from 'src/shared/hooks/useMatchMediaQuery';
+import { useMatchMediaQuery } from 'shared/hooks/useMatchMediaQuery';
 import { useSetAtom } from 'jotai';
 import { useCallback, useEffect, useReducer, useRef } from 'react';
 import { currentSlideAtom, isSlideAnimationPausedAtom } from './store';
 import useEmblaCarousel from 'embla-carousel-react';
-import { pausableTimeout } from 'src/shared/helpers/pausibleTimeout';
+import { pausableTimeout } from 'shared/helpers/pausibleTimeout';
 import { TrailerAction } from './types';
 
 const SLIDE_ANIMATION_DURATION = 5000;

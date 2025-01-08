@@ -1,4 +1,4 @@
-import { Button, CloseIcon, PlayIcon } from 'src/shared/ui';
+import { Button, CloseIcon, PlayIcon } from 'shared/ui';
 import { useHeroSlider } from '../useHeroSlider';
 import { TrailerAction } from '../types';
 import styles from '../styles/TrailerButton.module.css';

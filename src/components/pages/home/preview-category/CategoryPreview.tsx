@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import type { MoviesItem } from 'src/types/common';
+import type { MoviesItem } from 'types/common';
 import styles from './CategoryPreview.module.css';
-import { Grid, MovieCard, Text } from 'src/shared/ui';
+import { Grid, MovieCard, Text } from 'shared/ui';
 
 interface Props {
   items: MoviesItem[];

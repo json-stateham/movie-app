@@ -48,5 +48,8 @@ export const fetchClient = async (
   return response;
 };
 
-export const jsonFetch = (url: RequestInfo, options?: Options) =>
-  fetchClient(url, options).then(res => res.json());
+export const jsonFetch = async (url: RequestInfo, options?: Options) => {
+  const response = await fetchClient(url, options);
+  const data = await response.json();
+  return data;
+};

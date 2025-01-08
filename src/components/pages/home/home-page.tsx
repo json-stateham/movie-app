@@ -1,8 +1,8 @@
 'use client';
 
 import useTranslation from 'next-translate/useTranslation';
-import { CategoryPreview } from 'src/components/pages/home/preview-category/CategoryPreview';
-import { Wrapper } from 'src/shared/ui';
+import { CategoryPreview } from 'components/pages/home/preview-category/CategoryPreview';
+import { Wrapper } from 'shared/ui';
 
 import { HeroSlider } from './hero-slider/HeroSlider';
 

@@ -1,8 +1,8 @@
-import { fetchMainPage } from 'src/api/fetchMainPage';
-import { getMovieDetails } from 'src/api/movies';
+import { fetchMainPage } from 'api/fetchMainPage';
+import { getMovieDetails } from 'api/movies';
 import type { Metadata, Viewport } from 'next';
-import type { IMovieDetails, MoviesItem } from 'src/types/common';
-import { HomePage } from 'src/components/pages/home/home-page';
+import type { IMovieDetails, MoviesItem } from 'types/common';
+import { HomePage } from 'components/pages/home/home-page';
 import { PreloadResources } from './preload-resources';
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import { ArrowIcon, Button } from 'src/shared/ui';
+import { ArrowIcon, Button } from 'shared/ui';
 import cx from 'clsx';
 import styles from '../styles/Arrows.module.css';
 import { useHeroSlider } from '../useHeroSlider';

@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './styles/HeroSlider.module.css';
-import type { MoviesItem } from 'src/types/common';
+import type { MoviesItem } from 'types/common';
 
 import { useHeroSlider } from './useHeroSlider';
 import { Arrows } from './components/Arrows';

@@ -1,4 +1,4 @@
-import { POSTER } from 'src/api/images/config';
+import { POSTER } from 'api/images/config';
 import cx from 'clsx';
 import styles from './Thumb.module.css';
 import { CustomImage } from '../custom-image/CustomImage';

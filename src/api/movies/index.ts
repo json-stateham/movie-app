@@ -1,5 +1,5 @@
-import { jsonFetch } from 'src/shared/network/fetchClient';
-import { UrlBuilder } from 'src/shared/network/urlBuilder';
+import { jsonFetch } from 'shared/network/fetchClient';
+import { UrlBuilder } from 'shared/network/urlBuilder';
 import { API_URL } from './config';
 import type { MovieCategory, MovieRequestParams } from './types';
 

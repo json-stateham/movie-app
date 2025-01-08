@@ -1,4 +1,4 @@
-import { Skeleton, Wrapper } from 'src/shared/ui';
+import { Skeleton, Wrapper } from 'shared/ui';
 
 export default function Loading() {
   return (
