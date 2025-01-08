@@ -6,7 +6,7 @@ const useCustomEventDetail = (eventName: string) => {
   const handleDetail = ({ detail }: CustomEventInit) => setEventState(detail);
 
   useEffect(() => {
-    window.addEventListener(eventName, handleDetail, false)
+    window.addEventListener(eventName, handleDetail, false);
     return () => window.removeEventListener(eventName, handleDetail, false);
   }, [eventName]);
 

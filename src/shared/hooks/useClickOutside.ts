@@ -1,4 +1,4 @@
-import { useEffect, RefObject } from 'react';
+import { useEffect, RefObject, useCallback } from 'react';
 
 interface Props {
   ref: RefObject<HTMLElement | null>;
@@ -6,12 +6,15 @@ interface Props {
 }
 
 export const useClickOutside = ({ ref, callback }: Props) => {
-  const handler = (event: MouseEvent | TouchEvent) => {
-    const { target } = event;
-    if (!ref.current?.contains(target as any)) {
-      callback();
-    }
-  };
+  const handler = useCallback(
+    (event: MouseEvent | TouchEvent) => {
+      const { target } = event;
+      if (!ref.current?.contains(target as Node)) {
+        callback();
+      }
+    },
+    [callback, ref],
+  );
 
   useEffect(() => {
     document.addEventListener('mousedown', handler);
@@ -21,5 +24,5 @@ export const useClickOutside = ({ ref, callback }: Props) => {
       document.removeEventListener('mousedown', handler);
       document.removeEventListener('touchstart', handler);
     };
-  }, [ref, callback]);
+  }, [ref, callback, handler]);
 };

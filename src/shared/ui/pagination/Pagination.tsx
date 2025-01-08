@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/router';
 import { usePagination, DOTS } from './usePagination';
 import clsx from 'clsx';
 import type { PaginationProps } from './types';
@@ -11,42 +10,13 @@ export const Pagination = ({
   totalPages = 500,
   siblingCount = 1,
 }: PaginationProps) => {
-  const router = useRouter();
-
-  const paginationRange = usePagination({
-    currentPage: Number(router.query.page),
+  const { paginationRange, handlePagination } = usePagination({
+    currentPage: Number(currentPage),
     totalPages,
     siblingCount,
-  }) as number[];
+  });
 
-  const nextPage = () => {
-    router.push({
-      query: {
-        ...router.query,
-        page: currentPage + 1,
-      },
-    });
-  };
-
-  const prevPage = () => {
-    router.push({
-      query: {
-        ...router.query,
-        page: currentPage - 1,
-      },
-    });
-  };
-
-  const setPage = (page: number) => {
-    router.push({
-      query: {
-        ...router.query,
-        page,
-      },
-    });
-  };
-
-  if (currentPage === 0 || paginationRange?.length < 2) {
+  if (currentPage === 0 || paginationRange.length < 2) {
     return null;
   }
 
@@ -57,10 +27,11 @@ export const Pagination = ({
         className={clsx(styles.paginationItem, {
           [styles['disabled']]: currentPage === 1,
         })}
-        onClick={prevPage}
+        onClick={() => handlePagination('prev')}
       >
         <span className={styles.arrow}>&#10094;</span>
       </button>
+
       {paginationRange?.map((pageNumber: number, idx) => {
         if (pageNumber === DOTS) {
           return (
@@ -81,18 +52,19 @@ export const Pagination = ({
             className={clsx(styles.paginationItem, {
               [styles['selected']]: pageNumber === currentPage,
             })}
-            onClick={() => setPage(pageNumber)}
+            onClick={() => handlePagination('jump', pageNumber)}
           >
             <span>{pageNumber}</span>
           </button>
         );
       })}
+
       <button
         aria-label="Next Page"
         className={clsx(styles.paginationItem, {
           [styles['disabled']]: currentPage === totalPages,
         })}
-        onClick={nextPage}
+        onClick={() => handlePagination('next')}
       >
         <span className={styles.arrow}>&#10095;</span>
       </button>

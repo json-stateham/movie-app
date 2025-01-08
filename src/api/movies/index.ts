@@ -21,9 +21,15 @@ export const getMovieDetails = (
   return jsonFetch(url);
 };
 
-export const getMovies = (movieCategory: MovieCategory, page: number) => {
+export const getMovies = ({
+  category,
+  page,
+}: {
+  category: MovieCategory;
+  page: number;
+}) => {
   const url = BASE_URL.clone()
-    .addPath('movie', movieCategory)
+    .addPath('movie', category)
     .addParams({
       page: String(page),
       // with_genres: 12

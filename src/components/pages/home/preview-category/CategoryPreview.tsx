@@ -3,14 +3,15 @@ import Link from 'next/link';
 import type { MoviesItem } from 'types/common';
 import styles from './CategoryPreview.module.css';
 import { Grid, MovieCard, Text } from 'shared/ui';
+import type { MovieCategory } from 'api/movies/types';
 
 interface Props {
   items: MoviesItem[];
   title: string;
-  link: string;
+  category: MovieCategory;
 }
 
-export const CategoryPreview = ({ items, title, link }: Props) => {
+export const CategoryPreview = ({ items, title, category }: Props) => {
   const renderPosters = (items, maxQty = 4) =>
     items
       .slice(0, maxQty)
@@ -29,8 +30,8 @@ export const CategoryPreview = ({ items, title, link }: Props) => {
       <Text className={styles.title} type="h3" size="m" weight="bold">
         <Link
           href={{
-            pathname: link,
-            query: { page: 1 },
+            pathname: 'movies',
+            query: { category, page: 1 },
           }}
         >
           {title}

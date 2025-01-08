@@ -51,7 +51,7 @@ export default async function Page() {
 
   return (
     <>
-      <HomePage topMovies={topMovies} trendMovies={trendMovies} />;
+      <HomePage topMovies={topMovies} trendMovies={trendMovies} />
       <PreloadResources />
     </>
   );

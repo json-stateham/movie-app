@@ -32,7 +32,7 @@
   align-items: center;
   padding: 22px 8px;
   margin: auto 4px;
-  height: 32px;
+  height: 16px;
   color: rgba(255, 255, 255, 0.705);
   border-radius: 100vmax;
   user-select: none;
@@ -64,9 +64,9 @@
 
 
 .dots {
-  align-items: baseline;
+  align-items: flex-end;
   color: rgb(194, 194, 194);
-  transform: translateY(-8px);
+  transform: translateY(-2px);
 
   @media (hover: hover) {
     background-color: transparent;

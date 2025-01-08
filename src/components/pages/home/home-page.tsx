@@ -14,14 +14,14 @@ export const HomePage = ({ trendMovies, topMovies }) => {
       {trendMovies && <HeroSlider items={trendMovies} />}
       {trendMovies && (
         <CategoryPreview
-          link="/movies/popular"
+          category="popular"
           title={t('trending')}
           items={trendMovies}
         />
       )}
       {topMovies && (
         <CategoryPreview
-          link="/movies/top_rated"
+          category="top_rated"
           title={t('topRated')}
           items={topMovies}
         />

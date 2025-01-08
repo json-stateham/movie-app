@@ -1,13 +1,3 @@
-declare module '*.scss' {
-  const content: Record<string, string>;
-  export default content;
-}
-
-declare module '*.svg' {
-  const content: string;
-  export default content;
-}
-
 declare global {
   interface ProcessEnv {
     NEXT_PUBLIC_BASE_URL: string;
@@ -18,16 +8,11 @@ declare global {
 }
 
 declare module '*.jpg' {
-  const content: any;
+  const content: string;
   export default content;
 }
 
 declare module '*.svg' {
-  const content: any;
-  export default content;
-}
-
-declare module '*.scss' {
-  const content: Record<string, string>;
+  const content: string;
   export default content;
 }

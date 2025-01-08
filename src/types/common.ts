@@ -14,8 +14,8 @@ export interface MoviesItem {
   vote_count: number;
   video: boolean;
   vote_average: number;
-  imgPlaceholder?: any;
-  imgSrc?: any;
+  imgPlaceholder?: string;
+  imgSrc?: string;
   trailers: IMovieDetailsVideosResults[];
 }
 
@@ -29,7 +29,7 @@ export interface IMoviesResponse {
 export interface IMovieDetails {
   adult: boolean;
   backdrop_path: string | null;
-  belongs_to_collection: Record<string, any> | null;
+  belongs_to_collection: Record<string, unknown> | null;
   budget: number;
   credits?: IMovieCredits;
   genres: IGenres[];
