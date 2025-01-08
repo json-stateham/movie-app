@@ -17,18 +17,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@/components/*": [
-        "ui/widgets/components/*"
-      ],
-      "@/lib/*": [
-        "shared/*"
-      ],
-      "@/styles/*": [
-        "styles/*"
-      ]
-    },
+    "baseUrl": "./src",
     "lib": [
       "dom",
       "dom.iterable",

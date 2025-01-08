@@ -3,7 +3,7 @@ module.exports = {
     [
       'postcss-simple-vars',
       {
-        variables: require('./styles/variables/breakpoints.cjs'),
+        variables: require('./src/shared/styles/variables/breakpoints.cjs'),
       },
     ],
   ],

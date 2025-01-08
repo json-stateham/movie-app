@@ -1,5 +1,4 @@
 const nextTranslate = require('next-translate-plugin');
-const path = require('path');
 
 const securityHeaders = [
   {
@@ -21,9 +20,6 @@ const securityHeaders = [
 ];
 
 module.exports = nextTranslate({
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
   i18n: {
     locales: ['en'],
     defaultLocale: 'en',
