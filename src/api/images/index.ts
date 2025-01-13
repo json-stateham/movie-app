@@ -7,8 +7,9 @@ export const imageUrl = ({
   imageType = 'poster',
 }: ImageUrlProps) => {
   const sizesConfig = imageType === 'poster' ? POSTER : BACKDROP;
+  const imageSize = sizesConfig[size as keyof typeof sizesConfig];
 
   return imagePath
-    ? `${IMAGE_CONFIG.URL}/w${sizesConfig[size]}${imagePath}`
+    ? `${IMAGE_CONFIG.URL}/w${imageSize}${imagePath}`
     : IMAGE_CONFIG.FALLBACK;
 };

@@ -11,7 +11,11 @@ const getMovie = async (id: number) => {
   }
 };
 
-export default async function Movie({ params }) {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function Movie({ params }: Props) {
   const id = (await params).id.split('-')[0];
 
   const {
@@ -22,7 +26,7 @@ export default async function Movie({ params }) {
     overview,
     budget,
     revenue,
-  } = await getMovie(id);
+  } = await getMovie(Number(id));
 
   return (
     <Wrapper>

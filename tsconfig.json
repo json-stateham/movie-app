@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
+    "strict": true,
     "target": "esnext",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "incremental": true,
     "allowUnreachableCode": false,
-    "strict": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
@@ -23,7 +24,6 @@
       "dom.iterable",
       "esnext"
     ],
-    "incremental": true,
     "plugins": [
       {
         "name": "next"

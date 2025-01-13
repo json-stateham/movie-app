@@ -6,12 +6,12 @@ import { Wrapper } from 'shared/ui';
 
 import { HeroSlider } from './hero-slider/HeroSlider';
 
-export const HomePage = ({ trendMovies, topMovies }) => {
+export const HomePage = ({ trendMovies, topMovies, trendTrailers }) => {
   const { t } = useTranslation('common');
 
   return (
     <Wrapper>
-      {trendMovies && <HeroSlider items={trendMovies} />}
+      {trendMovies && <HeroSlider items={trendTrailers} />}
       {trendMovies && (
         <CategoryPreview
           category="popular"

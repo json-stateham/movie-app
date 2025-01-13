@@ -1,57 +1,44 @@
 import { fetchMainPage } from 'api/fetchMainPage';
 import { getMovieDetails } from 'api/movies';
-import type { Metadata, Viewport } from 'next';
-import type { IMovieDetails, MoviesItem } from 'types/common';
+import type { MoviesItem } from 'types/common';
 import { HomePage } from 'components/pages/home/home-page';
 import { PreloadResources } from './preload-resources';
 
-export const metadata: Metadata = {
-  title: 'Movie App',
-  other: {
-    charset: 'utf-8',
-  },
-};
-
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
-  themeColor: 'black',
-};
-
 async function getMovies() {
-  const { topMovies, trendMovies } = await fetchMainPage();
+  const result = await fetchMainPage();
 
-  if (trendMovies) {
+  if (result.trendMovies) {
     const movieDetails = await Promise.allSettled(
-      trendMovies.map(movie => getMovieDetails(movie.id)),
+      result.trendMovies.map(movie => getMovieDetails(movie.id)),
     );
 
-    trendMovies.forEach((movie: MoviesItem, i) => {
-      if (movieDetails[i].status === 'fulfilled') {
-        const { value } = movieDetails[
-          i
-        ] as PromiseFulfilledResult<IMovieDetails>;
+    result.trendTrailers = result.trendMovies.flatMap(
+      (movie: MoviesItem, index: number) => {
+        const movieDetailsItem = movieDetails[index];
+        if (movieDetailsItem.status !== 'fulfilled') return [];
 
-        movie.trailers = value?.videos?.results?.filter(
+        movie.trailers = movieDetailsItem?.value?.videos?.results?.filter(
           ({ type }) => type === 'Trailer',
         );
-      }
-    });
+
+        return movie;
+      },
+    );
   }
-  return {
-    topMovies,
-    trendMovies,
-  };
+
+  return result;
 }
 
 export default async function Page() {
-  const { topMovies, trendMovies } = await getMovies();
+  const { topMovies, trendMovies, trendTrailers } = await getMovies();
 
   return (
     <>
-      <HomePage topMovies={topMovies} trendMovies={trendMovies} />
+      <HomePage
+        topMovies={topMovies}
+        trendMovies={trendMovies}
+        trendTrailers={trendTrailers}
+      />
       <PreloadResources />
     </>
   );

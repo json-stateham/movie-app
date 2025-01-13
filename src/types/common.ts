@@ -126,4 +126,5 @@ export interface IMovieCredits {
 export interface IMainPageData {
   topMovies: MoviesItem[];
   trendMovies: MoviesItem[];
+  trendTrailers?: MoviesItem[];
 }
